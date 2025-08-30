@@ -1,73 +1,536 @@
+
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>งานทะเบียนวัดผล บรรหารแจ่มใสวิทยา 1</title>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เด็กดีของเสดสิ่ง67</title>
+
+  <!-- ฟอนต์ IBM Plex Sans Thai -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
+    :root {
+      --bg-color: #f4f4f4;
+      --wrapper-bg: white;
+      --text-color: #222;
+      --header-bg: #003366;
+      --header-text: white;
+      --countdown-bg: rgba(255, 255, 255, 0.7);
+      --countdown-text: #003366;
+      --form-bg: #f9f9f9;
+      --form-border: #ccc;
+      --button-bg: #003366;
+      --button-hover-bg: #0055aa;
+      --announcement-bg: #fff0f0;
+      --announcement-border: #ff6f61;
+      --announcement-text: #b03a2e;
+      --sub-menu-bg: #003366;
+      --sub-menu-text: white;
+      --shadow-color: rgba(0,0,0,0.1);
+    }
+
+    .dark-mode {
+      --bg-color: #121212;
+      --wrapper-bg: #1e1e1e;
+      --text-color: #eee;
+      --header-bg: #0d47a1;
+      --header-text: #fff;
+      --countdown-bg: rgba(33, 33, 33, 0.8);
+      --countdown-text: #90caf9;
+      --form-bg: #2c2c2c;
+      --form-border: #555;
+      --button-bg: #0d47a1;
+      --button-hover-bg: #1565c0;
+      --announcement-bg: #330000;
+      --announcement-border: #ff6f61;
+      --announcement-text: #ff9e9e;
+      --sub-menu-bg: #0d47a1;
+      --sub-menu-text: #fff;
+      --shadow-color: rgba(0,0,0,0.7);
+    }
+
     body {
-      font-family: 'Kanit', sans-serif;
-      background-color: #f4f4f9;
       margin: 0;
-      padding: 0;
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
     }
-    .container {
-      width: 80%;
+
+    .wrapper {
+      max-width: 1200px;
       margin: 0 auto;
+      background-color: var(--wrapper-bg);
+      box-shadow: 0 0 10px var(--shadow-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: var(--header-bg);
+      color: var(--header-text);
       padding: 20px;
-    }
-    .header {
       text-align: center;
-      margin-bottom: 20px;
+      font-size: 2rem;
+      font-weight: 600;
+      position: relative;
     }
-    .header img {
-      width: 80px;
-      height: 80px;
+
+    .header-buttons {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    #dark-mode-toggle,
+    #sutee-login {
+      background: transparent;
+      border: 2px solid var(--header-text);
+      color: var(--header-text);
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    #dark-mode-toggle:hover,
+    #sutee-login:hover {
+      background-color: var(--header-text);
+      color: var(--header-bg);
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px 20px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .countdown-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      margin-bottom: 40px;
+      background: var(--countdown-bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px var(--shadow-color);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      color: var(--countdown-text);
+    }
+
+    .countdown-container div:first-child {
+      font-size: 1.2rem;
+      font-weight: 600;
       margin-bottom: 10px;
     }
-    .menu-bar {
-      background-color: #007bff;
+
+    .countdown-time {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .search-form {
+      background-color: var(--form-bg);
+      padding: 20px;
+      border: 1px solid var(--form-border);
+      border-radius: 8px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .search-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .search-form input,
+    .search-form select {
+      width: 100%;
       padding: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       border-radius: 5px;
+      border: 1px solid var(--form-border);
+      font-size: 1rem;
+      background-color: var(--wrapper-bg);
+      color: var(--text-color);
     }
-    .menu-bar a {
+
+    .search-form button {
+      background-color: var(--button-bg);
       color: white;
-      margin-right: 20px;
-      text-decoration: none;
+      padding: 10px 20px;
+      border: none;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .search-form button:hover {
+      background-color: var(--button-hover-bg);
+    }
+
+    .search-result {
+      text-align: center;
+      margin-top: 20px;
       font-weight: bold;
+      font-size: 1.2rem;
     }
-    .menu-bar a:hover {
-      text-decoration: underline;
+
+    .sub-menu {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
     }
+
+    .sub-menu a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      background-color: var(--sub-menu-bg);
+      color: var(--sub-menu-text);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      width: 100px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px var(--shadow-color);
+    }
+
+    .sub-menu a:hover {
+      background-color: var(--button-hover-bg);
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .sub-menu a i {
+      font-size: 1.6rem;
+      margin-bottom: 5px;
+    }
+
+    .announcement-box {
+      max-width: 600px;
+      margin: 20px auto 40px auto;
+      padding: 15px 20px;
+      border: 2px solid var(--announcement-border);
+      background-color: var(--announcement-bg);
+      color: var(--announcement-text);
+      border-radius: 8px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    footer {
+      background-color: var(--header-bg);
+      color: var(--header-text);
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.9rem;
+    }
+
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--wrapper-bg);
+      color: var(--text-color);
+      border: 2px solid var(--button-bg);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px var(--shadow-color);
+      padding: 20px 30px;
+      z-index: 9999;
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .top-strip {
+  background-color: #1e3a8a; /* สีน้ำเงินเข้ม */
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 8px;
+  margin: 0 auto 20px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none; /* ✅ เอาเส้นใต้ข้อความออก */
+}
+
   </style>
 </head>
 <body>
+  <div class="wrapper">
+    <header>
+      เด็กดีของเสดสิ่ง67
+      <div class="header-buttons">
+        <button id="dark-mode-toggle" aria-label="สลับโหมดกลางวัน/กลางคืน">🌙</button>
+      </div>
+    </header>
 
-  <div class="container">
-    <!-- Header with School Logo and Title -->
-    <div class="header">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Emblem_of_the_School_of_Science_and_Technology.png" alt="ตราโรงเรียน">
-      <h1 class="text-3xl font-bold mb-4">งานทะเบียนวัดผล บรรหารแจ่มใสวิทยา 1</h1>
+    <div class="content">
+      <div class="countdown-container">
+        <div>วันสอบกลางภาค ภาคต้น 2568</div>
+        <div>วันที่ 9 สิงหาคม 2025 - วันที่ 17 สิงหาคม 2025</div>
+        <div id="countdown" class="countdown-time"></div>
+      </div>
+      
+      <head>
+  <head>
+  <style>
+    .exam-box {
+      position: relative;
+      text-align: center;
+      padding: 10px 20px;
+      margin: 20px auto 5px auto;
+      width: fit-content;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .exam-box.midterm {
+      background-color: #e0ffeb;
+      color: #004422;
+    }
+
+    .exam-box.final {
+      background-color: #e0f0ff;
+      color: #003366;
+    }
+
+    .badge-new {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: red;
+      color: white;
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-weight: bold;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* 🌙 Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #111;
+        color: #ddd;
+      }
+
+      .exam-box.midterm {
+        background-color: #2b4b3c;
+        color: #caffd3;
+      }
+
+      .exam-box.final {
+        background-color: #223b55;
+        color: #cce8ff;
+      }
+
+      .badge-new {
+        background-color: orange;
+        color: black;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+  
+  <!-- กล่องกลางภาค -->
+  <div class="exam-box midterm">
+    (-ร่าง-) ตารางสอบกลางภาค ประจำภาคต้น 2568
+    <div class="badge-new">NEW</div>
+  </div>
+  <div style="text-align: center; margin-bottom: 10px;">Updated 16 มิถุนายน 2568</div>
+  <img src="ร่างตารางสอบกลางภาค.JPG" alt="Me" width="800"
+    style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 8px;">
+
+  <!-- กล่องปลายภาค -->
+  <div class="exam-box final">
+    (-ร่าง-) ตารางสอบปลายภาค ประจำภาคต้น 2568
+    <div class="badge-new">NEW</div>
+  </div>
+  <div style="text-align: center; margin-bottom: 10px;">Updated 16 มิถุนายน 2568</div>
+  <img src="ร่างตาราสอบปลายภาค.JPG" alt="Me" width="800"
+    style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 8px;">
+</body>
+
+      <a href="hot.html" class="block">
+  <div class="top-strip cursor-pointer hover:bg-gray-200 transition p-2 rounded">
+    <span>วิชาเรียนโหดๆ</span>
+    <div>Updated 12 มิถุนายน 2568</div>
+  </div>
+</a>
+ 
+      <h2 style="text-align: center;">ค้นหาตารางสอบ</h2>
+      <p style="text-align: center; margin-top: -10px; font-size: 0.95rem; color: #666;">Updated 7 มิถุนายน 2568</p>
+      <p style="text-align: center; margin-top: -10px; font-size: 0.95rem; color: #666;">เริ่มใช้ตั้งแต่การสอบกลางภาค ภาคต้น 2568 ในช่วงเดือนสิงหาคม เป็นต้นไป</p>
+
+      <div class="search-form">
+        <form id="exam-form">
+          <label for="student-id">รหัสนิสิต 3 ตัวท้าย</label>
+          <input type="text" id="student-id" name="student-id" placeholder="กรอกรหัสนิสิต 3 ตัวท้าย" required />
+          <label for="grade">ชั้น</label>
+          <select id="grade" name="grade" disabled>
+            <option value="F39-1" selected>F39-1</option>
+          </select>
+          <label for="term">ภาคการศึกษา</label>
+          <select id="term" name="term" disabled>
+            <option value="ภาคปลาย 2567" selected>ภาคปลาย 2567</option>
+          </select>
+          <label for="term">ประเภทการสอบ</label>
+          <select id="term" name="term" disabled>
+            <option value="ปลายภาค" selected>ปลายภาค</option>
+          </select>
+          <button type="submit">ค้นหา</button>
+        </form>
+        <div id="search-result" class="search-result"></div>
+      </div>
+
+      <div class="sub-menu">
+  <a href="kyos.html"><i class="fas fa-hand-holding-dollar"></i>กยศ</a>
+  <a href="#" onclick="alert('ฟีเจอร์นี้ปิดการใช้งานชั่วคราว'); return false;">
+    <i class="fas fa-book-open"></i>
+    <span>วิชาเรียน</span>
+    <small style="font-size: 0.75rem; color: #ffcccc;">ปิดชั่วคราว</small>
+  </a>
+  <a href="calendar.html"><i class="fas fa-calendar-days"></i>ปฏิทิน</a>
+  <a href="tabletest.html"><i class="fas fa-calendar-days"></i>ตารางสอบ</a>
+  <a href="#" onclick="alert('ฟีเจอร์นี้อยู่ระหว่างการพัฒนา'); return false;">
+    <i class="fas fa-graduation-cap"></i>
+    <span>เกรด</span>
+    <small style="font-size: 0.75rem; color: #ffcccc;">อยู่ระหว่างพัฒนา</small>
+  </a>
+  <a href="learning.html">
+    <i class="fas fa-file-powerpoint"></i>
+    <span>คลัง Slide</span>
+  </a>
+</div>
+
+      <div class="announcement-box">
+        เว็บนี้ไม่ใช่เว็บสำเร็จรูป เกิดจากการเขียนโค้ดเองทุกจุด อาจจะมีบางจุดที่มองแล้วแปลกๆเพราะอยู่ในช่วงพัฒนา ฉันจะต้องเป็นคนที่เขียนโค้ดได้โหดที่สุดในประเทศไทย
+      </div>
     </div>
 
-    <!-- แถบเมนู -->
-    <div class="menu-bar">
-      <a href="#">หน้าหลัก</a>
-      <a href="#">ประชาสัมพันธ์</a>
-      <a href="#">ข้อมูลโรงเรียน</a>
-      <a href="#">ติดต่อเรา</a>
     </div>
-
-    <!-- เนื้อหาหลักที่เหลือ -->
-    <div class="text-center mt-8">
-      <h2 class="text-2xl font-semibold">ประชาสัมพันธ์</h2>
-      <p class="mt-4 text-lg">ข้อมูลที่นี่จะเป็นประกาศข่าวสารต่างๆ เกี่ยวกับโรงเรียน บรรหารแจ่มใสวิทยา 1</p>
-    </div>
-
+    <footer>© 2025 ผู้พัฒนา : สุธี. All rights reserved.</footer>
   </div>
 
+  <!-- ป๊อปอัพ -->
+  <div id="popup">📄 พบข้อมูลตารางสอบแล้ว!</div>
+
+  <script>
+    const targetDate = new Date(2025, 7, 9, 8, 30, 0);
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').textContent = 'วันสอบกลางภาค ประจำภาคต้น 2568';
+        clearInterval(intervalId);
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      document.getElementById('countdown').textContent =
+        `${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที`;
+    }
+    updateCountdown();
+    const intervalId = setInterval(updateCountdown, 1000);
+
+    function showPopup(message) {
+      const popup = document.getElementById('popup');
+      popup.textContent = message;
+      popup.style.display = 'block';
+      setTimeout(() => {
+        popup.style.display = 'none';
+      }, 2000);
+    }
+
+    document.getElementById('exam-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const input = document.getElementById('student-id').value.trim();
+      const resultBox = document.getElementById('search-result');
+
+      const examData = {
+        '052': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "052 กันยาพร"', file: '01355xxx.pdf' },
+        '028': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "028 กมลลักษณ์"', file: 'exam_101.pdf' },
+        '133': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "133 ชินพัธน์"', file: 'exam_102.pdf' },
+        '184': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "184 ธนพัฒน์"', file: 'exam_103.pdf' },
+        '214': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "214 นพรดา"', file: 'exam_104.pdf' },
+        '494': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "494 เมธี"', file: 'exam_105.pdf' },
+        '630': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "630 ศุภเสกย์"', file: 'exam_106.pdf' },
+        '656': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "656 สิทธิชาติ"', file: 'exam_107.pdf' },
+        '753': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "753 อนพัทย์"', file: 'exam_108.pdf' },
+        '647': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "647 ทรรณรต"', file: 'exam_109.pdf' },
+        '728': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "728 พชรพร"', file: 'exam_110.pdf' },
+      };
+
+      if (examData[input]) {
+        showPopup('📄 พบข้อมูลตารางสอบแล้ว!');
+        resultBox.innerHTML = `
+          <p>${examData[input].text}</p>
+          <button id="download-btn">Download ตารางสอบ</button>
+        `;
+        document.getElementById('download-btn').addEventListener('click', () => {
+          window.open(examData[input].file, '_blank');
+        });
+      } else {
+        resultBox.textContent = 'ไม่พบข้อมูลตารางสอบ';
+      }
+    });
+
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+    const bodyElement = document.body;
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      bodyElement.classList.add('dark-mode');
+      toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      bodyElement.classList.toggle('dark-mode');
+      if (bodyElement.classList.contains('dark-mode')) {
+        toggleBtn.textContent = '☀️';
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        toggleBtn.textContent = '🌙';
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+
+    document.getElementById('sutee-login').addEventListener('click', () => {
+      window.location.href = 'suteelogin.html';
+    });
+  </script>
 </body>
 </html>
