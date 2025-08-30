@@ -27,23 +27,20 @@
       height: 80px;
       margin-bottom: 10px;
     }
-    .table-container {
-      margin-top: 30px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    table th, table td {
-      padding: 12px;
-      text-align: center;
-      border: 1px solid #ddd;
-    }
-    table th {
-      background-color: #f1f1f1;
-    }
-    .form-container {
+    .menu-bar {
+      background-color: #007bff;
+      padding: 10px;
       margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    .menu-bar a {
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .menu-bar a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -56,50 +53,20 @@
       <h1 class="text-3xl font-bold mb-4">งานทะเบียนวัดผล บรรหารแจ่มใสวิทยา 1</h1>
     </div>
 
-    <!-- ฟอร์มค้นหาข้อมูลนักเรียน -->
-    <div class="form-container">
-      <form>
-        <label for="studentId" class="text-lg">ค้นหานักเรียน (รหัสนักเรียน):</label>
-        <input type="text" id="studentId" class="border p-2 rounded-md" placeholder="กรอกรหัสนักเรียน">
-        <button type="submit" class="bg-blue-600 text-white p-2 rounded-md">ค้นหา</button>
-      </form>
+    <!-- แถบเมนู -->
+    <div class="menu-bar">
+      <a href="#">หน้าหลัก</a>
+      <a href="#">ประชาสัมพันธ์</a>
+      <a href="#">ข้อมูลโรงเรียน</a>
+      <a href="#">ติดต่อเรา</a>
     </div>
 
-    <!-- ตารางแสดงข้อมูลนักเรียน -->
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>รหัสนักเรียน</th>
-            <th>ชื่อ-นามสกุล</th>
-            <th>ชั้นปี</th>
-            <th>คะแนนการสอบ</th>
-            <th>คะแนนรวม</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>12345</td>
-            <td>สมชาย ใจดี</td>
-            <td>ม.4/1</td>
-            <td>85</td>
-            <td>88%</td>
-          </tr>
-          <tr>
-            <td>12346</td>
-            <td>จิตรลดา อักษร</td>
-            <td>ม.4/1</td>
-            <td>90</td>
-            <td>92%</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- เนื้อหาหลักที่เหลือ -->
+    <div class="text-center mt-8">
+      <h2 class="text-2xl font-semibold">ประชาสัมพันธ์</h2>
+      <p class="mt-4 text-lg">ข้อมูลที่นี่จะเป็นประกาศข่าวสารต่างๆ เกี่ยวกับโรงเรียน บรรหารแจ่มใสวิทยา 1</p>
     </div>
 
-    <!-- ปุ่มดาวน์โหลด -->
-    <div class="mt-4 text-center">
-      <button class="bg-green-600 text-white p-2 rounded-md">ดาวน์โหลดข้อมูล (PDF)</button>
-    </div>
   </div>
 
 </body>
