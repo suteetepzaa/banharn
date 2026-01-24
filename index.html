@@ -28,7 +28,7 @@
         }
 
         /* -----------------------------------------------------------
-           LAYOUT - ล็อกเมนูข้างให้แสดงผลตลอดบน Desktop
+            LAYOUT - ล็อกเมนูข้างให้แสดงผลตลอดบน Desktop
         ----------------------------------------------------------- */
         .dashboard-container {
             display: grid;
@@ -120,8 +120,8 @@
 
         /* Responsive - จัดการเมื่อหน้าจอเล็กลง */
         @media (max-width: 1100px) {
-            .dashboard-container { grid-template-columns: 1fr; } /* ซ่อนเมนูข้างบนจอเล็กแบบ Grid */
-            aside { display: none; } /* หากต้องการให้เมนูหายบนมือถือ (Hamburger menu ต้องใช้ JS เพิ่ม) */
+            .dashboard-container { grid-template-columns: 1fr; } 
+            aside { display: none; } 
             .content-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -141,6 +141,7 @@
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#" class="nav-link active"><i class="fas fa-th-large"></i> หน้าแรก</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-calendar-alt"></i> ปฏิทินวิชาการ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-folder-plus"></i> ตรวจสอบผลการขอเปิดรายวิชา</a></li>
                 <li class="nav-item"><a href="people.html" class="nav-link"><i class="fas fa-users"></i> บุคลากร</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-phone"></i> ติดต่อสอบถาม</a></li>
             </ul>
