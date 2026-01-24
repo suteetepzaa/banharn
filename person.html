@@ -9,246 +9,295 @@
     
     <style>
         :root {
-            --primary: #0056b3;
-            --primary-light: #e7f1ff;
-            --bg-body: #f0f2f5;
+            --primary: #004d99;
+            --accent: #00d2ff;
+            --bg-light: #f8fbff;
             --white: #ffffff;
-            --text-main: #2d3436;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --text-dark: #1a1a1a;
+            --shadow-soft: 0 10px 40px rgba(0,0,0,0.05);
         }
 
         body {
             font-family: 'Kodchasan', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
+            background-color: var(--bg-light);
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
+            color: var(--text-dark);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        header.page-header {
+        .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 50px;
         }
 
-        header.page-header h1 {
+        .section-header h1 {
+            font-size: 2.5rem;
             color: var(--primary);
-            font-size: 2rem;
             margin-bottom: 10px;
-        }
-
-        header.page-header p {
-            color: #666;
-        }
-
-        /* Group Section */
-        .staff-group {
-            margin-bottom: 4rem;
-        }
-
-        .group-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 2rem;
-            color: var(--primary);
-            border-bottom: 3px solid var(--primary-light);
-            padding-bottom: 10px;
         }
 
-        /* Grid Layout */
-        .staff-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        .section-header .line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        /* Staff Layout Area */
+        .staff-list {
+            display: flex;
+            flex-direction: column;
             gap: 25px;
         }
 
-        /* Staff Card */
-        .staff-card {
+        /* New Card Design: Horizontal & Elegant */
+        .person-card {
             background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-            text-align: center;
-            padding-bottom: 20px;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .staff-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .image-container {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            background-color: #eee;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 77, 153, 0.05);
             position: relative;
+            overflow: hidden;
         }
 
-        .image-container img {
+        .person-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 50px rgba(0, 77, 153, 0.12);
+            border-color: var(--accent);
+        }
+
+        /* Profile Image with Ring */
+        .img-wrapper {
+            width: 130px;
+            height: 130px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            margin-right: 30px;
+        }
+
+        .img-wrapper img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             object-fit: cover;
-            transition: transform 0.5s;
+            background: #fff;
+            border: 3px solid #fff;
         }
 
-        .staff-card:hover .image-container img {
-            transform: scale(1.1);
+        /* Text Content */
+        .person-info {
+            flex-grow: 1;
         }
 
-        .staff-info {
-            padding: 20px 15px;
-        }
-
-        .staff-info h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+        .person-info h3 {
+            font-size: 1.4rem;
+            margin: 0 0 5px 0;
             color: var(--primary);
         }
 
-        .staff-info p.position {
+        .person-info p.title {
+            font-size: 1rem;
             font-weight: 600;
-            color: #555;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 12px;
         }
 
-        .contact-links {
+        .person-info .meta {
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: #888;
         }
 
-        .contact-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary-light);
+        .meta span i {
+            margin-right: 5px;
+            color: var(--accent);
+        }
+
+        /* Action Buttons */
+        .social-btns {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        .btn-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 15px;
+            background: var(--bg-light);
             color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             transition: 0.3s;
+            border: 1px solid #eee;
         }
 
-        .contact-links a:hover {
+        .btn-icon:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* Level Badge */
+        .badge-level {
+            position: absolute;
+            top: 20px;
+            right: -30px;
             background: var(--primary);
             color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        /* Filter Tabs */
-        .filter-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 10px 20px;
-            border-radius: 25px;
-            border: none;
-            background: var(--white);
-            color: var(--primary);
-            font-family: 'Kodchasan';
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .staff-grid { grid-template-columns: 1fr; }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .person-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .img-wrapper {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .meta {
+                flex-direction: column;
+                gap: 5px;
+                align-items: center;
+            }
+            .social-btns {
+                margin-left: 0;
+                margin-top: 20px;
+                justify-content: center;
+            }
+            .badge-level { display: none; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header class="page-header">
-        <h1>บุคลากรงานทะเบียนวัดผล</h1>
-        <p>ฝ่ายประมวลผล GPA | โรงเรียนบรรหารแจ่มใสวิทยา 1</p>
-    </header>
-
-    <div class="staff-group">
-        <div class="group-title">
-            <i class="fas fa-user-tie"></i> คณะกรรมการบริหาร
-        </div>
-        
-        <div class="staff-grid">
-            <div class="staff-card">
-                <div class="image-container">
-                    <img src="https://via.placeholder.com/300x350" alt="ชื่อ-นามสกุล">
-                </div>
-                <div class="staff-info">
-                    <h3>นายสมชาย ใจดี</h3>
-                    <p class="position">หัวหน้างานทะเบียนวัดผล</p>
-                    <div class="contact-links">
-                        <a href="mailto:test@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="tel:0812345678" title="โทรศัพท์"><i class="fas fa-phone"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="staff-card">
-                <div class="image-container">
-                    <img src="https://via.placeholder.com/300x350" alt="ชื่อ-นามสกุล">
-                </div>
-                <div class="staff-info">
-                    <h3>นางสาวสมศรี ทะเบียน</h3>
-                    <p class="position">รองหัวหน้างานทะเบียน</p>
-                    <div class="contact-links">
-                        <a href="mailto:test@example.com"><i class="fas fa-envelope"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="tel:0812345678"><i class="fas fa-phone"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="section-header">
+        <h1>คณะทำงานทะเบียนและวัดผล</h1>
+        <div class="line"></div>
     </div>
 
-    <div class="staff-group">
-        <div class="group-title">
-            <i class="fas fa-users-cog"></i> เจ้าหน้าที่ประมวลผล (GPA)
-        </div>
+    <div class="staff-list">
         
-        <div class="staff-grid">
-            <div class="staff-card">
-                <div class="image-container">
-                    <img src="https://via.placeholder.com/300x350" alt="ชื่อ-นามสกุล">
-                </div>
-                <div class="staff-info">
-                    <h3>นายณัฏฐกิตติ์ โพธิ์พุ่ม</h3>
-                    <p class="position">เจ้าหน้าที่สารสนเทศและประมวลผล</p>
-                    <div class="contact-links">
-                        <a href="mailto:test@example.com"><i class="fas fa-envelope"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="tel:0812345678"><i class="fas fa-phone"></i></a>
-                    </div>
+        <div class="person-card">
+            <div class="badge-level">LEADER</div>
+            <div class="img-wrapper">
+                <img src="https://i.pravatar.cc/150?u=1" alt="Profile">
+            </div>
+            <div class="person-info">
+                <h3>นายสมชาย มุ่งมั่น</h3>
+                <p class="title">หัวหน้างานทะเบียนและวัดผล</p>
+                <div class="meta">
+                    <span><i class="fas fa-building"></i> สำนักบริหาร</span>
+                    <span><i class="fas fa-envelope"></i> somchai@school.ac.th</span>
                 </div>
             </div>
-            
+            <div class="social-btns">
+                <a href="#" class="btn-icon"><i class="fab fa-line"></i></a>
+                <a href="tel:0812345678" class="btn-icon"><i class="fas fa-phone"></i></a>
             </div>
+        </div>
+
+        <div class="person-card">
+            <div class="img-wrapper">
+                <img src="https://i.pravatar.cc/150?u=2" alt="Profile">
+            </div>
+            <div class="person-info">
+                <h3>นางสาวรัตนาภรณ์ ใจดี</h3>
+                <p class="title">รองหัวหน้างานทะเบียน (ฝ่ายวัดผล)</p>
+                <div class="meta">
+                    <span><i class="fas fa-id-card"></i> งานวัดผล</span>
+                    <span><i class="fas fa-envelope"></i> rattana@school.ac.th</span>
+                </div>
+            </div>
+            <div class="social-btns">
+                <a href="#" class="btn-icon"><i class="fab fa-line"></i></a>
+                <a href="tel:0812345678" class="btn-icon"><i class="fas fa-phone"></i></a>
+            </div>
+        </div>
+
+        <div class="person-card">
+            <div class="img-wrapper">
+                <img src="https://i.pravatar.cc/150?u=3" alt="Profile">
+            </div>
+            <div class="person-info">
+                <h3>นายณัฏฐกิตติ์ โพธิ์พุ่ม</h3>
+                <p class="title">เจ้าหน้าที่สารสนเทศและประมวลผล GPA</p>
+                <div class="meta">
+                    <span><i class="fas fa-code"></i> งานระบบ SGS</span>
+                    <span><i class="fas fa-envelope"></i> nattakit@school.ac.th</span>
+                </div>
+            </div>
+            <div class="social-btns">
+                <a href="#" class="btn-icon"><i class="fab fa-line"></i></a>
+                <a href="tel:0812345678" class="btn-icon"><i class="fas fa-phone"></i></a>
+            </div>
+        </div>
+
+        <div class="person-card">
+            <div class="img-wrapper">
+                <img src="https://i.pravatar.cc/150?u=4" alt="Profile">
+            </div>
+            <div class="person-info">
+                <h3>นางสาววรรณวิสา ทะเบียน</h3>
+                <p class="title">เจ้าหน้าที่งานทะเบียน (ปพ.1 / ปพ.7)</p>
+                <div class="meta">
+                    <span><i class="fas fa-file-alt"></i> งานเอกสาร</span>
+                    <span><i class="fas fa-envelope"></i> wanwisa@school.ac.th</span>
+                </div>
+            </div>
+            <div class="social-btns">
+                <a href="#" class="btn-icon"><i class="fab fa-line"></i></a>
+                <a href="tel:0812345678" class="btn-icon"><i class="fas fa-phone"></i></a>
+            </div>
+        </div>
+
+        <div class="person-card">
+            <div class="img-wrapper">
+                <img src="https://i.pravatar.cc/150?u=5" alt="Profile">
+            </div>
+            <div class="person-info">
+                <h3>นายวิชาญ รอบรู้</h3>
+                <p class="title">เจ้าหน้าที่ประสานงานและบริการคำร้อง</p>
+                <div class="meta">
+                    <span><i class="fas fa-headset"></i> บริการนักเรียน</span>
+                    <span><i class="fas fa-envelope"></i> wichan@school.ac.th</span>
+                </div>
+            </div>
+            <div class="social-btns">
+                <a href="#" class="btn-icon"><i class="fab fa-line"></i></a>
+                <a href="tel:0812345678" class="btn-icon"><i class="fas fa-phone"></i></a>
+            </div>
+        </div>
+
     </div>
 
-    <footer style="text-align: center; margin-top: 3rem; color: #888;">
-        <a href="index.html" style="text-decoration: none; color: var(--primary); font-weight: 600;">
-            <i class="fas fa-arrow-left"></i> กลับหน้าหลัก
+    <footer style="text-align: center; margin-top: 50px;">
+        <a href="index.html" style="text-decoration: none; color: var(--primary); font-weight: 700; font-size: 1.1rem;">
+            <i class="fas fa-chevron-left"></i> กลับไปหน้า Dashboard
         </a>
     </footer>
 </div>
