@@ -1,491 +1,492 @@
-
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>เด็กดีของเสดสิ่ง67</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>งานทะเบียนวัดผล [ชื่อหน่วยงาน] (รูปแบบสว่าง)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* -------------------------- CSS STYLES (LIGHT AND CLEAN THEME) -------------------------- */
+        
+        /* 1. นำเข้าฟอนต์ IBM Plex Sans Thai */
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600;700&display=swap');
+        
+        /* ตัวแปรสีหลัก */
+        :root {
+            --primary-color: #007bff; /* สีเน้นหลัก: สีฟ้า */
+            --secondary-color: #f5f5f5; /* สีพื้นหลังรอง: เทาอ่อนมาก */
+            --header-bg: #004d99; /* สี Header: น้ำเงินเข้ม */
+            --text-dark: #333; /* สีข้อความเข้ม */
+            --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.08);
+            --border-light: #ddd;
+        }
 
-  <!-- ฟอนต์ IBM Plex Sans Thai -->
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600&display=swap" rel="stylesheet" />
+        /* การตั้งค่าพื้นฐาน */
+        body {
+            font-family: 'IBM Plex Sans Thai', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* เปลี่ยนพื้นหลังหลักเป็นสีเทาอ่อนมาก */
+            background-color: var(--secondary-color); 
+            /* เปลี่ยนสีตัวอักษรหลักเป็นสีเทาเข้ม */
+            color: var(--text-dark); 
+            line-height: 1.6;
+        }
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        .wrapper {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* พื้นหลัง Wrapper เป็นสีขาวสะอาด */
+            background-color: white; 
+            box-shadow: var(--shadow-light);
+            border-radius: 8px; /* เพิ่มขอบโค้งมน */
+            overflow: hidden;
+        }
 
-  <style>
-    :root {
-      --bg-color: #f4f4f4;
-      --wrapper-bg: white;
-      --text-color: #222;
-      --header-bg: #003366;
-      --header-text: white;
-      --countdown-bg: rgba(255, 255, 255, 0.7);
-      --countdown-text: #003366;
-      --form-bg: #f9f9f9;
-      --form-border: #ccc;
-      --button-bg: #003366;
-      --button-hover-bg: #0055aa;
-      --announcement-bg: #fff0f0;
-      --announcement-border: #ff6f61;
-      --announcement-text: #b03a2e;
-      --sub-menu-bg: #003366;
-      --sub-menu-text: white;
-      --shadow-color: rgba(0,0,0,0.1);
-    }
+        /* ส่วนหัว (Header) */
+        .header {
+            /* เปลี่ยนสีเป็นสีน้ำเงินเข้ม */
+            background-color: var(--header-bg); 
+            color: white;
+            padding: 20px 20px;
+            text-align: center;
+        }
 
-    .dark-mode {
-      --bg-color: #121212;
-      --wrapper-bg: #1e1e1e;
-      --text-color: #eee;
-      --header-bg: #0d47a1;
-      --header-text: #fff;
-      --countdown-bg: rgba(33, 33, 33, 0.8);
-      --countdown-text: #90caf9;
-      --form-bg: #2c2c2c;
-      --form-border: #555;
-      --button-bg: #0d47a1;
-      --button-hover-bg: #1565c0;
-      --announcement-bg: #330000;
-      --announcement-border: #ff6f61;
-      --announcement-text: #ff9e9e;
-      --sub-menu-bg: #0d47a1;
-      --sub-menu-text: #fff;
-      --shadow-color: rgba(0,0,0,0.7);
-    }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'IBM Plex Sans Thai', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-    }
+        /* โครงสร้างหลัก 2 คอลัมน์ */
+        .main-container {
+            display: flex;
+            min-height: 600px;
+        }
 
-    .wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-      background-color: var(--wrapper-bg);
-      box-shadow: 0 0 10px var(--shadow-color);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+        /* แถบเมนูซ้ายมือ (Sidebar) */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            /* เปลี่ยนพื้นหลัง Sidebar เป็นสีขาวหรือเทาอ่อนมาก */
+            background-color: #fff; 
+            border-right: 1px solid var(--border-light);
+            padding: 15px 0;
+        }
 
-    header {
-      background-color: var(--header-bg);
-      color: var(--header-text);
-      padding: 20px;
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 600;
-      position: relative;
-    }
+        .sidebar h3 {
+            /* เปลี่ยนสีพื้นหลังเป็นสีฟ้าอ่อน */
+            background-color: var(--primary-color); 
+            /* เปลี่ยนสีเน้นเป็นสีขาว */
+            color: #fff; 
+            padding: 10px 15px;
+            margin-top: 0;
+            font-size: 1.1em;
+            text-align: center;
+            /* เปลี่ยนเส้นขอบเป็นสีขาว */
+            border-bottom: 2px solid #fff; 
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0 10px;
+            margin: 0;
+        }
 
-    .header-buttons {
-      position: absolute;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      display: flex;
-      gap: 10px;
-    }
+        .sidebar ul li a {
+            display: block;
+            padding: 10px 10px;
+            margin-bottom: 5px;
+            text-decoration: none;
+            /* เปลี่ยนสีลิงก์เป็นสีเทาเข้ม */
+            color: var(--text-dark); 
+            border-left: 5px solid transparent;
+            font-weight: 400;
+            transition: background-color 0.2s, border-left 0.2s;
+            border-radius: 4px;
+        }
 
-    #dark-mode-toggle,
-    #sutee-login {
-      background: transparent;
-      border: 2px solid var(--header-text);
-      color: var(--header-text);
-      padding: 6px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
+        .sidebar ul li a:hover {
+            /* เปลี่ยนสี Hover เป็นสีฟ้าอ่อนมาก */
+            background-color: #e6f2ff; 
+            /* เปลี่ยนสีเน้น Border เป็นสีฟ้าหลัก */
+            border-left: 5px solid var(--primary-color); 
+        }
+        
+        /* สไตล์พิเศษสำหรับลิงก์เข้าสู่ระบบ (ปรับสีให้เข้ากับโทนสว่าง) */
+        .sidebar ul li a[style*="background-color: #555"] {
+            background-color: var(--primary-color) !important; /* ฟ้าหลัก */
+            color: white !important;
+            font-weight: 600 !important;
+        }
+        .sidebar ul li a[style*="background-color: #ccc"] {
+            background-color: #6c757d !important; /* เทาปานกลาง */
+            color: white !important;
+            font-weight: 600 !important;
+        }
 
-    #dark-mode-toggle:hover,
-    #sutee-login:hover {
-      background-color: var(--header-text);
-      color: var(--header-bg);
-    }
 
-    .content {
-      flex: 1;
-      padding: 30px 20px;
-      font-size: 1.1rem;
-      line-height: 1.8;
-    }
+        /* เนื้อหาหลัก (Content) */
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        
+        .content h2 {
+            /* เปลี่ยนสีหัวข้อเป็นสีน้ำเงินเข้ม */
+            color: var(--header-bg); 
+            font-size: 1.5em;
+            /* เปลี่ยนเส้นขอบเป็นสีเทาอ่อน */
+            border-bottom: 2px solid #eee; 
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+        
+        /* ส่วนนับถอยหลัง (Countdown Section) */
+        .countdown-section {
+            /* เปลี่ยนสีพื้นหลังเน้นเป็นสีฟ้าอ่อนมาก */
+            background-color: #e6f2ff; 
+            /* เปลี่ยนสีตัวอักษรเป็นสีดำ */
+            color: var(--text-dark); 
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--primary-color);
+        }
 
-    .countdown-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px;
-      margin-bottom: 40px;
-      background: var(--countdown-bg);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px var(--shadow-color);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      color: var(--countdown-text);
-    }
+        .countdown-section h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+        
+        .timer-display {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-    .countdown-container div:first-child {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
+        .time-unit {
+            /* เปลี่ยนสีพื้นหลังเป็นสีฟ้าหลัก */
+            background-color: var(--primary-color); 
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            min-width: 70px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
-    .countdown-time {
-      font-size: 2.2rem;
-      font-weight: 700;
-    }
+        .time-unit .number {
+            display: block;
+            font-size: 2em;
+            font-weight: 700;
+        }
 
-    .search-form {
-      background-color: var(--form-bg);
-      padding: 20px;
-      border: 1px solid var(--form-border);
-      border-radius: 8px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+        .time-unit .label {
+            display: block;
+            font-size: 0.8em;
+        }
 
-    .search-form label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
+        #countdown-message {
+            font-size: 1.4em;
+            font-weight: 700;
+            /* คงสีแดงไว้เพื่อการแจ้งเตือนสำคัญ */
+            color: #cc0000; 
+            padding: 10px;
+        }
 
-    .search-form input,
-    .search-form select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid var(--form-border);
-      font-size: 1rem;
-      background-color: var(--wrapper-bg);
-      color: var(--text-color);
-    }
+        /* กล่องข่าวสาร/ลิงก์ด่วน */
+        .news-box, .service-box {
+            border: 1px solid var(--border-light);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            /* พื้นหลังเป็นสีขาว/เทาอ่อนตาม Wrapper */
+            background-color: #fff; 
+        }
 
-    .search-form button {
-      background-color: var(--button-bg);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-    }
+        .news-list a {
+            display: block;
+            color: var(--text-dark);
+            padding: 8px 0;
+            border-bottom: 1px dotted #ccc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .news-list a:hover {
+            /* สี hover เป็นสีฟ้าหลัก */
+            color: var(--primary-color); 
+            text-decoration: underline;
+        }
+        
+        /* --- CSS สำหรับส่วนแสดงสถานะงานทะเบียนใน Content --- */
+        
+        .status-admin-box {
+            border: 1px solid var(--border-light);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            /* พื้นหลังสีอ่อน */
+            background-color: var(--secondary-color); 
+        }
 
-    .search-form button:hover {
-      background-color: var(--button-hover-bg);
-    }
+        .status-header {
+            font-size: 1.2em;
+            font-weight: 600;
+            /* เปลี่ยนสีเป็นสีน้ำเงินเข้ม */
+            color: var(--header-bg); 
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .status-item-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
 
-    .search-result {
-      text-align: center;
-      margin-top: 20px;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
+        .status-options-group label {
+            margin-left: 15px;
+            font-weight: normal;
+            color: var(--text-dark);
+            cursor: default;
+        }
 
-    .sub-menu {
-      margin-top: 40px;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
+        .status-options-group input[type="radio"] {
+            /* เปลี่ยนสี accent color ให้เป็นฟ้าหลัก */
+            accent-color: var(--primary-color); 
+        }
+        
+        .metadata {
+            margin-top: 15px;
+            font-size: 0.85em;
+            text-align: right;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        /* ----------------------------------------------------------------- */
+        
+        /* ส่วนท้าย (Footer) */
+        .footer {
+            /* เปลี่ยนสีเป็นสีน้ำเงินเข้ม */
+            background-color: var(--header-bg); 
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9em;
+            clear: both;
+        }
 
-    .sub-menu a {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      text-decoration: none;
-      background-color: var(--sub-menu-bg);
-      color: var(--sub-menu-text);
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: 500;
-      width: 100px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px var(--shadow-color);
-    }
-
-    .sub-menu a:hover {
-      background-color: var(--button-hover-bg);
-      transform: scale(1.05);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .sub-menu a i {
-      font-size: 1.6rem;
-      margin-bottom: 5px;
-    }
-
-    .announcement-box {
-      max-width: 600px;
-      margin: 20px auto 40px auto;
-      padding: 15px 20px;
-      border: 2px solid var(--announcement-border);
-      background-color: var(--announcement-bg);
-      color: var(--announcement-text);
-      border-radius: 8px;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    footer {
-      background-color: var(--header-bg);
-      color: var(--header-text);
-      text-align: center;
-      padding: 15px 0;
-      font-size: 0.9rem;
-    }
-
-    #popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: var(--wrapper-bg);
-      color: var(--text-color);
-      border: 2px solid var(--button-bg);
-      border-radius: 12px;
-      box-shadow: 0 10px 30px var(--shadow-color);
-      padding: 20px 30px;
-      z-index: 9999;
-      font-family: 'IBM Plex Sans Thai', sans-serif;
-      text-align: center;
-      font-size: 1.1rem;
-    }
-
-    .top-strip {
-  background-color: #1e3a8a; /* สีน้ำเงินเข้ม */
-  color: white;
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 8px;
-  margin: 0 auto 20px auto;
-  max-width: 600px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  text-decoration: none; /* ✅ เอาเส้นใต้ข้อความออก */
-}
-
-  </style>
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-light);
+            }
+            .sidebar h3 {
+                border-bottom: none;
+            }
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .sidebar ul li a {
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                margin: 0 5px;
+            }
+            .sidebar ul li a:hover {
+                border-left: none;
+                /* เปลี่ยนสีเน้นเป็นสีฟ้าหลัก */
+                border-bottom: 3px solid var(--primary-color); 
+                background-color: transparent;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      งานทะเบียนวัดผล โรงเรียนบรรหารแจ่มใสวิทยา 1
-      <div class="header-buttons">
-        <button id="dark-mode-toggle" aria-label="สลับโหมดกลางวัน/กลางคืน">🌙</button>
-      </div>
-    </header>
+    <div class="wrapper">
+        <header class="header">
+            <h1>งานทะเบียนวัดผล ฝ่ายประมวลผล GPA</h1>
+            <p>Banharnjamsaiwittaya 1 School</p>
+        </header>
 
-    <div class="content">
-      <div class="countdown-container">
-        <div>วันสุดท้ายของการส่งคะแนนครึ่งภาคเรียนแรก</div>
-        <div>วันที่ 29 กรกฏาคม 2025 - วันที่ 22 กันยายน 2025</div>
-        <div id="countdown" class="countdown-time"></div>
-      </div>
-      
-      <head>
-  <head>
-  <style>
-    .exam-box {
-      position: relative;
-      text-align: center;
-      padding: 10px 20px;
-      margin: 20px auto 5px auto;
-      width: fit-content;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
+        <div class="main-container">
+            <aside class="sidebar">
+                <h3>เมนูหลัก</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> หน้าแรก</a></li>
+                    <li><a href="cenderr.html"><i class="fas fa-calendar-alt"></i> ปฏิทินวิชาการ</a></li>
+                    <li><a href="#"><i class="fas fa-poll"></i> ตรวจสอบผลการเรียน</a></li>
+                    <li><a href="#"><i class="fas fa-download"></i> ดาวน์โหลดเอกสาร</a></li>
+                    <li><a href="#"><i class="fas fa-user-tie"></i> ข้อมูลบุคลากร</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> ติดต่อเรา</a></li>
+                </ul>
+                
+                <h3>ลิงก์เข้าสู่ระบบ</h3>
+                <ul>
+                    <li><a href="#" style="background-color: #555; color: white;"><i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบนักเรียน</a></li>
+                    <li><a href="#" style="background-color: #ccc; color: #333;"><i class="fas fa-chalkboard-teacher"></i> เข้าสู่ระบบครู</a></li>
+                    <li><a href="admin.html" style="background-color: #555; color: white;"><i class="fas fa-wrench"></i> สำหรับ Addmin</a></li>
+                </ul>
+            </aside>
 
-    .exam-box.midterm {
-      background-color: #e0ffeb;
-      color: #004422;
-    }
+            <main class="content">
+                
+                <section class="countdown-section">
+                    <h3>เปิดระบบบันทึกผลการเรียน ภาคเรียนที่ 2 ปีการศึกษา 2568</h3>
+                    <p>วันอังคารที่ 16 ธันวาคม 2568 เวลา 08:00 น.เป็นต้นไป</p> 
+                    <div id="timer" class="timer-display" style="display: none;"> <div class="time-unit">
+                            <span id="days" class="number">00</span>
+                            <span class="label">วัน</span>
+                        </div>
+                        <div class="time-unit">
+                            <span id="hours" class="number">00</span>
+                            <span class="label">ชั่วโมง</span>
+                        </div>
+                        <div class="time-unit">
+                            <span id="minutes" class="number">00</span>
+                            <span class="label">นาที</span>
+                        </div>
+                        <div class="time-unit">
+                            <span id="seconds" class="number">00</span>
+                            <span class="label">วินาที</span>
+                        </div>
+                    </div>
+                    <div id="countdown-message" style="display: block;"> 
+                        🎉 ประกาศผลการเรียนแล้ว!
+                    </div>
+                </section>
+                
+                <h2>ข่าวประชาสัมพันธ์งานทะเบียนวัดผล</h2>
+                <div class="news-box">
+                    <div class="news-list">
+                        <a href="#">
+                            [30/ก.ย.] ประกาศห้องสอบปลายภาคเรียนที่ 1 ปีการศึกษา 2568
+                        </a>
+                        <a href="#">
+                            [22/ก.ย.] แจ้งกำหนดการรับรองผลการเรียน และแก้ไข 0, ร, มส.
+                        </a>
+                        <a href="#">[08/ส.ค.] กำหนดการส่งเกรด ก่อนกลางภาค/สอบกลางภาค 1/2568 ไม่เกินเที่ยงคืนวันอาทิตย์ที่ 19 กันยายน 2568</a>
+                        <a href="#">[29/ก.ค.] เปิดระบบ SGS ภาคเรียนที่ 1/2568 </a>
+                    </div>
+                </div>
 
-    .exam-box.final {
-      background-color: #e0f0ff;
-      color: #003366;
-    }
+                <h2>บริการและเอกสารคำร้องออนไลน์</h2>
+                <div class="service-box">
+                    <p>สามารถดาวน์โหลดแบบฟอร์มคำร้องต่างๆ ได้ที่นี่</p>
+                    <a href="#" style="background-color: var(--header-bg); color: white; padding: 8px 15px; display: inline-block; text-decoration: none; border-radius: 4px;"><i class="fas fa-file-pdf"></i> ดาวน์โหลดแบบฟอร์ม ปพ.1/คำร้อง</a>
+                </div>
 
-    .badge-new {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      background-color: red;
-      color: white;
-      font-size: 0.7rem;
-      padding: 4px 8px;
-      border-radius: 20px;
-      font-weight: bold;
-      animation: blink 1s infinite;
-    }
+                <div class="status-admin-box">
+                    <div class="status-header">
+                        <i class="fas fa-cogs"></i> สถานะระบบงานทะเบียนวัดผล
+                    </div>
+                    
+                    <div class="status-item-line">
+                        <span>ปีการศึกษาปัจจุบัน: 2568</span>
+                        <span>ภาคเรียนปัจจุบัน: 2</span>
+                    </div>
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
+                    <div class="status-item-line">
+                        <span>กลาง/ปลายภาค:</span>
+                        <div class="status-options-group">
+                            <label><input type="radio" name="term-type" value="mid" disabled> กลางภาค</label>
+                            <label><input type="radio" name="term-type" value="final" checked disabled> ปลายภาค</label>
+                        </div>
+                    </div>
 
-    /* 🌙 Dark mode styles */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #111;
-        color: #ddd;
-      }
+                    <hr style="margin: 10px 0; border: none; border-top: 1px dashed #ccc;">
+                    
+                    <div class="status-item-line">
+                        <span>บันทึกผลการเรียน:</span>
+                        <div class="status-options-group">
+                            <label><input type="radio" name="rec-status" value="closed" checked disabled> ปิด</label>
+                            <label><input type="radio" name="rec-status" value="open" disabled> เปิด</label>
+                        </div>
+                    </div>
 
-      .exam-box.midterm {
-        background-color: #2b4b3c;
-        color: #caffd3;
-      }
+                    <div class="status-item-line">
+                        <span>ประกาศผลการเรียนทุกชั้น:</span>
+                        <div class="status-options-group">
+                            <label><input type="radio" name="pub-all-status" value="closed" disabled> ปิด</label>
+                            <label><input type="radio" name="pub-all-status" value="open" checked disabled> เปิด</label>
+                        </div>
+                    </div>
+                    
+                    <div class="status-item-line">
+                        <span>บันทึกผลสอบแก้ตัว:</span>
+                        <div class="status-options-group">
+                            <label><input type="radio" name="res-status" value="closed" checked disabled> ปิด</label>
+                            <label><input type="radio" name="res-status" value="open" disabled> เปิด</label>
+                        </div>
+                    </div>
 
-      .exam-box.final {
-        background-color: #223b55;
-        color: #cce8ff;
-      }
+                    <div class="metadata">
+                        ผู้บันทึก: 830 นายณัฏฐกิตติ์ โพธิ์พุ่ม<br>
+                        เวลาที่บันทึก: 14 ต.ค. 68 10:05
+                    </div>
+                </div>
+                </main>
+        </div>
 
-      .badge-new {
-        background-color: orange;
-        color: black;
-      }
-    }
-  </style>
-</head>
-
-<div style="display: flex; align-items: center; justify-content: center;">
-  <img src="72100461_0_20200617-070925.jpg" alt="Me" width="80"
-       style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); border-radius: 8px;">
-  <div style="margin-left: 15px; text-align: left;">
-    <div>นายณัฐวุฒิ สุดโต</div>
-    <div>หัวหน้ากลุ่มงานวัดผล</div>
-  </div>
-  <div style="margin-left: 15px; text-align: left;">
-    <div>นายสมชาย ใจดี</div>
-    <div>รองหัวหน้ากลุ่มงานวัดผล</div>
-  </div>
-</div>
-        
-      <div class="sub-menu">
-  <a href="kyos.html"><i class="fas fa-hand-holding-dollar"></i>กยศ</a>
-  <a href="#" onclick="alert('ฟีเจอร์นี้ปิดการใช้งานชั่วคราว'); return false;">
-    <i class="fas fa-book-open"></i>
-    <span>วิชาเรียน</span>
-    <small style="font-size: 0.75rem; color: #ffcccc;">ปิดชั่วคราว</small>
-  </a>
-  <a href="calendar.html"><i class="fas fa-calendar-days"></i>ปฏิทิน</a>
-  <a href="tabletest.html"><i class="fas fa-calendar-days"></i>ตารางสอบ</a>
-  <a href="#" onclick="alert('ฟีเจอร์นี้อยู่ระหว่างการพัฒนา'); return false;">
-    <i class="fas fa-graduation-cap"></i>
-    <span>เกรด</span>
-    <small style="font-size: 0.75rem; color: #ffcccc;">อยู่ระหว่างพัฒนา</small>
-  </a>
-  <a href="learning.html">
-    <i class="fas fa-file-powerpoint"></i>
-    <span>คลัง Slide</span>
-  </a>
-</div>
-
+        <footer class="footer">
+            &copy; 2024 งานทะเบียนวัดผล | โรงเรียน [ชื่อหน่วยงาน/โรงเรียน] | โทร: 02-XXX-XXXX
+        </footer>
     </div>
-    <footer>© 2025 ผู้พัฒนา : สุธี. All rights reserved.</footer>
-  </div>
 
-  <!-- ป๊อปอัพ -->
-  <div id="popup">📄 พบข้อมูลตารางสอบแล้ว!</div>
+    <script>
+        // 1. *** กรุณาเปลี่ยนค่านี้ให้เป็นวันที่ประกาศผลการเรียนจริง ***
+        const countdownDate = new Date("2025-12-16T08:00:00").getTime(); 
 
-  <script>
-    const targetDate = new Date(2025, 8, 22, 23, 59, 59);
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
-      if (diff <= 0) {
-        document.getElementById('countdown').textContent = 'ปิดระบบส่งคะแนนครึ่งภาคเรียนแรกแล้ว';
-        clearInterval(intervalId);
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      document.getElementById('countdown').textContent =
-        `${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที`;
-    }
-    updateCountdown();
-    const intervalId = setInterval(updateCountdown, 1000);
+        // 2. ฟังก์ชันอัปเดตการนับถอยหลังทุกๆ 1 วินาที
+        const countdownMessage = document.getElementById("countdown-message");
+        const timerDisplay = document.getElementById("timer");
 
-    function showPopup(message) {
-      const popup = document.getElementById('popup');
-      popup.textContent = message;
-      popup.style.display = 'block';
-      setTimeout(() => {
-        popup.style.display = 'none';
-      }, 2000);
-    }
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            if (distance > 0) {
+                // อัปเดตการแสดงผล
+                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+                
+                // ตรวจสอบให้แน่ใจว่าได้ซ่อนข้อความแล้ว
+                timerDisplay.style.display = "flex";
+                countdownMessage.style.display = "none";
+            } else {
+                clearInterval(x); // หยุดการอัปเดต
+                
+                // ซ่อนตัวจับเวลาและแสดงข้อความแจ้งเตือน
+                timerDisplay.style.display = "none";
+                countdownMessage.style.display = "block";
 
-    document.getElementById('exam-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const input = document.getElementById('student-id').value.trim();
-      const resultBox = document.getElementById('search-result');
-
-      const examData = {
-        '052': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "052 กันยาพร"', file: '01355xxx.pdf' },
-        '028': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "028 กมลลักษณ์"', file: 'exam_101.pdf' },
-        '133': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "133 ชินพัธน์"', file: 'exam_102.pdf' },
-        '184': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "184 ธนพัฒน์"', file: 'exam_103.pdf' },
-        '214': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "214 นพรดา"', file: 'exam_104.pdf' },
-        '494': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "494 เมธี"', file: 'exam_105.pdf' },
-        '630': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "630 ศุภเสกย์"', file: 'exam_106.pdf' },
-        '656': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "656 สิทธิชาติ"', file: 'exam_107.pdf' },
-        '753': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "753 อนพัทย์"', file: 'exam_108.pdf' },
-        '647': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "647 ทรรณรต"', file: 'exam_109.pdf' },
-        '728': { text: 'ตารางสอบปลายภาค ภาคปลาย 2567 ของ "728 พชรพร"', file: 'exam_110.pdf' },
-      };
-
-      if (examData[input]) {
-        showPopup('📄 พบข้อมูลตารางสอบแล้ว!');
-        resultBox.innerHTML = `
-          <p>${examData[input].text}</p>
-          <button id="download-btn">Download ตารางสอบ</button>
-        `;
-        document.getElementById('download-btn').addEventListener('click', () => {
-          window.open(examData[input].file, '_blank');
-        });
-      } else {
-        resultBox.textContent = 'ไม่พบข้อมูลตารางสอบ';
-      }
-    });
-
-    const toggleBtn = document.getElementById('dark-mode-toggle');
-    const bodyElement = document.body;
-    if (localStorage.getItem('darkMode') === 'enabled') {
-      bodyElement.classList.add('dark-mode');
-      toggleBtn.textContent = '☀️';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      bodyElement.classList.toggle('dark-mode');
-      if (bodyElement.classList.contains('dark-mode')) {
-        toggleBtn.textContent = '☀️';
-        localStorage.setItem('darkMode', 'enabled');
-      } else {
-        toggleBtn.textContent = '🌙';
-        localStorage.setItem('darkMode', 'disabled');
-      }
-    });
-
-    document.getElementById('sutee-login').addEventListener('click', () => {
-      window.location.href = 'suteelogin.html';
-    });
-  </script>
+                // ตั้งค่าเวลาทั้งหมดให้เป็น 00 เมื่อนับถึง 0
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
