@@ -27,14 +27,15 @@
             line-height: 1.6;
         }
 
-        /* Layout Structure */
+        /* -----------------------------------------------------------
+            LAYOUT - ล็อกเมนูข้างให้แสดงผลตลอดบน Desktop
+        ----------------------------------------------------------- */
         .dashboard-container {
             display: grid;
             grid-template-columns: 280px 1fr;
             min-height: 100vh;
         }
 
-        /* Sidebar - ล็อกเมนูข้าง */
         aside {
             background-color: var(--white);
             border-right: 1px solid rgba(0,0,0,0.05);
@@ -69,7 +70,7 @@
             margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow);
         }
 
-        /* Countdown */
+        /* Countdown Card */
         .card-countdown {
             background: linear-gradient(135deg, #0056b3 0%, #00a8ff 100%);
             color: var(--white); padding: 2.5rem; border-radius: 24px;
@@ -79,20 +80,36 @@
         .timer-box { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 1rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); }
         .t-num { font-size: 2rem; font-weight: 700; display: block; }
 
-        /* Statistics */
-        .stats-container { margin-bottom: 2.5rem; }
-        .stats-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1.2rem; border-left: 4px solid var(--primary); padding-left: 10px; }
-        .stats-header h3 { font-size: 1.2rem; color: var(--primary); font-weight: 700; }
+        /* -----------------------------------------------------------
+            NEW STATISTICS DESIGN - สถิติงานวิชาการ 2568/2 สวยๆ
+        ----------------------------------------------------------- */
+        .stats-container { margin-bottom: 3rem; }
+        .stats-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+        .stats-header i { font-size: 1.5rem; color: var(--primary); background: var(--primary-light); padding: 10px; border-radius: 12px; }
+        .stats-header h3 { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
+        
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-        .stat-card { background: var(--white); padding: 1.2rem; border-radius: 20px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 1rem; transition: 0.3s; }
-        .stat-card:hover { transform: translateY(-5px); }
-        .stat-icon { width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-        .icon-subjects { background: #e8f2ff; color: #007bff; }
-        .icon-teachers { background: #f0fdf4; color: #198754; }
-        .icon-students { background: #fff9db; color: #f59f00; }
-        .icon-rooms { background: #fef2f2; color: #dc3545; }
+        .stat-card {
+            background: var(--white); padding: 1.5rem; border-radius: 24px; 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04); display: flex; 
+            flex-direction: column; gap: 1rem; transition: 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        .stat-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0, 86, 179, 0.1); }
+        
+        .stat-icon { width: 55px; height: 55px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; }
+        .bg-grad-blue { background: linear-gradient(135deg, #007bff, #00d2ff); }
+        .bg-grad-green { background: linear-gradient(135deg, #28a745, #a8e063); }
+        .bg-grad-orange { background: linear-gradient(135deg, #f39c12, #f1c40f); }
+        .bg-grad-red { background: linear-gradient(135deg, #dc3545, #ff4b2b); }
 
-        /* Center Quick Access Card - เมนูที่นำมาไว้ตรงกลาง */
+        .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--text-main); line-height: 1; margin-bottom: 5px; display: block; }
+        .stat-label { font-size: 0.9rem; color: var(--secondary); font-weight: 600; display: flex; justify-content: space-between; }
+        .stat-trend { font-size: 0.75rem; padding: 2px 8px; border-radius: 20px; background: #e7f1ff; color: var(--primary); }
+
+        /* -----------------------------------------------------------
+            CENTER MENU - เมนูตรวจสอบข้อมูลตรงกลาง
+        ----------------------------------------------------------- */
         .quick-access-section { margin-bottom: 2.5rem; }
         .cta-card {
             background: var(--white); border-radius: 24px; padding: 1.5rem 2rem;
@@ -103,16 +120,14 @@
         .cta-card:hover { border-color: var(--primary); transform: translateY(-5px); }
         .cta-content { display: flex; align-items: center; gap: 20px; }
         .cta-icon { width: 60px; height: 60px; background: var(--primary-light); color: var(--primary); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
-        .cta-text h3 { font-size: 1.3rem; color: var(--primary); font-weight: 700; margin-bottom: 2px; }
-        .cta-text p { font-size: 0.9rem; color: var(--secondary); }
+        .cta-text h3 { font-size: 1.3rem; color: var(--primary); font-weight: 700; }
         .cta-button { background: var(--primary); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
 
-        /* Content Grid */
+        /* Content Grid & News */
         .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
         .card { background: var(--white); padding: 1.5rem; border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 2rem; }
         .card-title { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); }
 
-        /* Classic News List */
         .news-list-classic { display: flex; flex-direction: column; }
         .news-item-classic {
             display: flex; align-items: center; gap: 12px; padding: 12px 10px;
@@ -121,7 +136,6 @@
         .news-item-classic:hover { background-color: var(--primary-light); padding-left: 15px; color: var(--primary); }
         .date-label { font-weight: 700; color: var(--primary); min-width: 90px; font-size: 0.9rem; }
 
-        /* Status */
         .status-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
         .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
         .badge-success { background: #d4edda; color: #155724; }
@@ -140,11 +154,7 @@
 
 <div class="dashboard-container">
     <aside>
-        <div class="brand">
-            <i class="fas fa-university"></i>
-            <h2>ระบบงานทะเบียน</h2>
-            <p style="font-size: 0.7rem; color: #888;">Banharnjamsaiwittaya 1</p>
-        </div>
+        <div class="brand"><i class="fas fa-university"></i><h2>ระบบงานทะเบียน</h2><p style="font-size: 0.7rem; color: #888;">Banharnjamsaiwittaya 1</p></div>
         <nav>
             <p class="nav-label">Main Menu</p>
             <ul class="nav-menu">
@@ -163,8 +173,8 @@
         </header>
 
         <section class="card-countdown">
-            <h2 style="font-weight: 600;">กำหนดการส่งเกรด (ก่อนกลางภาค/สอบกลางภาค) 2/2568</h2>
-            <p style="opacity: 0.8;">ไม่เกินเที่ยงคืนวันศุกร์ที่ 13 กุมภาพันธ์ 2569</p>
+            <h2 style="font-weight: 600;">เปิดระบบบันทึกผลการเรียน 2/2568</h2>
+            <p style="opacity: 0.8;">เริ่มวันที่ 16 ธันวาคม 2568 เวลา 08:00 น.</p>
             <div id="timer" class="timer-grid">
                 <div class="timer-box"><span id="days" class="t-num">00</span><span>วัน</span></div>
                 <div class="timer-box"><span id="hours" class="t-num">00</span><span>ชม.</span></div>
@@ -175,36 +185,36 @@
 
         <section class="stats-container">
             <div class="stats-header">
-                <i class="fas fa-chart-pie"></i>
+                <i class="fas fa-chart-line"></i>
                 <h3>สถิติงานวิชาการ ภาคเรียนที่ 2 ปีการศึกษา 2568</h3>
             </div>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon icon-subjects"><i class="fas fa-book"></i></div>
-                    <div class="stat-info"><span class="stat-value">425</span><span class="stat-label">วิชาที่เปิดสอน</span></div>
+                    <div class="stat-icon bg-grad-blue"><i class="fas fa-book-open"></i></div>
+                    <div class="stat-info"><span class="stat-value">425</span><div class="stat-label">วิชาที่เปิดสอน <span class="stat-trend">+5%</span></div></div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon icon-teachers"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <div class="stat-info"><span class="stat-value">128</span><span class="stat-label">จำนวนครู</span></div>
+                    <div class="stat-icon bg-grad-green"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="stat-info"><span class="stat-value">128</span><div class="stat-label">บุคลากร <span class="stat-trend">คงที่</span></div></div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon icon-students"><i class="fas fa-user-graduate"></i></div>
-                    <div class="stat-info"><span class="stat-value">2,450</span><span class="stat-label">จำนวนนักเรียน</span></div>
+                    <div class="stat-icon bg-grad-orange"><i class="fas fa-user-graduate"></i></div>
+                    <div class="stat-info"><span class="stat-value">2,450</span><div class="stat-label">นักเรียน <span class="stat-trend">+2.1%</span></div></div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon icon-rooms"><i class="fas fa-door-open"></i></div>
-                    <div class="stat-info"><span class="stat-value">56</span><span class="stat-label">ห้องเรียน</span></div>
+                    <div class="stat-icon bg-grad-red"><i class="fas fa-school"></i></div>
+                    <div class="stat-info"><span class="stat-value">56</span><div class="stat-label">ห้องเรียน <span class="stat-trend">ครบ</span></div></div>
                 </div>
             </div>
         </section>
 
         <section class="quick-access-section">
-            <a href="subjects.html" class="cta-card">
+            <a href="check-subject.html" class="cta-card">
                 <div class="cta-content">
                     <div class="cta-icon"><i class="fas fa-folder-plus"></i></div>
                     <div class="cta-text">
                         <h3>ตรวจสอบผลการขอเปิดรายวิชา</h3>
-                        <p>ตรวจสอบสถานะการยื่นขอเปิดวิชาใหม่ ภาคเรียนที่ 2/2568</p>
+                        <p>ตรวจสอบสถานะรายวิชาใหม่ ภาคเรียนที่ 2/2568</p>
                     </div>
                 </div>
                 <div class="cta-button">ตรวจสอบข้อมูล <i class="fas fa-arrow-right"></i></div>
@@ -216,18 +226,9 @@
                 <div class="card">
                     <div class="card-title"><i class="fas fa-bullhorn"></i> ข่าวประชาสัมพันธ์ล่าสุด</div>
                     <div class="news-list-classic">
-                        <a href="#" class="news-item-classic">
-                            <span class="date-label">[30/ก.ย. 68]</span>
-                            <span class="news-text">ประกาศห้องสอบปลายภาคเรียนที่ 1 ปีการศึกษา 2568</span>
-                        </a>
-                        <a href="#" class="news-item-classic">
-                            <span class="date-label">[22/ก.ย. 68]</span>
-                            <span class="news-text">แจ้งกำหนดการรับรองผลการเรียน และแก้ไข 0, ร, มส.</span>
-                        </a>
-                        <a href="#" class="news-item-classic">
-                            <span class="date-label">[08/ส.ค. 68]</span>
-                            <span class="news-text">กำหนดการส่งเกรดภาคเรียนที่ 1/2568</span>
-                        </a>
+                        <a href="#" class="news-item-classic"><span class="date-label">[30/ก.ย. 68]</span><span class="news-text">ประกาศห้องสอบปลายภาคเรียนที่ 1/2568</span></a>
+                        <a href="#" class="news-item-classic"><span class="date-label">[22/ก.ย. 68]</span><span class="news-text">แจ้งกำหนดการรับรองผลการเรียน และแก้ไข 0, ร, มส.</span></a>
+                        <a href="#" class="news-item-classic"><span class="date-label">[08/ส.ค. 68]</span><span class="news-text">กำหนดการส่งเกรดภาคเรียนที่ 1/2568</span></a>
                     </div>
                 </div>
             </div>
@@ -241,14 +242,14 @@
             </div>
         </div>
         
-        <footer style="text-align: center; color: #888; font-size: 0.75rem; padding: 2rem 0;">
+        <footer style="text-align: center; color: #888; font-size: 0.75rem; padding-bottom: 2rem;">
             &copy; 2026 งานทะเบียนวัดผล โรงเรียนบรรหารแจ่มใสวิทยา 1 | พัฒนาโดย ฝ่าย ICT
         </footer>
     </main>
 </div>
 
 <script>
-    const targetDate = new Date("2025-02-13T23:59:59").getTime();
+    const targetDate = new Date("2025-12-16T08:00:00").getTime();
     function updateTimer() {
         const now = new Date().getTime();
         const diff = targetDate - now;
