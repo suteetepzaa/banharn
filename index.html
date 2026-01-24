@@ -68,10 +68,7 @@
             color: var(--primary);
         }
 
-        .nav-menu {
-            list-style: none;
-        }
-
+        .nav-menu { list-style: none; }
         .nav-label {
             font-size: 0.8rem;
             font-weight: 700;
@@ -81,10 +78,7 @@
             letter-spacing: 1px;
         }
 
-        .nav-item {
-            margin-bottom: 0.5rem;
-        }
-
+        .nav-item { margin-bottom: 0.5rem; }
         .nav-link {
             display: flex;
             align-items: center;
@@ -108,7 +102,7 @@
             color: var(--white);
         }
 
-        /* Main Content */
+        /* Main Content Area */
         main {
             padding: 2rem;
             max-width: 1200px;
@@ -139,52 +133,12 @@
             padding: 2.5rem;
             border-radius: 24px;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             box-shadow: 0 15px 35px rgba(0, 86, 179, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        /* Statistics Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: var(--white);
-            padding: 1.2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover { transform: translateY(-5px); }
-
-        .stat-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .icon-subjects { background: #e8f2ff; color: #007bff; }
-        .icon-teachers { background: #f0fdf4; color: #198754; }
-        .icon-students { background: #fff9db; color: #f59f00; }
-        .icon-rooms { background: #fef2f2; color: #dc3545; }
-
-        .stat-value { font-size: 1.4rem; font-weight: 700; display: block; }
-        .stat-label { font-size: 0.8rem; color: var(--secondary); }
-
-        /* Timer Grid */
         .timer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -204,7 +158,50 @@
         .t-num { font-size: 2rem; font-weight: 700; display: block; }
         .t-lab { font-size: 0.9rem; opacity: 0.9; }
 
-        /* Grid System for Cards */
+        /* Statistics Section */
+        .stats-container { margin-bottom: 2.5rem; }
+        .stats-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.2rem;
+            padding-left: 5px;
+            border-left: 4px solid var(--primary);
+        }
+        .stats-header h3 { font-size: 1.2rem; color: var(--primary); font-weight: 700; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+        .stat-card:hover { transform: translateY(-5px); }
+
+        .stat-icon {
+            width: 45px; height: 45px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        .icon-subjects { background: #e8f2ff; color: #007bff; }
+        .icon-teachers { background: #f0fdf4; color: #198754; }
+        .icon-students { background: #fff9db; color: #f59f00; }
+        .icon-rooms { background: #fef2f2; color: #dc3545; }
+
+        .stat-value { font-size: 1.4rem; font-weight: 700; color: var(--text-main); line-height: 1.2; display: block; }
+        .stat-label { font-size: 0.8rem; color: var(--secondary); font-weight: 500; }
+
+        /* Grid System for News & Status */
         .content-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -220,68 +217,35 @@
         }
 
         .card-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
+            display: flex; align-items: center; gap: 10px;
+            font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary);
         }
 
         .news-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 12px;
-            border-bottom: 1px solid #f0f0f0;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: background 0.2s;
-            border-radius: 10px;
+            display: flex; align-items: center; gap: 15px; padding: 12px;
+            border-bottom: 1px solid #f0f0f0; text-decoration: none; color: var(--text-main);
+            transition: background 0.2s; border-radius: 10px;
         }
-
         .news-item:hover { background: var(--primary-light); }
 
         .date-tag {
-            background: var(--primary-light);
-            color: var(--primary);
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            background: var(--primary-light); color: var(--primary);
+            padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 600;
         }
 
         .status-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 0; border-bottom: 1px solid #eee;
         }
 
-        .badge {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
+        .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
         .badge-success { background: #d4edda; color: #155724; }
         .badge-danger { background: #f8d7da; color: #721c24; }
 
         .btn-download {
-            background: var(--primary);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-            justify-content: center;
-            font-weight: 600;
+            background: var(--primary); color: white; padding: 12px; border-radius: 12px;
+            text-decoration: none; display: flex; align-items: center; gap: 10px;
+            width: 100%; justify-content: center; font-weight: 600;
         }
 
         /* Responsive */
@@ -302,7 +266,6 @@
             <h2>ระบบงานทะเบียน</h2>
             <p style="font-size: 0.8rem; color: #888;">Banharnjamsaiwittaya 1</p>
         </div>
-
         <nav>
             <p class="nav-label">Menu</p>
             <ul class="nav-menu">
@@ -311,82 +274,70 @@
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-file-invoice"></i> ผลการเรียน</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-users"></i> บุคลากร</a></li>
             </ul>
-
             <p class="nav-label" style="margin-top: 2rem;">Portal</p>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-user-graduate"></i> ระบบนักเรียน</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-chalkboard-teacher"></i> ระบบคุณครู</a></li>
-                <li class="nav-item"><a href="#" class="nav-link" style="color: var(--danger);"><i class="fas fa-user-shield"></i> ผู้ดูแลระบบ</a></li>
             </ul>
         </nav>
     </aside>
 
     <main>
         <header class="top-bar">
-            <div class="welcome-text">
-                <h1>งานทะเบียนวัดผล ฝ่ายประมวลผล GPA</h1>
-            </div>
-            <div class="user-info">
-                <i class="far fa-clock"></i> <span id="current-time">กำลังโหลด...</span>
-            </div>
+            <div class="welcome-text"><h1>งานทะเบียนวัดผล ฝ่ายประมวลผล GPA</h1></div>
+            <div class="user-info"><i class="far fa-clock"></i> <span id="current-time">กำลังโหลด...</span></div>
         </header>
 
         <section class="card-countdown">
             <h2 style="font-weight: 600;">เปิดระบบบันทึกผลการเรียน 2/2568</h2>
             <p style="opacity: 0.9;">เริ่มวันที่ 16 ธันวาคม 2568 เวลา 08:00 น.</p>
-            
             <div id="timer" class="timer-grid">
                 <div class="timer-box"><span id="days" class="t-num">00</span><span class="t-lab">วัน</span></div>
                 <div class="timer-box"><span id="hours" class="t-num">00</span><span class="t-lab">ชม.</span></div>
                 <div class="timer-box"><span id="minutes" class="t-num">00</span><span class="t-lab">นาที</span></div>
                 <div class="timer-box"><span id="seconds" class="t-num">00</span><span class="t-lab">วินาที</span></div>
             </div>
-            
             <div id="finish-msg" style="display:none; font-size: 1.5rem; font-weight: 700;">
                 <i class="fas fa-check-circle"></i> ประกาศผลการเรียนเรียบร้อยแล้ว!
             </div>
         </section>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon icon-subjects"><i class="fas fa-book"></i></div>
-                <div class="stat-info"><span class="stat-value">425</span><span class="stat-label">วิชาที่เปิดสอน</span></div>
+        <section class="stats-container">
+            <div class="stats-header">
+                <i class="fas fa-chart-pie"></i>
+                <h3>สถิติงานวิชาการ ภาคเรียนที่ 2 ปีการศึกษา 2568</h3>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon icon-teachers"><i class="fas fa-chalkboard-teacher"></i></div>
-                <div class="stat-info"><span class="stat-value">128</span><span class="stat-label">จำนวนครู</span></div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon icon-subjects"><i class="fas fa-book"></i></div>
+                    <div class="stat-info"><span class="stat-value">425</span><span class="stat-label">วิชาที่เปิดสอน</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-teachers"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="stat-info"><span class="stat-value">128</span><span class="stat-label">จำนวนครู</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-students"><i class="fas fa-user-graduate"></i></div>
+                    <div class="stat-info"><span class="stat-value">2,450</span><span class="stat-label">จำนวนนักเรียน</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-rooms"><i class="fas fa-door-open"></i></div>
+                    <div class="stat-info"><span class="stat-value">56</span><span class="stat-label">จำนวนห้องเรียน</span></div>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon icon-students"><i class="fas fa-user-graduate"></i></div>
-                <div class="stat-info"><span class="stat-value">2,450</span><span class="stat-label">จำนวนนักเรียน</span></div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon icon-rooms"><i class="fas fa-door-open"></i></div>
-                <div class="stat-info"><span class="stat-value">56</span><span class="stat-label">จำนวนห้องเรียน</span></div>
-            </div>
-        </div>
+        </section>
 
         <div class="content-grid">
             <div class="left-col">
                 <div class="card">
                     <div class="card-title"><i class="fas fa-bullhorn"></i> ข่าวประชาสัมพันธ์ล่าสุด</div>
                     <div class="news-list">
-                        <a href="#" class="news-item">
-                            <span class="date-tag">30 ก.ย.</span>
-                            <span>ประกาศห้องสอบปลายภาคเรียนที่ 1/2568</span>
-                        </a>
-                        <a href="#" class="news-item">
-                            <span class="date-tag">22 ก.ย.</span>
-                            <span>แจ้งกำหนดการรับรองผลการเรียน และแก้ไข 0, ร, มส.</span>
-                        </a>
-                        <a href="#" class="news-item">
-                            <span class="date-tag">08 ส.ค.</span>
-                            <span>กำหนดการส่งเกรดภาคเรียนที่ 1/2568</span>
-                        </a>
+                        <a href="#" class="news-item"><span class="date-tag">30 ก.ย.</span><span>ประกาศห้องสอบปลายภาคเรียนที่ 1/2568</span></a>
+                        <a href="#" class="news-item"><span class="date-tag">22 ก.ย.</span><span>แจ้งกำหนดการรับรองผลการเรียน และแก้ไข 0, ร, มส.</span></a>
+                        <a href="#" class="news-item"><span class="date-tag">08 ส.ค.</span><span>กำหนดการส่งเกรดภาคเรียนที่ 1/2568</span></a>
                     </div>
                 </div>
             </div>
-
             <div class="right-col">
                 <div class="card">
                     <div class="card-title"><i class="fas fa-info-circle"></i> สถานะระบบ</div>
@@ -394,16 +345,15 @@
                     <div class="status-row"><span>บันทึกผลการเรียน</span><span class="badge badge-danger">ปิดระบบ</span></div>
                     <div class="status-row"><span>ประกาศผลสอบ</span><span class="badge badge-success">เปิดปกติ</span></div>
                 </div>
-
                 <div class="card">
                     <div class="card-title"><i class="fas fa-file-download"></i> เอกสารคำร้อง</div>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">ดาวน์โหลดแบบฟอร์ม ปพ.1 หรือคำร้อง</p>
-                    <a href="#" class="btn-download"><i class="fas fa-cloud-download-alt"></i> ดาวน์โหลดไฟล์</a>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">ดาวน์โหลดแบบฟอร์ม ปพ.1 หรือคำร้องออนไลน์</p>
+                    <a href="#" class="btn-download"><i class="fas fa-cloud-download-alt"></i> ดาวน์โหลดไฟล์ (PDF)</a>
                 </div>
             </div>
         </div>
         
-        <footer style="text-align: center; color: #888; font-size: 0.8rem; margin-top: 2rem; padding-bottom: 2rem;">
+        <footer style="text-align: center; color: #888; font-size: 0.8rem; margin-top: 1rem; padding-bottom: 2rem;">
             &copy; 2024 งานทะเบียนวัดผล โรงเรียนบรรหารแจ่มใสวิทยา 1 | พัฒนาโดย ฝ่าย ICT
         </footer>
     </main>
@@ -427,9 +377,7 @@
     function showTime() { document.getElementById("current-time").innerText = new Date().toLocaleString('th-TH'); }
     setInterval(updateTimer, 1000);
     setInterval(showTime, 1000);
-    updateTimer();
-    showTime();
+    updateTimer(); showTime();
 </script>
-
 </body>
 </html>
