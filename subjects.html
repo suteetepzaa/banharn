@@ -1,331 +1,382 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>วิชาตามแผนเรียน</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    body {
-      font-family: 'Kanit', sans-serif;
-    }
-  </style>
-</head>
-<body class="bg-gray-100 min-h-screen flex items-start justify-center py-10">
-
-  <!-- ส่วนเนื้อหา -->
-<div class="w-full max-w-5xl text-center">
-  <div class="bg-blue-900 text-white py-6 rounded-lg mb-6">
-    <h1 class="text-3xl font-bold mb-2 font-[Kanit]">วิชาตามแผนเรียน</h1>
-    <div class="inline-block bg-white text-blue-900 px-4 py-2 rounded-none font-[Kanit] text-xl">
-      ประจำภาคต้น ปีการศึกษา 2568
-    </div>
-    <div>Updated 11 มิถุนายน 2568</div>
-  </div>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
-    <!-- ...วิชาทั้งหมดตามเดิม... -->
-  
-      <!-- วิชา 1 -->
-      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
-        <div class="p-6 flex flex-col items-center">
-          <i class="fa-solid fa-language text-4xl mb-4"></i>
-          <div>01355103</div>
-          <div class="inline-block bg-white text-blue-900 px-4 py-2 rounded-none font-[Kanit] text-base">
-      ภาษาอังกฤษเพื่อโอกาสในการทำงาน
-    </div>
-          <div>วิชาศึกษาทั่วไป</div>
-          <div>ภาษากับการสื่อสาร</div>
-        </div>
-        <div class="w-full flex justify-center mt-4 mb-6">
-          <button onclick="openModal('modal1')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
-            ดูรายละเอียด
-        </button>
-      </div>
-
-      </div>
-
-      <!-- วิชา 2 -->
-      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
-        <div class="p-6 flex flex-col items-center">
-          <i class="fa-solid fa-microscope text-4xl mb-4"></i>
-          <div>01419211</div>
-          <div class="inline-block bg-white text-blue-900 px-4 py-2 rounded-none font-[Kanit] text-base">
-      จุลชีววิทยาทั่วไป
-    </div>
-          <div>วิชาคณะศิลปศาสตร์และวิทยาศาสตร์</div>
-          <div>สาขาจุลชีววิทยา</div>
-        </div>
-        <div class="w-full flex justify-center mt-4 mb-6">
-          <button onclick="openModal('modal2')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
-            ดูรายละเอียด
-        </button>
-      </div>
-        
-      </div>
-
-      <!-- วิชา 3 -->
-      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
-        <div class="p-6 flex flex-col items-center">
-          <i class="fas fa-tractor text-4xl mb-4"></i>
-          <div>02032303</div>
-          <span class="text-lg">เกษตรกับคุณภาพชีวิตที่ดี</span>
-          <div>วิชาศึกษาทั่วไป</div>
-          <div>กลุ่มสาระอยู่ดีมีสุข</div>
-        </div>
-        <div class="w-full flex justify-center mt-4 mb-6">
-          <button onclick="openModal('modal3')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
-            ดูรายละเอียด
-        </button>
-      </div>
-
-      </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปผลการขอเปิดรายวิชา 2/2568</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-      <!-- วิชา 4 -->
-      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
-        <div class="p-6 flex flex-col items-center">
-          <i class="fa-solid fa-face-smile-wink text-4xl mb-4"></i>
-          <dav>02999038</dav>
-          <span class="text-lg">ความสุขในศตวรรษที่ 21</span>
-          <div>วิชาศึกษาทั่วไป</div>
-          <div>กลุ่มสาระอยู่ดีมีสุข</div>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --success-bg: #d1fae5;
+            --success-text: #065f46;
+            --pending-bg: #fee2e2;
+            --pending-text: #991b1b;
+            --border-color: #cbd5e1;
+            --admin-section-bg: #eff6ff;
+            --deadline-red: #be123c;
+            --warning-gold: #f59e0b;
+            --soft-gold: #fffbeb;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 0; /* ลบขอบมนออก */
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .header { text-align: center; margin-bottom: 25px; }
+        h2 { color: var(--primary); margin: 0; font-weight: 600; }
+        p.subtitle { color: #64748b; margin-top: 5px; }
+
+        /* ปรับปรุงประกาศเป็นเหลี่ยม */
+        .announcement-card {
+            background-color: var(--soft-gold);
+            border: 1px solid #fef3c7;
+            border-left: 6px solid var(--warning-gold);
+            border-radius: 0; /* ลบขอบมนออก */
+            padding: 24px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .announcement-icon {
+            background: var(--warning-gold);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 0; /* ลบขอบมนออก */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .announcement-content b {
+            color: #92400e;
+            font-size: 1.15rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .announcement-content p {
+            margin: 0;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .deadline-tag {
+            display: inline-block;
+            background: white;
+            color: var(--deadline-red);
+            padding: 6px 16px;
+            border-radius: 0; /* ลบขอบมนออก */
+            font-weight: 600;
+            border: 1px solid #fecaca;
+            margin-top: 12px;
+        }
+
+        .announcement-footer {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid #fef3c7;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #92400e;
+            opacity: 0.8;
+        }
+
+        .admin-section {
+            background-color: var(--admin-section-bg);
+            padding: 20px;
+            border-radius: 0; /* ลบขอบมนออก */
+            border: 1px solid #dbeafe;
+            margin-bottom: 25px;
+        }
+        .admin-section h3 { margin-top: 0; color: var(--primary); font-size: 1.1rem; border-bottom: 2px solid #dbeafe; padding-bottom: 10px; margin-bottom: 15px; }
+        .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+        .admin-card { background: white; padding: 12px; border-radius: 0; border: 1px solid #dbeafe; display: flex; align-items: center; gap: 12px; }
+        .admin-icon { background: var(--primary); color: white; width: 35px; height: 35px; border-radius: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+        .admin-info h4 { margin: 0; color: #1e293b; font-size: 0.85rem; }
+        .role-tag { font-size: 0.65rem; background: #e0e7ff; color: #3730a3; padding: 1px 6px; border-radius: 0; font-weight: 600; margin-top: 3px; border: 1px solid #c7d2fe; display: inline-block; }
+
+        .grade-system-wrapper { text-align: center; margin-bottom: 35px; }
+        .btn-grade-system {
+            background: #10b981;
+            color: white;
+            padding: 14px 35px;
+            border-radius: 0; /* ลบขอบมนออก */
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-family: 'Sarabun', sans-serif;
+            text-decoration: none;
+        }
+
+        .table-wrapper { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; border: 1px solid var(--border-color); }
+        th { background-color: #f8fafc; color: #475569; padding: 15px; text-align: left; border-bottom: 2px solid var(--border-color); border-right: 1px solid var(--border-color); }
+        td { padding: 12px 15px; border-bottom: 1px solid var(--border-color); border-right: 1px solid var(--border-color); font-size: 0.95rem; }
+        
+        .dept-header-row { background-color: #f1f5f9 !important; }
+        .dept-header-row td { 
+            font-weight: 600; 
+            color: var(--primary); 
+            padding: 15px; 
+            font-size: 1rem; 
+            border-left: 5px solid var(--primary); 
+        }
+
+        .status-badge { padding: 4px 10px; border-radius: 0; font-size: 0.8rem; font-weight: 600; border: 1px solid currentColor; }
+        .done { background: var(--success-bg); color: var(--success-text); }
+        .waiting { background: var(--pending-bg); color: var(--pending-text); }
+        .count-tag { color: #94a3b8; font-size: 0.75rem; margin-right: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2><i class="fas fa-university"></i> สรุปผลการขอเปิดรายวิชา</h2>
+        <p class="subtitle">ภาคเรียนที่ 2 ปีการศึกษา 2568</p>
+    </div>
+
+    <div class="announcement-card">
+        <div class="announcement-icon"><i class="fas fa-info-circle"></i></div>
+        <div class="announcement-content">
+            <b>ประกาศแจ้งคุณครู (หลักสูตรมัธยมศึกษา)</b>
+            <p>สำหรับคุณครูที่ยังไม่ได้ดำเนินการยืนยันรายวิชาเรียน ขอความอนุเคราะห์ให้นำส่ง 
+            <strong>"ใบขอเปิดรายวิชาเรียน 2/2568"</strong> ที่ห้องทะเบียนวัดผล</p>
+            <div class="deadline-tag">
+                <i class="far fa-clock"></i> ภายใน จ. 12 ม.ค. 69 ก่อนเวลา 15.00 น.
+            </div>
+            <div class="announcement-footer">
+                <span><i class="fas fa-user-pen"></i> ผู้ประกาศ: นายเมธี ใจสุขดี</span>
+                <span><i class="far fa-calendar-alt"></i> 7 ม.ค. 69 | 12.58 น.</span>
+            </div>
         </div>
-        <div class="w-full flex justify-center mt-4 mb-6">
-          <button onclick="openModal('modal4')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
-            ดูรายละเอียด
-        </button>
-      </div>
+    </div>
 
-      </div>
-
-      <!-- วิชา 5 -->
-      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
-        <div class="p-6 flex flex-col items-center">
-          <i class="fa-solid fa-paintbrush text-4xl mb-4"></i>
-          <dav>01999033</dav>
-          <span class="text-lg">ศิลปะการดำเนินชีวิต</span>
-          <div>วิชาศึกษาทั่วไป</div>
-          <div>กลุ่มสาระอยู่ดีมีสุข</div>
+    <div class="admin-section">
+        <h3><i class="fas fa-user-shield"></i> เจ้าหน้าที่ระบบประจำปีการศึกษา 2568</h3>
+        <div class="admin-grid">
+            <div class="admin-card"><div class="admin-icon"><i class="fas fa-laptop-code"></i></div><div class="admin-info"><h4>129 นายกีรติภัทร รัตนพิพัฒน์วงษ์ศิริ</h4><span class="role-tag">ผู้ดูแลระบบ</span> <span class="role-tag">งานวัดผล</span></div></div>
+            <div class="admin-card"><div class="admin-icon"><i class="fas fa-file-invoice"></i></div><div class="admin-info"><h4>222 นางสาวเสาวลักษณ์ ชินวงษ์</h4><span class="role-tag">งานวัดผล</span></div></div>
+            <div class="admin-card"><div class="admin-icon"><i class="fas fa-user-clock"></i></div><div class="admin-info"><h4>243 นายเมธี ใจสุขดี</h4><span class="role-tag">เจ้าหน้าที่งานวัดผลชั่วคราว</span></div></div>
+            <div class="admin-card"><div class="admin-icon"><i class="fas fa-database"></i></div><div class="admin-info"><h4>329 นางลำดวน ชิดปราง</h4><span class="role-tag">ผู้ดูแลระบบ</span> <span class="role-tag">งานวัดผล</span></div></div>
+            <div class="admin-card"><div class="admin-icon"><i class="fas fa-user-tie"></i></div><div class="admin-info"><h4>816 นางสาวพัชรินทร์ ศรีทาคง</h4><span class="role-tag">หัวหน้ากลุ่มงานวัดผล</span></div></div>
+            <div class="admin-card"><div class="admin-icon"><i class="fas fa-address-book"></i></div><div class="admin-info"><h4>830 นายณัฏฐกิตติ์ โพธิ์พุ่ม</h4><span class="role-tag">นายทะเบียน</span></div></div>
         </div>
-        <div class="w-full flex justify-center mt-4 mb-6">
-          <button onclick="openModal('modal5')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
-            ดูรายละเอียด
-        </button>
-      </div>
-
-      </div>
-
-      <!-- วิชา 6 -->
-      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
-        <div class="p-6 flex flex-col items-center">
-          <i class="fa-solid fa-earth-americas text-4xl mb-4"></i>
-          <dav>01999213</dav>
-          <span class="text-lg">สิ่งแวดล้อม เทคโนโลยีและชีวิต</span>
-          <div>วิชาศึกษาทั่วไป</div>
-          <div>กลุ่มสาระอยู่ดีมีสุข</div>
-        </div>
-        <div class="w-full flex justify-center mt-4 mb-6">
-          <button onclick="openModal('modal6')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
-            ดูรายละเอียด
-        </button>
-      </div>
-
-      </div>
-
-      <!-- วิชา 7 -->
-      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
-        <div class="p-6 flex flex-col items-center">
-          <i class="fa-solid fa-computer text-4xl mb-4"></i>
-          <dav>01371111</dav>
-          <span class="text-lg">สื่อสารสนเทศเพื่อการเรียนรู้</span>
-          <div>วิชาศึกษาทั่วไป</div>
-          <div>กลุ่มสาระภาษากับการสื่อสาร</div>
-        </div>
-        <div class="w-full flex justify-center mt-4 mb-6">
-          <button onclick="openModal('modal7')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
-            ดูรายละเอียด
-        </button>
-      </div>
-
-      </div>
-
-      <!-- วิชา 8 -->
-      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
-        <div class="p-6 flex flex-col items-center">
-          <i class="fa-solid fa-graduation-cap text-4xl mb-4"></i>
-          <dav>02999042</dav>
-          <span class="text-lg">การพัฒนานิสิต</span>
-          <div>วิชาศึกษาทั่วไป</div>
-          <div>กลุ่มสาระพลเมืองไทยและพลเมืองโลก</div>
-        </div>
-        <div class="w-full flex justify-center mt-4 mb-6">
-          <button onclick="openModal('modal8')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
-            ดูรายละเอียด
-        </button>
-      </div>
-
     </div>
-  </div>
 
-  <!-- Modal วิชา 1 -->
-  <div id="modal1" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
-      <div class="p-6 border-b">
-        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
-        <div>Updated 11 มิถุนายน 2568</div>
-        <button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
-          &times;
-        </button>
-      </div>
-      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
-        <h3 class="font-bold text-lg mb-2">03751111-67 มนุษย์กับสิ่งแวดล้อม</h3>
-        <img src="03751111.jpg" alt="มนุษย์กับสิ่งแวดล้อม" width="100%"
-          style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 8px;">
-      </div>
+    <div class="grade-system-wrapper">
+        <a href="#" class="btn-grade-system" onclick="alert('ระบบเปิด 14 ก.พ. 69'); return false;">
+            <i class="fas fa-external-link-alt"></i> เข้าสู่ระบบยืนยันการส่งเกรด
+        </a>
+        <p style="color:#64748b; font-size: 0.9rem; margin-top: 10px;">เปิดระบบยืนยันผล 14 กุมภาพันธ์ 2569</p>
     </div>
-  </div>
 
-  <!-- Modal วิชา 2 -->
-  <div id="modal2" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
-      <div class="p-6 border-b">
-        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
-        <div>Updated 11 มิถุนายน 2568</div>
-        <button onclick="closeModal('modal2')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
-          &times;
-        </button>
-      </div>
-      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
-        <h3 class="font-bold text-lg mb-2">01419211-65 จุลชีววิทยาพื้นฐาน</h3>
-        <div class="mt-2 text-sm text-gray-700">
-            หมู่ 700 | อังคาร พฤหัสบดี 10:30 - 12:00 | สถานที่: LH3-302 | อ.มลธิรา ศรีถาวร
-        <img src="01419211.jpg" alt="จุลชีววิทยาพื้นฐาน" width="100%"
-          style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 8px;">
-        <div class="text-sm text-gray-500 mt-1 space-x-2">
-          <span class="inline-block bg-red-500 text-white px-2 py-1 rounded">สอบกลางภาค วันเสาร์ที่ 16 สิงหาคม 2568 เวลา 13.00 - 16.00</span>
-          <span class="inline-block bg-green-500 text-white px-2 py-1 rounded">สอบปลายภาค วันอังคารที่ 28 ตุลาคม 2568 เวลา 13.00 - 16.00</span>
-          </div>
-      </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th width="80">ลำดับ</th>
+                    <th width="100">รหัสครู</th>
+                    <th>ชื่อ-นามสกุล</th>
+                    <th width="180">สถานะ</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
     </div>
-  </div>
+</div>
 
-  <!-- Modal วิชา 3 -->
-  <div id="modal3" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
-      <div class="p-6 border-b">
-        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
-        <div>Updated 11 มิถุนายน 2568</div>
-        <button onclick="closeModal('modal3')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
-          &times;
-        </button>
-      </div>
-      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
-        <h3 class="font-bold text-lg mb-2">02032303-67 การเกษตรกับคุณภาพชีวิตที่ดี</h3>
-        <img src="02032303.jpg" alt="การเกษตรกับคุณภาพชีวิตที่ดี" width="100%"
-          style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 8px;">
-      </div>
-    </div>
-  </div>
+<script>
+    // ส่วน JavaScript คงเดิมทั้งหมดตามที่ระบุไว้ก่อนหน้า
+    // ...
+    const departments = {
+        "0": "ฝ่ายบริหาร", "1": "ภาษาไทย", "2": "คณิตศาสตร์", "3": "วิทยาศาสตร์และเทคโนโลยี",
+        "4": "สังคมศึกษา", "5": "สุขศึกษา", "6": "ศิลปะ", "7": "การงานอาชีพ", 
+        "8": "ภาษาต่างประเทศ", "9": "กลุ่มงานสนับสนุน"
+    };
 
-  <!-- Modal วิชา 4 -->
-  <div id="modal4" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
-      <div class="p-6 border-b">
-        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
-        <div>Updated 11 มิถุนายน 2568</div>
-        <button onclick="closeModal('modal4')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
-          &times;
-        </button>
-      </div>
-      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
-        <h3 class="font-bold text-lg mb-2">02999038-67 ความสุขในศตวรรษที่ 21</h3>
-        <img src="02999038.jpg" alt="ความสุขในศตวรรษที่ 21" width="100%"
-          style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 8px;">
-      </div>
-    </div>
-  </div>
+    const teacherData = [
+        // ข้อมูลครูชุดเดิม...
+        { id: "022", name: "อ.ดร.จุฑาทิพย์ ถาวรรัตน์", status: 1 },
+        { id: "049", name: "อ.ดร.สุปราณี พุ้ยมอม", status: 1 },
+        { id: "050", name: "ผศ.ดร.อารีรัตน์ ภาคพิธเจริญ", status: 1 },
+        { id: "111", name: "นางสาววาสนา ด่วนดี", status: 1 },
+        { id: "113", name: "นางสาวจินตนา บำรุงเพ็ชร", status: 1 },
+        { id: "114", name: "นายกรณ์พงศ์ พัฒนปกรณ์พงษ์", status: 1 },
+        { id: "117", name: "นายวีระยุทธ โพธิ์สุวรรณ", status: 1 },
+        { id: "118", name: "นางวิไลพักตร์ กลิ่นกาหลง", status: 1 },
+        { id: "119", name: "นางนาตยา พิทักษ์วงศ์", status: 1 },
+        { id: "120", name: "นางสาววชิราภรณ์ ศรป้อม", status: 1 },
+        { id: "121", name: "นายิรวัฒน์ โสภาพันธุ์", status: 1 },
+        { id: "123", name: "นางสาวภัคปภัสร์ กาญจน์นันทรักษ์", status: 1 },
+        { id: "124", name: "นางสาวอุษา สายทอง", status: 1 },
+        { id: "125", name: "นายธีรภัทร แก้วสมนึก", status: 1 },
+        { id: "129", name: "นายกีรติภัทร รัตนพิพัฒน์วงษ์ศิริ", status: 1 },
+        { id: "213", name: "นายจุมพล อยู่คง", status: 1 },
+        { id: "216", name: "นางสาวภัสรา เพ็งใย", status: 1 },
+        { id: "217", name: "นางสาวรจนา ดาวเรือง", status: 1 },
+        { id: "218", name: "นางสาวปัญญาวดี ประดับสุข", status: 1 },
+        { id: "221", name: "นางปราณี อินทรักษา", status: 1 },
+        { id: "222", name: "นางสาวเสาวลักษณ์ ชินวงษ์", status: 1 },
+        { id: "224", name: "นางสาวปัทมปาณี ทับทิมศรี", status: 1 },
+        { id: "225", name: "นางสาวศิราพรรณ ชูประสิทธิ์", status: 1 },
+        { id: "226", name: "นางอนุสรา โพธิ์หอม", status: 1 },
+        { id: "227", name: "นางสาววรรษา กาญจนลักษณ์", status: 1 },
+        { id: "228", name: "นางสาวภัคจิรา จงสุกใส", status: 1 },
+        { id: "229", name: "นางสาวสายรุ้ง ดอกลำภู", status: 1 },
+        { id: "230", name: "นางสาวประไพพัตร ปฏิพัทธศิลปกิจ", status: 1 },
+        { id: "231", name: "นายนัฎฐกิตติ์ เพชรี", status: 1 },
+        { id: "243", name: "นายเมธี ใจสุขดี", status: 1 },
+        { id: "255", name: "นางสาวพชรกมล รุ่งวารินทร์", status: 1 },
+        { id: "310", name: "นางสาวจุฑามาศ เอี่ยมเกตุ", status: 1 },
+        { id: "311", name: "นางสาวเนตรราตรี ท้าวโสม", status: 1 },
+        { id: "314", name: "นางศิริพร เถาว์โท", status: 1 },
+        { id: "315", name: "นางนัญธมณีกร ระรอกแก้ว", status: 1 },
+        { id: "316", name: "นางสาวพิมพ์ณภัส อินทร์สกุล", status: 1 },
+        { id: "319", name: "นางสาววิชุดา งามอักษร", status: 1 },
+        { id: "320", name: "นางสาวลินดา จุฬาวรรณ", status: 1 },
+        { id: "321", name: "นางสาวจิราพร ลิ้มประเสริฐ", status: 1 },
+        { id: "324", name: "นางกรริสา จันทร์สุวรรณ", status: 1 },
+        { id: "325", name: "นายเอกชัย ลวดคำ", status: 1 },
+        { id: "326", name: "นายเสกสรร คำนนท์", status: 1 },
+        { id: "328", name: "นางสาวชลิตา คงศิริ", status: 1 },
+        { id: "329", name: "นางลำดวน ชิดปราง", status: 1 },
+        { id: "330", name: "นายสุรศักดิ์ สีน้ำเงิน", status: 1 },
+        { id: "331", name: "นางวรางคณา พรหมชนะ", status: 1 },
+        { id: "332", name: "นางศริยา วงษ์จันทร์", status: 1 },
+        { id: "333", name: "นายภูวนัย อ่อนสอาด", status: 1 },
+        { id: "334", name: "นางสาวปวีณา วงษ์จินดา", status: 1 },
+        { id: "335", name: "นายสราวุธ แช่มช้อย", status: 1 },
+        { id: "336", name: "นายธีรภัทร สุดโต", status: 1 },
+        { id: "337", name: "นางสาวธิดาพร สังข์ทอง", status: 1 },
+        { id: "338", name: "นางสาวศิรินทิพย์ ลาภสอาดพร", status: 1 },
+        { id: "339", name: "นางสาวทิพามล ศรีวิเชียร", status: 1 },
+        { id: "340", name: "นายวินิจ ภูพวก", status: 1 },
+        { id: "341", name: "นางสาวมัฌชิมา สุขะพิบูลย์", status: 1 },
+        { id: "351", name: "นายบรรเจิด พุ่มพันธ์สน", status: 1 },
+        { id: "353", name: "นายวรัตน์ภูมิ บุญตันทา", status: 1 },
+        { id: "407", name: "นายไชยพร แย้มมี", status: 1 },
+        { id: "409", name: "นางจุฑามาศ เห็นประเสริฐ", status: 1 },
+        { id: "411", name: "นางสาวอุสา ทองปรีชา", status: 1 },
+        { id: "412", name: "นายนิคม วงษ์สุวรรณ", status: 1 },
+        { id: "413", name: "นางปพัชญา จันทรโชติ", status: 1 },
+        { id: "414", name: "นางสาววราภรณ์ มาลัย", status: 1 },
+        { id: "417", name: "นายณัฐพัชร์ ทองรอด", status: 1 },
+        { id: "418", name: "นางสาวเกษจมาภรณ์ น้ำสุทอง", status: 1 },
+        { id: "419", name: "นายธีรวิช แก้วเกตุ", status: 1 },
+        { id: "420", name: "นายจิรายุส บูชา", status: 1 },
+        { id: "421", name: "นางสาวนิติภรณ์ อ่อนละมุล", status: 1 },
+        { id: "422", name: "นางสาวมลิสา สุขวงษ์จันทร์", status: 1 },
+        { id: "454", name: "นางชัญญา โพธิ์พันธุ์", status: 1 },
+        { id: "506", name: "นายโกศล จันทรโชติ", status: 1 },
+        { id: "509", name: "นายประพนธ์ ชิดปราง", status: 1 },
+        { id: "511", name: "นางสาวจิตรลัดดา กุศลเสถียร", status: 1 },
+        { id: "512", name: "นายศุภชัย เนตรนิล", status: 1 },
+        { id: "513", name: "นายวีระวัฒน์ ชาววังฆ้อง", status: 1 },
+        { id: "552", name: "นายสิทธิชัย แพน้อย", status: 0 },
+        { id: "554", name: "นางสาวปาริชาติ เพ็ชรวาว", status: 1 },
+        { id: "555", name: "นายพรชัย แก้วเรือง", status: 1 },
+        { id: "601", name: "นายณัฐวุฒิ สุดโต", status: 1 },
+        { id: "606", name: "นายภูรีวิทย์ เพ็งสุวรรณ", status: 1 },
+        { id: "613", name: "นางสาววราภรณ์ แก้วกระจ่าง", status: 1 },
+        { id: "614", name: "นางสาวมัณฑรี เกตุแก้ว", status: 1 },
+        { id: "616", name: "นางสาวปิยธิดา สร้อยระย้า", status: 1 },
+        { id: "617", name: "นางสาวอังคณา ดวงเกตุ", status: 1 },
+        { id: "618", name: "นางสาวกาญจนา คำเทศ", status: 1 },
+        { id: "654", name: "นางสาวยุพาภรณ์ จงรอบคอบ", status: 1 },
+        { id: "727", name: "นางพรทิพย์ วันดี", status: 1 },
+        { id: "728", name: "นางสาวจิรารัตน์ เอี่ยมเขียว", status: 1 },
+        { id: "729", name: "นางสาวสุนิษา สุวรรณเนตร์", status: 1 },
+        { id: "730", name: "นายนครินทร์ กล้าหาญ", status: 0 },
+        { id: "731", name: "นางสาวเกษราภรณ์ จูงวงค์สุข", status: 1 },
+        { id: "751", name: "นางสาวเนตรชนก ศรีชมภู", status: 0 },
+        { id: "753", name: "นายโยธิน เวชวิฐาน", status: 1 },
+        { id: "754", name: "นางสาวช่อลดา ประไพ", status: 1 },
+        { id: "755", name: "นายณัฐพร หิรัญอ่อน", status: 1 },
+        { id: "808", name: "นางสาวกัญญาพัชร เกตุแก้ว", status: 1 },
+        { id: "810", name: "นางสาวนันทิยา ปัญญาธิกวัฒน์", status: 1 },
+        { id: "812", name: "นางสาวพิชารมย์ สุขกลม", status: 1 },
+        { id: "815", name: "นางสาวกาญจนาพร เชิดชูสุวรรณ", status: 1 },
+        { id: "816", name: "นางสาวพัชรินทร์ ศรีทาคง", status: 1 },
+        { id: "818", name: "นางสาวมณีวรรณ พลายมี", status: 1 },
+        { id: "819", name: "นางสาวปริดา แก้วประหลาด", status: 1 },
+        { id: "820", name: "นางสาวภัคภร เอกอมรธนากิจ", status: 1 },
+        { id: "821", name: "นางสาวชาริตา พลายระหาร", status: 1 },
+        { id: "822", name: "นางสาวจุฑาวดี นามเมืองจันทร์", status: 1 },
+        { id: "824", name: "นางสาวพชรมนต์ คงเกื้อ", status: 1 },
+        { id: "826", name: "นางสาวปัทมปาพร เต่าให้", status: 1 },
+        { id: "827", name: "นางสาวเบญจวรรณ วุฒิ", status: 1 },
+        { id: "828", name: "นายนคร คำพล", status: 1 },
+        { id: "829", name: "นางสาวพลอยณิชชา ศิรกิตติวรพงษ์", status: 1 },
+        { id: "830", name: "นายณัฏฐกิตติ์ โพธิ์พุ่ม", status: 1 },
+        { id: "831", name: "นางสาวอุษามณี กล้าหาญ", status: 1 },
+        { id: "832", name: "นางสาวบุญรักษา ปะลาวัน", status: 1 },
+        { id: "901", name: "นางสาวอำพิกา บารมี", status: 1 },
+        { id: "903", name: "นางสาวยุพิน มะลิถอด", status: 1 }
+    ];
 
-  <!-- Modal วิชา 5 -->
-  <div id="modal5" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
-      <div class="p-6 border-b">
-        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
-        <div>Updated 11 มิถุนายน 2568</div>
-        <button onclick="closeModal('modal5')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
-          &times;
-        </button>
-      </div>
-      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
-        <h3 class="font-bold text-lg mb-2">02999038-67 ความสุขในศตวรรษที่ 21</h3>
-        <img src="02999038.jpg" alt="ความสุขในศตวรรษที่ 21" width="100%"
-          style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 8px;">
-      </div>
-    </div>
-  </div>
+    function initTable() {
+        const tableBody = document.getElementById('tableBody');
+        const groups = {};
+        Object.keys(departments).forEach(d => groups[d] = []);
+        teacherData.forEach(t => {
+            const gid = t.id.charAt(0);
+            if(groups[gid]) groups[gid].push(t);
+        });
 
-  <!-- Modal วิชา 6 -->
-  <div id="modal6" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
-      <div class="p-6 border-b">
-        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
-        <div>Updated 11 มิถุนายน 2568</div>
-        <button onclick="closeModal('modal6')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
-          &times;
-        </button>
-      </div>
-      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
-        <h3 class="font-bold text-lg mb-2">01999213-64 สิ่งแวดล้อม เทคโนโลยีและชีวิต</h3>
-        <h4 class="font-bold text-lg mb-2">ลงทะเบียนเรียนแล้ว เมื่อภาคปลาย 2567</h4>
-      </div>
-    </div>
-  </div>
+        let masterIndex = 1;
+        Object.keys(groups).sort().forEach(gid => {
+            if(groups[gid].length === 0) return;
+            const hRow = document.createElement('tr');
+            hRow.className = 'dept-header-row';
+            hRow.innerHTML = `<td colspan="4">กลุ่มสาระการเรียนรู้ ${departments[gid]} (${groups[gid].length} ท่าน)</td>`;
+            tableBody.appendChild(hRow);
 
-  <!-- Modal วิชา 7 -->
-  <div id="modal7" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
-      <div class="p-6 border-b">
-        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
-        <div>Updated 11 มิถุนายน 2568</div>
-        <button onclick="closeModal('modal7')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
-          &times;
-        </button>
-      </div>
-      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
-        <h3 class="font-bold text-lg mb-2">01371111-67 สื่อสารสนเทศเพื่อการเรียนรู้</h3>
-        <h4 class="font-bold text-lg mb-2">ลงทะเบียนเรียนแล้ว เมื่อภาคปลาย 2567</h4>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal วิชา 8 -->
-  <div id="modal8" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
-      <div class="p-6 border-b">
-        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
-        <div>Updated 11 มิถุนายน 2568</div>
-        <button onclick="closeModal('modal8')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
-          &times;
-        </button>
-      </div>
-      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
-        <h3 class="font-bold text-lg mb-2">02999042-67 การพัฒนานิสิต</h3>
-      </div>
-    </div>
-  </div>
-  
-  <!-- JavaScript -->
-  <script>
-    function openModal(id) {
-      document.getElementById(id).classList.remove("hidden");
-      document.getElementById(id).classList.add("flex");
+            groups[gid].forEach(teacher => {
+                const tr = document.createElement('tr');
+                const statusCls = teacher.status === 1 ? 'done' : 'waiting';
+                const statusTxt = teacher.status === 1 ? 'ยืนยันข้อมูลแล้ว' : 'ยังไม่ดำเนินการ';
+                const step = teacher.status === 1 ? '[7/7]' : '[1/7]';
+                tr.innerHTML = `
+                    <td>${masterIndex++}</td>
+                    <td><strong>${teacher.id}</strong></td>
+                    <td>${teacher.name}</td>
+                    <td>
+                        <span class="count-tag">${step}</span>
+                        <span class="status-badge ${statusCls}">${statusTxt}</span>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        });
     }
-    function closeModal(id) {
-      document.getElementById(id).classList.remove("flex");
-      document.getElementById(id).classList.add("hidden");
-    }
-  </script>
-
+    document.addEventListener('DOMContentLoaded', initTable);
+</script>
 </body>
 </html>
