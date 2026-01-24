@@ -12,6 +12,7 @@
             --primary: #0056b3;
             --primary-light: #e7f1ff;
             --secondary: #6c757d;
+            --danger: #dc3545;
             --bg-body: #f0f2f5;
             --white: #ffffff;
             --text-main: #2d3436;
@@ -27,15 +28,13 @@
             line-height: 1.6;
         }
 
-        /* -----------------------------------------------------------
-            LAYOUT - ล็อกเมนูข้างให้แสดงผลตลอดบน Desktop
-        ----------------------------------------------------------- */
         .dashboard-container {
             display: grid;
             grid-template-columns: 280px 1fr;
             min-height: 100vh;
         }
 
+        /* Sidebar - ล็อกเมนูข้าง */
         aside {
             background-color: var(--white);
             border-right: 1px solid rgba(0,0,0,0.05);
@@ -62,6 +61,18 @@
         .nav-link:hover, .nav-link.active { background-color: var(--primary-light); color: var(--primary); }
         .nav-link.active { background-color: var(--primary); color: var(--white); }
 
+        /* ปุ่มเจ้าหน้าที่พิเศษ */
+        .nav-link.admin-btn {
+            background-color: #fff5f5;
+            color: var(--danger);
+            border: 1px solid #ffc9c9;
+            margin-top: 1rem;
+        }
+        .nav-link.admin-btn:hover {
+            background-color: var(--danger);
+            color: white;
+        }
+
         /* Main Content */
         main { padding: 2rem; width: 100%; max-width: 1400px; margin: 0 auto; }
 
@@ -80,9 +91,7 @@
         .timer-box { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 1rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); }
         .t-num { font-size: 2rem; font-weight: 700; display: block; }
 
-        /* -----------------------------------------------------------
-            NEW STATISTICS DESIGN - สถิติงานวิชาการ 2568/2 สวยๆ
-        ----------------------------------------------------------- */
+        /* Statistics KPI Design */
         .stats-container { margin-bottom: 3rem; }
         .stats-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
         .stats-header i { font-size: 1.5rem; color: var(--primary); background: var(--primary-light); padding: 10px; border-radius: 12px; }
@@ -107,9 +116,7 @@
         .stat-label { font-size: 0.9rem; color: var(--secondary); font-weight: 600; display: flex; justify-content: space-between; }
         .stat-trend { font-size: 0.75rem; padding: 2px 8px; border-radius: 20px; background: #e7f1ff; color: var(--primary); }
 
-        /* -----------------------------------------------------------
-            CENTER MENU - เมนูตรวจสอบข้อมูลตรงกลาง
-        ----------------------------------------------------------- */
+        /* Quick Access Menu (Center) */
         .quick-access-section { margin-bottom: 2.5rem; }
         .cta-card {
             background: var(--white); border-radius: 24px; padding: 1.5rem 2rem;
@@ -123,7 +130,7 @@
         .cta-text h3 { font-size: 1.3rem; color: var(--primary); font-weight: 700; }
         .cta-button { background: var(--primary); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
 
-        /* Content Grid & News */
+        /* Content Grid */
         .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
         .card { background: var(--white); padding: 1.5rem; border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 2rem; }
         .card-title { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); }
@@ -154,7 +161,11 @@
 
 <div class="dashboard-container">
     <aside>
-        <div class="brand"><i class="fas fa-university"></i><h2>ระบบงานทะเบียน</h2><p style="font-size: 0.7rem; color: #888;">Banharnjamsaiwittaya 1</p></div>
+        <div class="brand">
+            <i class="fas fa-university"></i>
+            <h2>ระบบงานทะเบียน</h2>
+            <p style="font-size: 0.7rem; color: #888;">Banharnjamsaiwittaya 1</p>
+        </div>
         <nav>
             <p class="nav-label">Main Menu</p>
             <ul class="nav-menu">
@@ -162,6 +173,11 @@
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-calendar-alt"></i> ปฏิทินวิชาการ</a></li>
                 <li class="nav-item"><a href="people.html" class="nav-link"><i class="fas fa-users"></i> บุคลากร</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-phone"></i> ติดต่อสอบถาม</a></li>
+            </ul>
+
+            <p class="nav-label" style="margin-top: 2rem;">Admin Tools</p>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="admin-login.html" class="nav-link admin-btn"><i class="fas fa-user-shield"></i> เจ้าหน้าที่เข้าระบบจัดการ</a></li>
             </ul>
         </nav>
     </aside>
