@@ -3,304 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>บุคลากร | งานทะเบียนวัดผล</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #004d99;
-            --accent: #00d2ff;
-            --bg-light: #f8fbff;
-            --white: #ffffff;
-            --text-dark: #1a1a1a;
-            --shadow-soft: 0 10px 40px rgba(0,0,0,0.05);
-        }
-
-        body {
-            font-family: 'Kodchasan', sans-serif;
-            background-color: var(--bg-light);
-            margin: 0;
-            padding: 40px 20px;
-            color: var(--text-dark);
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-header h1 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .section-header .line {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            margin: 0 auto;
-            border-radius: 10px;
-        }
-
-        /* Staff Layout Area */
-        .staff-list {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        /* New Card Design: Horizontal & Elegant */
-        .person-card {
-            background: var(--white);
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            border-radius: 25px;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0, 77, 153, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .person-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 50px rgba(0, 77, 153, 0.12);
-            border-color: var(--accent);
-        }
-
-        /* Profile Image with Ring */
-        .img-wrapper {
-            width: 130px;
-            height: 130px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            padding: 5px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            margin-right: 30px;
-        }
-
-        .img-wrapper img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #fff;
-            border: 3px solid #fff;
-        }
-
-        /* Text Content */
-        .person-info {
-            flex-grow: 1;
-        }
-
-        .person-info h3 {
-            font-size: 1.4rem;
-            margin: 0 0 5px 0;
-            color: var(--primary);
-        }
-
-        .person-info p.title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #666;
-            margin-bottom: 12px;
-        }
-
-        .person-info .meta {
-            display: flex;
-            gap: 20px;
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        .meta span i {
-            margin-right: 5px;
-            color: var(--accent);
-        }
-
-        /* Action Buttons */
-        .social-btns {
-            display: flex;
-            gap: 10px;
-            margin-left: 20px;
-        }
-
-        .btn-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 15px;
-            background: var(--bg-light);
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: 0.3s;
-            border: 1px solid #eee;
-        }
-
-        .btn-icon:hover {
-            background: var(--primary);
-            color: #fff;
-            transform: translateY(-3px);
-        }
-
-        /* Level Badge */
-        .badge-level {
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            background: var(--primary);
-            color: white;
-            padding: 5px 40px;
-            transform: rotate(45deg);
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .person-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            .img-wrapper {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-            .meta {
-                flex-direction: column;
-                gap: 5px;
-                align-items: center;
-            }
-            .social-btns {
-                margin-left: 0;
-                margin-top: 20px;
-                justify-content: center;
-            }
-            .badge-level { display: none; }
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Personnel Page</title>
 </head>
-<body>
+<body class="bg-gray-50 p-10">
 
-<div class="container">
-    <div class="section-header">
-        <h1>คณะทำงานทะเบียนและวัดผล</h1>
-        <div class="line"></div>
-    </div>
-
-    <div class="staff-list">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-blue-900 mb-10">คณะผู้รับผิดชอบงานทะเบียนและวัดผล</h2>
         
-        <div class="person-card">
-            <div class="badge-level">LEADER</div>
-            <div class="img-wrapper">
-                <img src="https://i.pravatar.cc/150?u=1" alt="Profile">
-            </div>
-            <div class="person-info">
-                <h3>นายสมชาย มุ่งมั่น</h3>
-                <p class="title">หัวหน้างานทะเบียนและวัดผล</p>
-                <div class="meta">
-                    <span><i class="fas fa-building"></i> สำนักบริหาร</span>
-                    <span><i class="fas fa-envelope"></i> somchai@school.ac.th</span>
+        <div class="flex flex-wrap justify-center gap-8">
+            
+            <div class="w-full mb-4 flex justify-center">
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-blue-600 w-80 text-center transform hover:scale-105 transition">
+                    <img src="https://via.placeholder.com/150" alt="Profile" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-100">
+                    <h3 class="text-xl font-semibold">ชื่อ - นามสกุล</h3>
+                    <p class="text-blue-600 font-medium mb-4">หัวหน้างานทะเบียนและวัดผล</p>
+                    <div class="flex justify-center gap-4 text-gray-500">
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fas fa-phone"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="social-btns">
-                <a href="#" class="btn-icon"><i class="fab fa-line"></i></a>
-                <a href="tel:0812345678" class="btn-icon"><i class="fas fa-phone"></i></a>
-            </div>
-        </div>
 
-        <div class="person-card">
-            <div class="img-wrapper">
-                <img src="https://i.pravatar.cc/150?u=2" alt="Profile">
-            </div>
-            <div class="person-info">
-                <h3>นางสาวรัตนาภรณ์ ใจดี</h3>
-                <p class="title">รองหัวหน้างานทะเบียน (ฝ่ายวัดผล)</p>
-                <div class="meta">
-                    <span><i class="fas fa-id-card"></i> งานวัดผล</span>
-                    <span><i class="fas fa-envelope"></i> rattana@school.ac.th</span>
+            <div class="bg-white p-6 rounded-2xl shadow-md w-64 text-center hover:shadow-xl transition">
+                <img src="https://via.placeholder.com/150" alt="Profile" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-gray-100">
+                <h3 class="text-lg font-semibold">ชื่อ - นามสกุล</h3>
+                <p class="text-gray-600 text-sm mb-4">เจ้าหน้าที่งานทะเบียน</p>
+                <div class="flex justify-center gap-3 text-gray-400">
+                    <a href="#" class="hover:text-blue-500"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="hover:text-green-500"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
-            <div class="social-btns">
-                <a href="#" class="btn-icon"><i class="fab fa-line"></i></a>
-                <a href="tel:0812345678" class="btn-icon"><i class="fas fa-phone"></i></a>
-            </div>
-        </div>
 
-        <div class="person-card">
-            <div class="img-wrapper">
-                <img src="https://i.pravatar.cc/150?u=3" alt="Profile">
-            </div>
-            <div class="person-info">
-                <h3>นายณัฏฐกิตติ์ โพธิ์พุ่ม</h3>
-                <p class="title">เจ้าหน้าที่สารสนเทศและประมวลผล GPA</p>
-                <div class="meta">
-                    <span><i class="fas fa-code"></i> งานระบบ SGS</span>
-                    <span><i class="fas fa-envelope"></i> nattakit@school.ac.th</span>
+            <div class="bg-white p-6 rounded-2xl shadow-md w-64 text-center hover:shadow-xl transition">
+                <img src="https://via.placeholder.com/150" alt="Profile" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-gray-100">
+                <h3 class="text-lg font-semibold">ชื่อ - นามสกุล</h3>
+                <p class="text-gray-600 text-sm mb-4">เจ้าหน้าที่งานวัดผล</p>
+                <div class="flex justify-center gap-3 text-gray-400">
+                    <a href="#" class="hover:text-blue-500"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="hover:text-green-500"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
-            <div class="social-btns">
-                <a href="#" class="btn-icon"><i class="fab fa-line"></i></a>
-                <a href="tel:0812345678" class="btn-icon"><i class="fas fa-phone"></i></a>
-            </div>
-        </div>
 
-        <div class="person-card">
-            <div class="img-wrapper">
-                <img src="https://i.pravatar.cc/150?u=4" alt="Profile">
-            </div>
-            <div class="person-info">
-                <h3>นางสาววรรณวิสา ทะเบียน</h3>
-                <p class="title">เจ้าหน้าที่งานทะเบียน (ปพ.1 / ปพ.7)</p>
-                <div class="meta">
-                    <span><i class="fas fa-file-alt"></i> งานเอกสาร</span>
-                    <span><i class="fas fa-envelope"></i> wanwisa@school.ac.th</span>
+            <div class="bg-white p-6 rounded-2xl shadow-md w-64 text-center hover:shadow-xl transition">
+                <img src="https://via.placeholder.com/150" alt="Profile" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-gray-100">
+                <h3 class="text-lg font-semibold">ชื่อ - นามสกุล</h3>
+                <p class="text-gray-600 text-sm mb-4">เจ้าหน้าที่เทคโนโลยี</p>
+                <div class="flex justify-center gap-3 text-gray-400">
+                    <a href="#" class="hover:text-blue-500"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="hover:text-green-500"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
-            <div class="social-btns">
-                <a href="#" class="btn-icon"><i class="fab fa-line"></i></a>
-                <a href="tel:0812345678" class="btn-icon"><i class="fas fa-phone"></i></a>
-            </div>
-        </div>
 
-        <div class="person-card">
-            <div class="img-wrapper">
-                <img src="https://i.pravatar.cc/150?u=5" alt="Profile">
-            </div>
-            <div class="person-info">
-                <h3>นายวิชาญ รอบรู้</h3>
-                <p class="title">เจ้าหน้าที่ประสานงานและบริการคำร้อง</p>
-                <div class="meta">
-                    <span><i class="fas fa-headset"></i> บริการนักเรียน</span>
-                    <span><i class="fas fa-envelope"></i> wichan@school.ac.th</span>
+            <div class="bg-white p-6 rounded-2xl shadow-md w-64 text-center hover:shadow-xl transition">
+                <img src="https://via.placeholder.com/150" alt="Profile" class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-gray-100">
+                <h3 class="text-lg font-semibold">ชื่อ - นามสกุล</h3>
+                <p class="text-gray-600 text-sm mb-4">เลขานุการ</p>
+                <div class="flex justify-center gap-3 text-gray-400">
+                    <a href="#" class="hover:text-blue-500"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="hover:text-green-500"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
-            <div class="social-btns">
-                <a href="#" class="btn-icon"><i class="fab fa-line"></i></a>
-                <a href="tel:0812345678" class="btn-icon"><i class="fas fa-phone"></i></a>
-            </div>
-        </div>
 
+        </div>
     </div>
-
-    <footer style="text-align: center; margin-top: 50px;">
-        <a href="index.html" style="text-decoration: none; color: var(--primary); font-weight: 700; font-size: 1.1rem;">
-            <i class="fas fa-chevron-left"></i> กลับไปหน้า Dashboard
-        </a>
-    </footer>
-</div>
 
 </body>
 </html>
