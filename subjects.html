@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>วิชาตามแผนเรียน</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Kanit', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-start justify-center py-10">
+
+  <!-- ส่วนเนื้อหา -->
+<div class="w-full max-w-5xl text-center">
+  <div class="bg-blue-900 text-white py-6 rounded-lg mb-6">
+    <h1 class="text-3xl font-bold mb-2 font-[Kanit]">วิชาตามแผนเรียน</h1>
+    <div class="inline-block bg-white text-blue-900 px-4 py-2 rounded-none font-[Kanit] text-xl">
+      ประจำภาคต้น ปีการศึกษา 2568
+    </div>
+    <div>Updated 11 มิถุนายน 2568</div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
+    <!-- ...วิชาทั้งหมดตามเดิม... -->
+  
+      <!-- วิชา 1 -->
+      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
+        <div class="p-6 flex flex-col items-center">
+          <i class="fa-solid fa-language text-4xl mb-4"></i>
+          <div>01355103</div>
+          <div class="inline-block bg-white text-blue-900 px-4 py-2 rounded-none font-[Kanit] text-base">
+      ภาษาอังกฤษเพื่อโอกาสในการทำงาน
+    </div>
+          <div>วิชาศึกษาทั่วไป</div>
+          <div>ภาษากับการสื่อสาร</div>
+        </div>
+        <div class="w-full flex justify-center mt-4 mb-6">
+          <button onclick="openModal('modal1')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
+            ดูรายละเอียด
+        </button>
+      </div>
+
+      </div>
+
+      <!-- วิชา 2 -->
+      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
+        <div class="p-6 flex flex-col items-center">
+          <i class="fa-solid fa-microscope text-4xl mb-4"></i>
+          <div>01419211</div>
+          <div class="inline-block bg-white text-blue-900 px-4 py-2 rounded-none font-[Kanit] text-base">
+      จุลชีววิทยาทั่วไป
+    </div>
+          <div>วิชาคณะศิลปศาสตร์และวิทยาศาสตร์</div>
+          <div>สาขาจุลชีววิทยา</div>
+        </div>
+        <div class="w-full flex justify-center mt-4 mb-6">
+          <button onclick="openModal('modal2')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
+            ดูรายละเอียด
+        </button>
+      </div>
+        
+      </div>
+
+      <!-- วิชา 3 -->
+      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
+        <div class="p-6 flex flex-col items-center">
+          <i class="fas fa-tractor text-4xl mb-4"></i>
+          <div>02032303</div>
+          <span class="text-lg">เกษตรกับคุณภาพชีวิตที่ดี</span>
+          <div>วิชาศึกษาทั่วไป</div>
+          <div>กลุ่มสาระอยู่ดีมีสุข</div>
+        </div>
+        <div class="w-full flex justify-center mt-4 mb-6">
+          <button onclick="openModal('modal3')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
+            ดูรายละเอียด
+        </button>
+      </div>
+
+      </div>
+    
+      <!-- วิชา 4 -->
+      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
+        <div class="p-6 flex flex-col items-center">
+          <i class="fa-solid fa-face-smile-wink text-4xl mb-4"></i>
+          <dav>02999038</dav>
+          <span class="text-lg">ความสุขในศตวรรษที่ 21</span>
+          <div>วิชาศึกษาทั่วไป</div>
+          <div>กลุ่มสาระอยู่ดีมีสุข</div>
+        </div>
+        <div class="w-full flex justify-center mt-4 mb-6">
+          <button onclick="openModal('modal4')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
+            ดูรายละเอียด
+        </button>
+      </div>
+
+      </div>
+
+      <!-- วิชา 5 -->
+      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
+        <div class="p-6 flex flex-col items-center">
+          <i class="fa-solid fa-paintbrush text-4xl mb-4"></i>
+          <dav>01999033</dav>
+          <span class="text-lg">ศิลปะการดำเนินชีวิต</span>
+          <div>วิชาศึกษาทั่วไป</div>
+          <div>กลุ่มสาระอยู่ดีมีสุข</div>
+        </div>
+        <div class="w-full flex justify-center mt-4 mb-6">
+          <button onclick="openModal('modal5')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
+            ดูรายละเอียด
+        </button>
+      </div>
+
+      </div>
+
+      <!-- วิชา 6 -->
+      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
+        <div class="p-6 flex flex-col items-center">
+          <i class="fa-solid fa-earth-americas text-4xl mb-4"></i>
+          <dav>01999213</dav>
+          <span class="text-lg">สิ่งแวดล้อม เทคโนโลยีและชีวิต</span>
+          <div>วิชาศึกษาทั่วไป</div>
+          <div>กลุ่มสาระอยู่ดีมีสุข</div>
+        </div>
+        <div class="w-full flex justify-center mt-4 mb-6">
+          <button onclick="openModal('modal6')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
+            ดูรายละเอียด
+        </button>
+      </div>
+
+      </div>
+
+      <!-- วิชา 7 -->
+      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
+        <div class="p-6 flex flex-col items-center">
+          <i class="fa-solid fa-computer text-4xl mb-4"></i>
+          <dav>01371111</dav>
+          <span class="text-lg">สื่อสารสนเทศเพื่อการเรียนรู้</span>
+          <div>วิชาศึกษาทั่วไป</div>
+          <div>กลุ่มสาระภาษากับการสื่อสาร</div>
+        </div>
+        <div class="w-full flex justify-center mt-4 mb-6">
+          <button onclick="openModal('modal7')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
+            ดูรายละเอียด
+        </button>
+      </div>
+
+      </div>
+
+      <!-- วิชา 8 -->
+      <div class="bg-[#003366] rounded-lg shadow-md text-white flex flex-col items-center">
+        <div class="p-6 flex flex-col items-center">
+          <i class="fa-solid fa-graduation-cap text-4xl mb-4"></i>
+          <dav>02999042</dav>
+          <span class="text-lg">การพัฒนานิสิต</span>
+          <div>วิชาศึกษาทั่วไป</div>
+          <div>กลุ่มสาระพลเมืองไทยและพลเมืองโลก</div>
+        </div>
+        <div class="w-full flex justify-center mt-4 mb-6">
+          <button onclick="openModal('modal8')" class="bg-white text-[#002244] px-6 py-2 text-sm font-medium hover:bg-gray-200 transition">
+            ดูรายละเอียด
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal วิชา 1 -->
+  <div id="modal1" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
+      <div class="p-6 border-b">
+        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
+        <div>Updated 11 มิถุนายน 2568</div>
+        <button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
+          &times;
+        </button>
+      </div>
+      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
+        <h3 class="font-bold text-lg mb-2">03751111-67 มนุษย์กับสิ่งแวดล้อม</h3>
+        <img src="03751111.jpg" alt="มนุษย์กับสิ่งแวดล้อม" width="100%"
+          style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 8px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal วิชา 2 -->
+  <div id="modal2" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
+      <div class="p-6 border-b">
+        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
+        <div>Updated 11 มิถุนายน 2568</div>
+        <button onclick="closeModal('modal2')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
+          &times;
+        </button>
+      </div>
+      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
+        <h3 class="font-bold text-lg mb-2">01419211-65 จุลชีววิทยาพื้นฐาน</h3>
+        <div class="mt-2 text-sm text-gray-700">
+            หมู่ 700 | อังคาร พฤหัสบดี 10:30 - 12:00 | สถานที่: LH3-302 | อ.มลธิรา ศรีถาวร
+        <img src="01419211.jpg" alt="จุลชีววิทยาพื้นฐาน" width="100%"
+          style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 8px;">
+        <div class="text-sm text-gray-500 mt-1 space-x-2">
+          <span class="inline-block bg-red-500 text-white px-2 py-1 rounded">สอบกลางภาค วันเสาร์ที่ 16 สิงหาคม 2568 เวลา 13.00 - 16.00</span>
+          <span class="inline-block bg-green-500 text-white px-2 py-1 rounded">สอบปลายภาค วันอังคารที่ 28 ตุลาคม 2568 เวลา 13.00 - 16.00</span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal วิชา 3 -->
+  <div id="modal3" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
+      <div class="p-6 border-b">
+        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
+        <div>Updated 11 มิถุนายน 2568</div>
+        <button onclick="closeModal('modal3')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
+          &times;
+        </button>
+      </div>
+      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
+        <h3 class="font-bold text-lg mb-2">02032303-67 การเกษตรกับคุณภาพชีวิตที่ดี</h3>
+        <img src="02032303.jpg" alt="การเกษตรกับคุณภาพชีวิตที่ดี" width="100%"
+          style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 8px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal วิชา 4 -->
+  <div id="modal4" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
+      <div class="p-6 border-b">
+        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
+        <div>Updated 11 มิถุนายน 2568</div>
+        <button onclick="closeModal('modal4')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
+          &times;
+        </button>
+      </div>
+      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
+        <h3 class="font-bold text-lg mb-2">02999038-67 ความสุขในศตวรรษที่ 21</h3>
+        <img src="02999038.jpg" alt="ความสุขในศตวรรษที่ 21" width="100%"
+          style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 8px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal วิชา 5 -->
+  <div id="modal5" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
+      <div class="p-6 border-b">
+        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
+        <div>Updated 11 มิถุนายน 2568</div>
+        <button onclick="closeModal('modal5')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
+          &times;
+        </button>
+      </div>
+      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
+        <h3 class="font-bold text-lg mb-2">02999038-67 ความสุขในศตวรรษที่ 21</h3>
+        <img src="02999038.jpg" alt="ความสุขในศตวรรษที่ 21" width="100%"
+          style="display: block; margin: 0 auto 20px auto; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 8px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal วิชา 6 -->
+  <div id="modal6" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
+      <div class="p-6 border-b">
+        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
+        <div>Updated 11 มิถุนายน 2568</div>
+        <button onclick="closeModal('modal6')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
+          &times;
+        </button>
+      </div>
+      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
+        <h3 class="font-bold text-lg mb-2">01999213-64 สิ่งแวดล้อม เทคโนโลยีและชีวิต</h3>
+        <h4 class="font-bold text-lg mb-2">ลงทะเบียนเรียนแล้ว เมื่อภาคปลาย 2567</h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal วิชา 7 -->
+  <div id="modal7" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
+      <div class="p-6 border-b">
+        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
+        <div>Updated 11 มิถุนายน 2568</div>
+        <button onclick="closeModal('modal7')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
+          &times;
+        </button>
+      </div>
+      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
+        <h3 class="font-bold text-lg mb-2">01371111-67 สื่อสารสนเทศเพื่อการเรียนรู้</h3>
+        <h4 class="font-bold text-lg mb-2">ลงทะเบียนเรียนแล้ว เมื่อภาคปลาย 2567</h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal วิชา 8 -->
+  <div id="modal8" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl w-full max-w-4xl relative overflow-hidden shadow-lg">
+      <div class="p-6 border-b">
+        <h2 class="text-xl font-semibold">ภาคต้น 2568</h2>
+        <div>Updated 11 มิถุนายน 2568</div>
+        <button onclick="closeModal('modal8')" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
+          &times;
+        </button>
+      </div>
+      <div class="p-6 max-h-[70vh] overflow-y-auto bg-green-50 rounded-b-xl text-gray-800">
+        <h3 class="font-bold text-lg mb-2">02999042-67 การพัฒนานิสิต</h3>
+      </div>
+    </div>
+  </div>
+  
+  <!-- JavaScript -->
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.remove("hidden");
+      document.getElementById(id).classList.add("flex");
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("flex");
+      document.getElementById(id).classList.add("hidden");
+    }
+  </script>
+
+</body>
+</html>
