@@ -69,20 +69,30 @@
             margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow);
         }
 
-        /* --- New Announcement Style --- */
+        /* --- Stylish Announcement --- */
         .system-announcement {
-            background: #fff3cd;
+            background: #fff9db; 
+            border: 1px solid #ffe066;
             color: #856404;
-            padding: 12px 20px;
-            border-radius: 15px;
+            padding: 15px 25px;
+            border-radius: 16px;
             margin-bottom: 2rem;
             display: flex;
             align-items: center;
-            gap: 12px;
-            border-left: 5px solid #ffc107;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            gap: 15px;
+            box-shadow: 0 4px 15px rgba(255, 224, 102, 0.15);
+            position: relative;
+            overflow: hidden;
         }
+        .system-announcement::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; height: 100%; width: 6px;
+            background: #fab005;
+        }
+        .system-announcement i { font-size: 1.4rem; color: #fab005; }
+        .announcement-content strong { display: block; font-size: 1rem; margin-bottom: 2px; }
+        .announcement-content span { font-size: 0.85rem; opacity: 0.9; }
 
         .top-bar-right { display: flex; align-items: center; gap: 20px; }
 
@@ -194,8 +204,11 @@
         </header>
 
         <div class="system-announcement">
-            <i class="fas fa-exclamation-triangle"></i>
-            <span>ประกาศ: ขณะนี้ระบบอยู่ระหว่างการทดสอบ ข้อมูลบางส่วนอาจมีการเปลี่ยนแปลง</span>
+            <i class="fas fa-info-circle"></i>
+            <div class="announcement-content">
+                <strong>ขณะนี้ระบบอยู่ระหว่างการทดสอบ (System Testing)</strong>
+                <span>ขออภัยในความไม่สะดวก ข้อมูลบางส่วนอยู่ระหว่างการปรับปรุงเพื่อความสมบูรณ์ของระบบทะเบียน</span>
+            </div>
         </div>
 
         <section class="system-selection">
