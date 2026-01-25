@@ -34,32 +34,46 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
+        /* Sidebar - ปรับปรุงความยาวให้รองรับเมนูที่มากขึ้น */
         aside {
             background-color: var(--white);
             border-right: 1px solid rgba(0,0,0,0.05);
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1rem;
             position: sticky;
             top: 0;
             height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem;
+            overflow-y: auto; /* เพิ่ม Scrollbar หากเมนูยาวเกินหน้าจอ */
         }
 
         .brand { text-align: center; padding-bottom: 1rem; border-bottom: 2px solid var(--primary-light); }
-        .brand i { font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; }
-        .brand h2 { font-size: 1.2rem; color: var(--primary); }
+        .brand i { font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .brand h2 { font-size: 1.1rem; color: var(--primary); }
 
-        .nav-menu { list-style: none; }
-        .nav-label { font-size: 0.8rem; font-weight: 700; color: var(--secondary); text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 1px; }
-        .nav-item { margin-bottom: 0.5rem; }
-        .nav-link {
-            display: flex; align-items: center; gap: 12px; padding: 12px 15px;
-            text-decoration: none; color: var(--text-main); border-radius: 12px; transition: 0.3s; font-weight: 500;
+        .nav-menu { list-style: none; margin-bottom: 1rem; }
+        .nav-label { 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            text-transform: uppercase; 
+            margin: 1rem 0 0.5rem 10px; 
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .nav-link:hover, .nav-link.active { background-color: var(--primary-light); color: var(--primary); }
+        .nav-label::after { content: ""; flex: 1; height: 1px; background: var(--primary-light); }
+
+        .nav-item { margin-bottom: 2px; }
+        .nav-link {
+            display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+            text-decoration: none; color: #555; border-radius: 10px; transition: 0.3s; font-weight: 500; font-size: 0.85rem;
+        }
+        .nav-link:hover { background-color: var(--primary-light); color: var(--primary); }
         .nav-link.active { background-color: var(--primary); color: var(--white); }
+        .nav-link i { width: 20px; text-align: center; font-size: 1rem; }
 
         /* Main Content */
         main { padding: 2rem; width: 100%; max-width: 1400px; margin: 0 auto; }
@@ -69,76 +83,36 @@
             margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow);
         }
 
-        /* --- Stylish Announcement --- */
+        /* Announcement Style */
         .system-announcement {
-            background: #fff9db; 
-            border: 1px solid #ffe066;
-            color: #856404;
-            padding: 15px 25px;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 4px 15px rgba(255, 224, 102, 0.15);
-            position: relative;
-            overflow: hidden;
+            background: #fff9db; border: 1px solid #ffe066; color: #856404;
+            padding: 15px 25px; border-radius: 16px; margin-bottom: 2rem;
+            display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 15px rgba(255, 224, 102, 0.15);
+            position: relative; overflow: hidden;
         }
-        .system-announcement::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; height: 100%; width: 6px;
-            background: #fab005;
-        }
+        .system-announcement::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 6px; background: #fab005; }
         .system-announcement i { font-size: 1.4rem; color: #fab005; }
-        .announcement-content strong { display: block; font-size: 1rem; margin-bottom: 2px; }
-        .announcement-content span { font-size: 0.85rem; opacity: 0.9; }
 
         .top-bar-right { display: flex; align-items: center; gap: 20px; }
-
         .admin-login-btn {
-            background-color: var(--danger);
-            color: white; padding: 10px 20px; border-radius: 12px;
-            text-decoration: none; font-weight: 600; font-size: 0.9rem;
-            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+            background-color: var(--danger); color: white; padding: 10px 20px; border-radius: 12px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;
             box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
         }
 
-        .system-selection {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
+        .system-selection { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
         .system-mini-card {
-            background: var(--white);
-            padding: 12px 20px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-main);
-            box-shadow: var(--shadow);
-            transition: 0.3s;
-            border: 1px solid rgba(0,0,0,0.03);
+            background: var(--white); padding: 12px 20px; border-radius: 15px;
+            display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main);
+            box-shadow: var(--shadow); transition: 0.3s; border: 1px solid rgba(0,0,0,0.03);
         }
         .system-mini-card:hover { transform: translateY(-3px); border-color: var(--primary); }
-        .sys-icon-small {
-            width: 35px; height: 35px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; color: white;
-        }
+        .sys-icon-small { width: 35px; height: 35px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; }
 
-        @keyframes mesh-move {
-            0% { background-position-x: 0; }
-            100% { background-position-x: 1000px; }
-        }
+        @keyframes mesh-move { 0% { background-position-x: 0; } 100% { background-position-x: 1000px; } }
         .card-countdown {
-            position: relative; overflow: hidden;
-            background: linear-gradient(135deg, #0056b3 0%, #00a8ff 100%);
-            color: var(--white); padding: 2.5rem; border-radius: 24px;
-            text-align: center; margin-bottom: 2.5rem; box-shadow: 0 15px 35px rgba(0, 86, 179, 0.3);
-            z-index: 1;
+            position: relative; overflow: hidden; background: linear-gradient(135deg, #0056b3 0%, #00a8ff 100%);
+            color: var(--white); padding: 2.5rem; border-radius: 24px; text-align: center; margin-bottom: 2.5rem; box-shadow: 0 15px 35px rgba(0, 86, 179, 0.3); z-index: 1;
         }
         .wavy-lines-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -178,14 +152,35 @@
 
 <div class="dashboard-container">
     <aside>
-        <div class="brand"><i class="fas fa-university"></i><h2>ระบบงานทะเบียน</h2><p style="font-size: 0.7rem; color: #888;">Banharnjamsaiwittaya 1</p></div>
+        <div class="brand">
+            <i class="fas fa-university"></i>
+            <h2>ระบบงานทะเบียน</h2>
+            <p style="font-size: 0.7rem; color: #888;">Banharnjamsaiwittaya 1</p>
+        </div>
+        
         <nav>
-            <p class="nav-label">Main Menu</p>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="#" class="nav-link active"><i class="fas fa-th-large"></i> หน้าแรก</a></li>
-                <li class="nav-item"><a href="cender.html" class="nav-link"><i class="fas fa-calendar-alt"></i> ปฏิทินวิชาการ</a></li>
-                <li class="nav-item"><a href="person.html" class="nav-link"><i class="fas fa-users"></i> บุคลากร</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-phone"></i> ติดต่อสอบถาม</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active"><i class="fas fa-home"></i> หน้าแรก</a></li>
+            </ul>
+
+            <p class="nav-label"><i class="fas fa-chalkboard-teacher"></i> เมนูครู</p>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-calendar-check"></i> กำหนดการศึกษา</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-book-reader"></i> ตรวจสอบการเปิดวิชาเรียน</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-check-circle"></i> ยืนยันการส่งเกรด</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-user-lock"></i> Reset User</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-file-download"></i> ดาวน์โหลดเอกสาร</a></li>
+            </ul>
+
+            <p class="nav-label"><i class="fas fa-user-graduate"></i> เมนูนักเรียน</p>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-poll-h"></i> ตรวจสอบผลการเรียน</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-exclamation-circle"></i> รายชื่อหมดสิทธิ์สอบ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-calendar-alt"></i> กำหนดการศึกษา</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-graduation-cap"></i> ตรวจสอบรายชื่อจบ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-user-edit"></i> ขอแก้ไขข้อมูลส่วนตัว</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-file-alt"></i> ขอหลักฐานการศึกษา</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-download"></i> ดาวน์โหลดเอกสาร</a></li>
             </ul>
         </nav>
     </aside>
@@ -206,59 +201,34 @@
         <div class="system-announcement">
             <i class="fas fa-info-circle"></i>
             <div class="announcement-content">
-                <strong>ระบบอยู่ระหว่างการทดสอบ (System Testing)</strong>
-                <span>ประกาศปิดโดเมนระบบเก่า ตั้งแต่ 24/01/69 หลัง 24.00 น. เป็นต้นไป</span>
+                <strong>ขณะนี้ระบบอยู่ระหว่างการทดสอบ (System Testing)</strong>
+                <span>ขออภัยในความไม่สะดวก ข้อมูลบางส่วนอยู่ระหว่างการปรับปรุงเพื่อความสมบูรณ์</span>
             </div>
         </div>
 
         <section class="system-selection">
-            <a href="https://sgs.bopp-obec.info/sgs" class="system-mini-card">
+            <a href="teacher-login.html" class="system-mini-card">
                 <div class="sys-icon-small" style="background-color: var(--primary);"><i class="fas fa-chalkboard-teacher"></i></div>
-                <span style="font-weight: 700;">ระบบ SGS สำหรับครู</span>
+                <span style="font-weight: 700;">ระบบสำหรับครู</span>
             </a>
-            <a href="https://sgs.bopp-obec.info/sgss" class="system-mini-card">
+            <a href="student-login.html" class="system-mini-card">
                 <div class="sys-icon-small" style="background-color: #00a8ff;"><i class="fas fa-user-graduate"></i></div>
-                <span style="font-weight: 700;">ระบบ SGS สำหรับนักเรียน</span>
+                <span style="font-weight: 700;">ระบบสำหรับนักเรียน</span>
             </a>
         </section>
 
         <section class="card-countdown">
             <div class="wavy-lines-bg"></div>
             <div style="position: relative; z-index: 2;">
-                <h2 style="font-weight: 600;">กำหนดการส่งเกรด (ก่อนกลางภาค/สอบกลางภาค) 2568/2</h2>
-                
+                <h2 style="font-weight: 600;">กำหนดการส่งเกรด 2568/2</h2>
                 <div style="margin-top: 15px; display: inline-block; background-color: #ffffff; padding: 5px 15px; border-radius: 8px;">
-                    <span style="color: #ff0000; font-weight: 700; text-decoration: underline;">ไม่เกินเที่ยงคืน</span>
-                    <span style="color: #0056b3; font-weight: 700; text-decoration: underline;">วันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</span>
+                    <span style="color: #ff0000; font-weight: 700;">ไม่เกินเที่ยงคืน วันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</span>
                 </div>
-
                 <div id="timer" class="timer-grid">
                     <div class="timer-box"><span id="days" class="t-num">00</span><span>วัน</span></div>
                     <div class="timer-box"><span id="hours" class="t-num">00</span><span>ชั่วโมง</span></div>
                     <div class="timer-box"><span id="minutes" class="t-num">00</span><span>นาที</span></div>
                     <div class="timer-box"><span id="seconds" class="t-num">00</span><span>วินาที</span></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="stats-container">
-            <div class="stats-header"><i class="fas fa-chart-line"></i><h3>สถิติงานวิชาการ 2568</h3></div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon bg-grad-blue"><i class="fas fa-book-open"></i></div>
-                    <div class="stat-info"><span class="stat-value">203</span><div class="stat-label">วิชาที่เปิดสอน</div></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon bg-grad-green"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <div class="stat-info"><span class="stat-value">112</span><div class="stat-label">บุคลากร</div></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon bg-grad-orange"><i class="fas fa-user-graduate"></i></div>
-                    <div class="stat-info"><span class="stat-value">2,262</span><div class="stat-label">นักเรียน</div></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon bg-grad-red"><i class="fas fa-school"></i></div>
-                    <div class="stat-info"><span class="stat-value">60</span><div class="stat-label">ห้องเรียน</div></div>
                 </div>
             </div>
         </section>
