@@ -17,8 +17,6 @@
             --white: #ffffff;
             --text-main: #2d3436;
             --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --warning-bg: #fff3cd; /* สีสำหรับประกาศ */
-            --warning-text: #856404;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,24 +26,6 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
-        }
-
-        /* --- สไตล์ของแถบประกาศ --- */
-        .test-banner {
-            background-color: var(--warning-bg);
-            color: var(--warning-text);
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-bottom: 1px solid #ffeeba;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            position: sticky;
-            top: 0;
-            z-index: 1001;
         }
 
         .dashboard-container {
@@ -86,7 +66,22 @@
 
         header.top-bar {
             background: var(--white); padding: 1rem 2rem; border-radius: 20px;
-            margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow);
+            margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow);
+        }
+
+        /* --- New Announcement Style --- */
+        .system-announcement {
+            background: #fff3cd;
+            color: #856404;
+            padding: 12px 20px;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 5px solid #ffc107;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
 
         .top-bar-right { display: flex; align-items: center; gap: 20px; }
@@ -171,11 +166,6 @@
 </head>
 <body>
 
-<div class="test-banner">
-    <i class="fas fa-tools"></i>
-    <span>ขณะนี้ระบบอยู่ระหว่างการทดสอบ (Beta Test) ข้อมูลบางส่วนอาจมีการเปลี่ยนแปลง</span>
-</div>
-
 <div class="dashboard-container">
     <aside>
         <div class="brand"><i class="fas fa-university"></i><h2>ระบบงานทะเบียน</h2><p style="font-size: 0.7rem; color: #888;">Banharnjamsaiwittaya 1</p></div>
@@ -192,11 +182,7 @@
 
     <main>
         <header class="top-bar">
-            <div class="welcome-text">
-                <h1>งานทะเบียนวัดผล ฝ่ายประมวลผล GPA 
-                    <span style="font-size: 0.7rem; background: #ffc107; color: #000; padding: 2px 10px; border-radius: 20px; vertical-align: middle; margin-left: 10px;">TESTING</span>
-                </h1>
-            </div>
+            <div class="welcome-text"><h1>งานทะเบียนวัดผล ฝ่ายประมวลผล GPA</h1></div>
             <div class="top-bar-right">
                 <div class="user-info" style="font-size: 0.9rem; color: var(--secondary);">
                     <i class="far fa-clock"></i> <span id="current-time">กำลังโหลด...</span>
@@ -206,6 +192,11 @@
                 </a>
             </div>
         </header>
+
+        <div class="system-announcement">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>ประกาศ: ขณะนี้ระบบอยู่ระหว่างการทดสอบ ข้อมูลบางส่วนอาจมีการเปลี่ยนแปลง</span>
+        </div>
 
         <section class="system-selection">
             <a href="teacher-login.html" class="system-mini-card">
