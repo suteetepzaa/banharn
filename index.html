@@ -6,20 +6,26 @@
     <title>งานทะเบียนวัดผล | Banharnjamsaiwittaya 1 School</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
         :root {
-            --primary: #0056b3;
+            --primary: #003d80;
             --primary-light: #e7f1ff;
             --secondary: #6c757d;
             --danger: #dc3545;
             --bg-body: #f0f2f5;
             --white: #ffffff;
             --text-main: #2d3436;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* ❌ ไม่เอาขอบมน: บังคับทุกอย่างให้เป็นเหลี่ยมคม */
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            border-radius: 0 !important; 
+        }
 
         body {
             font-family: 'Kodchasan', sans-serif;
@@ -30,136 +36,66 @@
 
         .dashboard-container {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 260px 1fr;
             min-height: 100vh;
         }
 
-        /* Sidebar */
+        /* Sidebar - Sharp & Professional */
         aside {
             background-color: var(--white);
-            border-right: 1px solid rgba(0,0,0,0.05);
-            padding: 2rem 1.5rem;
+            border-right: 2px solid #ddd;
+            padding: 2rem 1rem;
             position: sticky;
             top: 0;
             height: 100vh;
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            z-index: 50;
         }
 
-        .brand { text-align: center; padding-bottom: 1rem; border-bottom: 2px solid var(--primary-light); }
-        .brand i { font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; }
-        .brand h2 { font-size: 1.2rem; color: var(--primary); }
-
-        .nav-menu { list-style: none; }
-        .nav-label { font-size: 0.8rem; font-weight: 700; color: var(--secondary); text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 1px; }
-        .nav-item { margin-bottom: 0.5rem; }
         .nav-link {
             display: flex; align-items: center; gap: 12px; padding: 12px 15px;
-            text-decoration: none; color: var(--text-main); border-radius: 12px; transition: 0.3s; font-weight: 500;
+            text-decoration: none; color: var(--text-main); transition: 0.2s; font-weight: 500;
+            border-left: 4px solid transparent;
         }
-        .nav-link:hover, .nav-link.active { background-color: var(--primary-light); color: var(--primary); }
+        .nav-link:hover, .nav-link.active { background-color: var(--primary-light); color: var(--primary); border-left: 4px solid var(--primary); }
         .nav-link.active { background-color: var(--primary); color: var(--white); }
 
-        /* Main Content */
         main { padding: 2rem; width: 100%; max-width: 1400px; margin: 0 auto; }
 
-        /* Top Bar ปรับปรุงใหม่เพื่อวางปุ่ม Admin */
+        /* Top Bar - Sharp Header */
         header.top-bar {
-            background: var(--white); padding: 1rem 2rem; border-radius: 20px;
-            margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow);
+            background: var(--white); padding: 1.2rem 2rem;
+            margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;
+            border: 1px solid #ddd; border-bottom: 4px solid var(--primary);
         }
 
-        .top-bar-right { display: flex; align-items: center; gap: 20px; }
-
-        /* ปุ่มเจ้าหน้าที่ดีไซน์ใหม่ให้ดูเป็นปุ่ม Action */
-        .admin-login-btn {
-            background-color: var(--danger);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
-        }
-        .admin-login-btn:hover {
-            background-color: #bd2130;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
-        }
-
-        /* Countdown */
+        /* Countdown Card - With Graphic BG */
         .card-countdown {
-            background: linear-gradient(135deg, #0056b3 0%, #00a8ff 100%);
-            color: var(--white); padding: 2.5rem; border-radius: 24px;
-            text-align: center; margin-bottom: 2.5rem; box-shadow: 0 15px 35px rgba(0, 86, 179, 0.3);
+            background: #003d80;
+            color: var(--white); padding: 3rem 2.5rem; 
+            text-align: center; margin-bottom: 2.5rem;
+            border: 1px solid #002b5a;
         }
-        .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 500px; margin: 1.5rem auto; }
-        .timer-box { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 1rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); }
-        .t-num { font-size: 2rem; font-weight: 700; display: block; }
 
-        /* Statistics KPI */
-        .stats-container { margin-bottom: 3rem; }
-        .stats-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 10px; }
-        .stats-header h3 { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-        .stat-card {
-            background: var(--white); padding: 1.5rem; border-radius: 24px; 
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04); display: flex; 
-            flex-direction: column; gap: 1rem; transition: 0.4s;
-            border: 1px solid rgba(255, 255, 255, 0.8);
+        .timer-box { 
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 1.2rem; 
+            border: 1px solid rgba(255,255,255,0.15); 
         }
-        .stat-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0, 86, 179, 0.1); }
-        .stat-icon { width: 55px; height: 55px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; }
-        .bg-grad-blue { background: linear-gradient(135deg, #007bff, #00d2ff); }
-        .bg-grad-green { background: linear-gradient(135deg, #28a745, #a8e063); }
-        .bg-grad-orange { background: linear-gradient(135deg, #f39c12, #f1c40f); }
-        .bg-grad-red { background: linear-gradient(135deg, #dc3545, #ff4b2b); }
-        .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--text-main); display: block; }
-        .stat-label { font-size: 0.9rem; color: var(--secondary); font-weight: 600; display: flex; justify-content: space-between; }
 
-        /* Quick Access Menu (Center) */
-        .quick-access-section { margin-bottom: 2.5rem; }
-        .cta-card {
-            background: var(--white); border-radius: 24px; padding: 1.5rem 2rem;
-            display: flex; align-items: center; justify-content: space-between;
-            box-shadow: var(--shadow); border: 2px solid transparent;
-            text-decoration: none; color: inherit; transition: 0.3s;
+        /* Stats Card - Sharp & Clean */
+        .stat-card { 
+            background: var(--white); padding: 1.5rem; 
+            border: 1px solid #ddd; border-bottom: 4px solid #ddd;
+            transition: 0.2s; 
         }
-        .cta-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .cta-content { display: flex; align-items: center; gap: 20px; }
-        .cta-icon { width: 60px; height: 60px; background: var(--primary-light); color: var(--primary); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
-        .cta-text h3 { font-size: 1.3rem; color: var(--primary); font-weight: 700; }
-        .cta-button { background: var(--primary); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-
-        /* News & Status */
-        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
-        .card { background: var(--white); padding: 1.5rem; border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 2rem; }
-        .card-title { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); }
-        .news-list-classic { display: flex; flex-direction: column; }
-        .news-item-classic {
-            display: flex; align-items: center; gap: 12px; padding: 12px 10px;
-            text-decoration: none; color: var(--text-main); border-bottom: 1px solid #eee; transition: 0.2s;
-        }
-        .news-item-classic:hover { background-color: var(--primary-light); padding-left: 15px; color: var(--primary); }
-        .date-label { font-weight: 700; color: var(--primary); min-width: 90px; font-size: 0.9rem; }
-        .status-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
-        .badge-success { background: #d4edda; color: #155724; }
-        .badge-danger { background: #f8d7da; color: #721c24; }
+        .stat-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px rgba(0,0,0,0.05); }
 
         @media (max-width: 1100px) {
             .dashboard-container { grid-template-columns: 1fr; }
             aside { display: none; }
-            .content-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .cta-card { flex-direction: column; text-align: center; gap: 15px; }
-            header.top-bar { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
@@ -167,104 +103,134 @@
 
 <div class="dashboard-container">
     <aside>
-        <div class="brand"><i class="fas fa-university"></i><h2>ระบบงานทะเบียน</h2><p style="font-size: 0.7rem; color: #888;">Banharnjamsaiwittaya 1</p></div>
+        <div class="text-center pb-6 border-b border-slate-200">
+            <i class="fas fa-university text-4xl text-blue-900 mb-2"></i>
+            <h2 class="text-lg font-bold text-blue-900 leading-tight">ระบบงานทะเบียน</h2>
+            <p class="text-[10px] text-slate-400 tracking-tighter uppercase font-bold">Banharnjamsaiwittaya 1</p>
+        </div>
         <nav>
-            <p class="nav-label">Main Menu</p>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#" class="nav-link active"><i class="fas fa-th-large"></i> หน้าแรก</a></li>
-                <li class="nav-item"><a href="cender.html" class="nav-link"><i class="fas fa-calendar-alt"></i> ปฏิทินวิชาการ</a></li>
-                <li class="nav-item"><a href="person.html" class="nav-link"><i class="fas fa-users"></i> บุคลากร</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-phone"></i> ติดต่อสอบถาม</a></li>
+            <p class="text-[11px] font-black text-slate-400 uppercase mb-4 pl-4 tracking-widest">Navigation</p>
+            <ul>
+                <li><a href="#" class="nav-link active"><i class="fas fa-th-large"></i> หน้าแรก</a></li>
+                <li><a href="cender.html" class="nav-link"><i class="fas fa-calendar-alt"></i> ปฏิทินวิชาการ</a></li>
+                <li><a href="person.html" class="nav-link"><i class="fas fa-users"></i> บุคลากร</a></li>
+                <li><a href="#" class="nav-link"><i class="fas fa-phone"></i> ติดต่อสอบถาม</a></li>
             </ul>
         </nav>
     </aside>
 
     <main>
         <header class="top-bar">
-            <div class="welcome-text"><h1>งานทะเบียนวัดผล ฝ่ายประมวลผล GPA</h1></div>
-            <div class="top-bar-right">
-                <div class="user-info" style="font-size: 0.9rem; color: var(--secondary);">
-                    <i class="far fa-clock"></i> <span id="current-time">กำลังโหลด...</span>
+            <div>
+                <h1 class="text-xl font-bold text-slate-800 uppercase tracking-tight">งานทะเบียนวัดผล ฝ่ายประมวลผล GPA</h1>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-xs text-slate-500 font-bold hidden md:block">
+                    <i class="far fa-clock"></i> <span id="current-time"></span>
                 </div>
-                <a href="admin-login.html" class="admin-login-btn">
-                    <i class="fas fa-user-shield"></i> เจ้าหน้าที่เข้าระบบจัดการ
+                <a href="admin-login.html" class="bg-red-600 text-white px-6 py-2 font-bold text-sm hover:bg-red-700 transition-all shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">
+                    LOGIN ADMIN
                 </a>
             </div>
         </header>
 
-        <section class="card-countdown">
-            <h2 style="font-weight: 600;">กำหนดการส่งเกรด (ก่อนกลางภาค/สอบกลางภาค) 2568/2</h2>
-            <p style="opacity: 0.8;">ไม่เกินเที่ยงคืนวันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</p>
-            <div id="timer" class="timer-grid">
-                <div class="timer-box"><span id="days" class="t-num">00</span><span>วัน</span></div>
-                <div class="timer-box"><span id="hours" class="t-num">00</span><span>ชั่วโมง</span></div>
-                <div class="timer-box"><span id="minutes" class="t-num">00</span><span>นาที</span></div>
-                <div class="timer-box"><span id="seconds" class="t-num">00</span><span>วินาที</span></div>
-            </div>
-        </section>
-
-        <section class="stats-container">
-            <div class="stats-header"><i class="fas fa-chart-line"></i><h3>สถิติงานวิชาการ ภาคเรียนที่ 2 ปีการศึกษา 2568</h3></div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon bg-grad-blue"><i class="fas fa-book-open"></i></div>
-                    <div class="stat-info"><span class="stat-value">203</span><div class="stat-label">วิชาที่เปิดสอน</div></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon bg-grad-green"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <div class="stat-info"><span class="stat-value">112</span><div class="person.html">บุคลากร</div></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon bg-grad-orange"><i class="fas fa-user-graduate"></i></div>
-                    <div class="stat-info"><span class="stat-value">2,262</span><div class="stat-label">นักเรียน</div></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon bg-grad-red"><i class="fas fa-school"></i></div>
-                    <div class="stat-info"><span class="stat-value">60</span><div class="stat-label">ห้องเรียน</div></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="quick-access-section">
-            <a href="check-subject.html" class="cta-card">
-                <div class="cta-content">
-                    <div class="cta-icon"><i class="fas fa-folder-plus"></i></div>
-                    <div class="cta-text">
-                        <h3>ตรวจสอบผลการขอเปิดรายวิชา</h3>
-                        <p>ตรวจสอบสถานะรายวิชาใหม่ ภาคเรียนที่ 2/2568</p>
+        <div id="test-banner" class="mb-8 border-l-[6px] border-amber-500 bg-amber-50 transition-all duration-300">
+            <div class="flex flex-col md:flex-row items-center justify-between p-5 md:p-6 border border-amber-200">
+                <div class="flex items-start gap-4 flex-1">
+                    <div class="flex-shrink-0 w-12 h-12 bg-amber-500 text-white flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-amber-900 font-black text-lg uppercase tracking-tight">System Testing Mode</span>
+                            <span class="bg-amber-900 text-white text-[9px] px-2 py-0.5 font-bold">BETA</span>
+                        </div>
+                        <p class="text-amber-800 text-sm font-medium leading-relaxed">
+                            ระบบอยู่ระหว่างการปรับปรุงข้อมูลภาคเรียนที่ 2/2568 ข้อมูลทั้งหมดในหน้านี้ใช้เพื่อการทดสอบเท่านั้น
+                        </p>
                     </div>
                 </div>
-                <div class="cta-button">ตรวจสอบข้อมูล <i class="fas fa-arrow-right"></i></div>
-            </a>
-        </section>
-
-        <div class="content-grid">
-            <div class="left-col">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-bullhorn"></i> ข่าวประชาสัมพันธ์ล่าสุด</div>
-                    <div class="news-list-classic">
-                        <a href="#" class="news-item-classic"><span class="date-label">[30/ก.ย. 68]</span><span class="news-text">ประกาศห้องสอบปลายภาคเรียนที่ 1/2568</span></a>
-                        <a href="#" class="news-item-classic"><span class="date-label">[22/ก.ย. 68]</span><span class="news-text">แจ้งกำหนดการรับรองผลการเรียน และแก้ไข 0, ร, มส.</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="right-col">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-info-circle"></i> สถานะระบบ</div>
-                    <div class="status-row"><span>ปีการศึกษา</span><strong>2568/2</strong></div>
-                    <div class="status-row"><span>บันทึกเกรด</span><span class="badge badge-danger">ปิดระบบ</span></div>
-                    <div class="status-row"><span>ประกาศผล</span><span class="badge badge-success">เปิดปกติ</span></div>
+                <div class="mt-4 md:mt-0">
+                    <button onclick="closeBanner()" class="px-6 py-2 bg-transparent border-2 border-amber-500 text-amber-600 font-bold text-xs hover:bg-amber-500 hover:text-white transition-all uppercase tracking-widest">
+                        Close Notification
+                    </button>
                 </div>
             </div>
         </div>
-        
-        <footer style="text-align: center; color: #888; font-size: 0.75rem; padding-bottom: 2rem;">
-            &copy; 2026 งานทะเบียนวัดผล โรงเรียนบรรหารแจ่มใสวิทยา 1 | พัฒนาโดย ฝ่าย ICT
+
+        <section class="card-countdown relative overflow-hidden group">
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 20px 20px;"></div>
+            <div class="absolute -right-20 -top-20 w-64 h-64 bg-blue-400 rounded-full blur-[100px] opacity-20"></div>
+            <div class="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+            <div class="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+
+            <div class="relative z-10">
+                <h2 class="text-2xl font-bold mb-2 uppercase tracking-tight text-amber-400 drop-shadow-md">กำหนดการส่งเกรด 2568/2</h2>
+                <p class="opacity-80 text-sm mb-6 font-bold uppercase tracking-[0.2em]">Deadline: 13 February 2026</p>
+                
+                <div class="grid grid-cols-4 gap-2 max-w-md mx-auto">
+                    <div class="timer-box relative backdrop-blur-md">
+                        <span id="days" class="text-3xl font-bold block">00</span>
+                        <span class="text-[9px] font-black opacity-60 tracking-widest">DAYS</span>
+                    </div>
+                    <div class="timer-box relative backdrop-blur-md">
+                        <span id="hours" class="text-3xl font-bold block">00</span>
+                        <span class="text-[9px] font-black opacity-60 tracking-widest">HRS</span>
+                    </div>
+                    <div class="timer-box relative backdrop-blur-md">
+                        <span id="minutes" class="text-3xl font-bold block">00</span>
+                        <span class="text-[9px] font-black opacity-60 tracking-widest">MINS</span>
+                    </div>
+                    <div class="timer-box relative backdrop-blur-md">
+                        <span id="seconds" class="text-3xl font-bold block">00</span>
+                        <span class="text-[9px] font-black opacity-60 tracking-widest">SECS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+            <div class="stat-card border-b-blue-600">
+                <div class="text-blue-600 mb-2 font-black text-xs uppercase tracking-tighter">Subjects</div>
+                <p class="text-4xl font-bold text-slate-800">203</p>
+            </div>
+            <div class="stat-card border-b-green-600">
+                <div class="text-green-600 mb-2 font-black text-xs uppercase tracking-tighter">Personnel</div>
+                <p class="text-4xl font-bold text-slate-800">112</p>
+            </div>
+            <div class="stat-card border-b-orange-600">
+                <div class="text-orange-600 mb-2 font-black text-xs uppercase tracking-tighter">Students</div>
+                <p class="text-4xl font-bold text-slate-800">2,262</p>
+            </div>
+            <div class="stat-card border-b-red-600">
+                <div class="text-red-600 mb-2 font-black text-xs uppercase tracking-tighter">Rooms</div>
+                <p class="text-4xl font-bold text-slate-800">60</p>
+            </div>
+        </div>
+
+        <footer class="text-left text-slate-400 text-[10px] font-bold uppercase tracking-[4px] py-10 border-t border-slate-200">
+            &copy; 2026 Registration ICT Office | Banharnjamsaiwittaya 1 School
         </footer>
     </main>
 </div>
 
 <script>
+    // ปิดแบนเนอร์
+    function closeBanner() {
+        const banner = document.getElementById('test-banner');
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateX(20px)';
+        setTimeout(() => { banner.style.display = 'none'; }, 400);
+    }
+
+    // เวลาปัจจุบัน
+    function showTime() { 
+        document.getElementById("current-time").innerText = new Date().toLocaleString('th-TH'); 
+    }
+    setInterval(showTime, 1000);
+    showTime();
+
+    // ระบบนับถอยหลัง
     const targetDate = new Date("2026-02-13T23:59:59").getTime();
     function updateTimer() {
         const now = new Date().getTime();
@@ -276,9 +242,9 @@
             document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }
     }
-    function showTime() { document.getElementById("current-time").innerText = new Date().toLocaleString('th-TH'); }
-    setInterval(updateTimer, 1000); setInterval(showTime, 1000);
-    updateTimer(); showTime();
+    setInterval(updateTimer, 1000);
+    updateTimer();
 </script>
+
 </body>
 </html>
