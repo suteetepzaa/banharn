@@ -64,7 +64,6 @@
         /* Main Content */
         main { padding: 2rem; width: 100%; max-width: 1400px; margin: 0 auto; }
 
-        /* Top Bar ปรับปรุงใหม่เพื่อวางปุ่ม Admin */
         header.top-bar {
             background: var(--white); padding: 1rem 2rem; border-radius: 20px;
             margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow);
@@ -72,7 +71,6 @@
 
         .top-bar-right { display: flex; align-items: center; gap: 20px; }
 
-        /* ปุ่มเจ้าหน้าที่ดีไซน์ใหม่ให้ดูเป็นปุ่ม Action */
         .admin-login-btn {
             background-color: var(--danger);
             color: white;
@@ -90,15 +88,66 @@
         .admin-login-btn:hover {
             background-color: #bd2130;
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
         }
 
-        /* Countdown */
-        .card-countdown {
-            background: linear-gradient(135deg, #0056b3 0%, #00a8ff 100%);
-            color: var(--white); padding: 2.5rem; border-radius: 24px;
-            text-align: center; margin-bottom: 2.5rem; box-shadow: 0 15px 35px rgba(0, 86, 179, 0.3);
+        /* --- Countdown Section with Graphics --- */
+        @keyframes mesh-move {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(15px, -15px); }
+            100% { transform: translate(0, 0); }
         }
+
+        @keyframes orb-float {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .card-countdown {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0056b3 0%, #00a8ff 100%);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0, 86, 179, 0.3);
+            z-index: 1;
+        }
+
+        /* วงกลมแสงฟุ้ง (Orbs) */
+        .card-countdown::before, .card-countdown::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            animation: orb-float 10s infinite ease-in-out;
+        }
+
+        .card-countdown::before {
+            width: 300px; height: 300px;
+            background: rgba(255, 255, 255, 0.15);
+            top: -100px; right: -50px;
+        }
+
+        .card-countdown::after {
+            width: 250px; height: 250px;
+            background: rgba(255, 255, 255, 0.1);
+            bottom: -80px; left: -40px;
+            animation-delay: -5s;
+        }
+
+        /* ลายเส้นตาราง (Grid Overlay) */
+        .bg-grid-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 25px 25px;
+            z-index: -1;
+            animation: mesh-move 20s infinite linear;
+        }
+
         .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 500px; margin: 1.5rem auto; }
         .timer-box { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 1rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); }
         .t-num { font-size: 2rem; font-weight: 700; display: block; }
@@ -121,9 +170,9 @@
         .bg-grad-orange { background: linear-gradient(135deg, #f39c12, #f1c40f); }
         .bg-grad-red { background: linear-gradient(135deg, #dc3545, #ff4b2b); }
         .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--text-main); display: block; }
-        .stat-label { font-size: 0.9rem; color: var(--secondary); font-weight: 600; display: flex; justify-content: space-between; }
+        .stat-label { font-size: 0.9rem; color: var(--secondary); font-weight: 600; }
 
-        /* Quick Access Menu (Center) */
+        /* Quick Access Menu */
         .quick-access-section { margin-bottom: 2.5rem; }
         .cta-card {
             background: var(--white); border-radius: 24px; padding: 1.5rem 2rem;
@@ -141,7 +190,6 @@
         .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
         .card { background: var(--white); padding: 1.5rem; border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 2rem; }
         .card-title { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); }
-        .news-list-classic { display: flex; flex-direction: column; }
         .news-item-classic {
             display: flex; align-items: center; gap: 12px; padding: 12px 10px;
             text-decoration: none; color: var(--text-main); border-bottom: 1px solid #eee; transition: 0.2s;
@@ -158,7 +206,6 @@
             aside { display: none; }
             .content-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .cta-card { flex-direction: column; text-align: center; gap: 15px; }
             header.top-bar { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
@@ -193,13 +240,16 @@
         </header>
 
         <section class="card-countdown">
-            <h2 style="font-weight: 600;">กำหนดการส่งเกรด (ก่อนกลางภาค/สอบกลางภาค) 2568/2</h2>
-            <p style="opacity: 0.8;">ไม่เกินเที่ยงคืนวันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</p>
-            <div id="timer" class="timer-grid">
-                <div class="timer-box"><span id="days" class="t-num">00</span><span>วัน</span></div>
-                <div class="timer-box"><span id="hours" class="t-num">00</span><span>ชั่วโมง</span></div>
-                <div class="timer-box"><span id="minutes" class="t-num">00</span><span>นาที</span></div>
-                <div class="timer-box"><span id="seconds" class="t-num">00</span><span>วินาที</span></div>
+            <div class="bg-grid-overlay"></div>
+            <div style="position: relative; z-index: 2;">
+                <h2 style="font-weight: 600; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">กำหนดการส่งเกรด (ก่อนกลางภาค/สอบกลางภาค) 2568/2</h2>
+                <p style="opacity: 0.9;">ไม่เกินเที่ยงคืนวันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</p>
+                <div id="timer" class="timer-grid">
+                    <div class="timer-box"><span id="days" class="t-num">00</span><span>วัน</span></div>
+                    <div class="timer-box"><span id="hours" class="t-num">00</span><span>ชั่วโมง</span></div>
+                    <div class="timer-box"><span id="minutes" class="t-num">00</span><span>นาที</span></div>
+                    <div class="timer-box"><span id="seconds" class="t-num">00</span><span>วินาที</span></div>
+                </div>
             </div>
         </section>
 
@@ -212,7 +262,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon bg-grad-green"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <div class="stat-info"><span class="stat-value">112</span><div class="person.html">บุคลากร</div></div>
+                    <div class="stat-info"><span class="stat-value">112</span><div class="stat-label">บุคลากร</div></div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon bg-grad-orange"><i class="fas fa-user-graduate"></i></div>
@@ -257,8 +307,8 @@
                 </div>
             </div>
         </div>
-        
-        <footer style="text-align: center; color: #888; font-size: 0.75rem; padding-bottom: 2rem;">
+
+        <footer style="text-align: center; color: #888; font-size: 0.75rem; padding-bottom: 2rem; padding-top: 1rem;">
             &copy; 2026 งานทะเบียนวัดผล โรงเรียนบรรหารแจ่มใสวิทยา 1 | พัฒนาโดย ฝ่าย ICT
         </footer>
     </main>
