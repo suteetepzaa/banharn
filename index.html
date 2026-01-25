@@ -34,46 +34,50 @@
             min-height: 100vh;
         }
 
-        /* Sidebar - ปรับปรุงความยาวให้รองรับเมนูที่มากขึ้น */
+        /* Sidebar - ปรับให้ Scroll ได้เมื่อเมนูเยอะ */
         aside {
             background-color: var(--white);
             border-right: 1px solid rgba(0,0,0,0.05);
-            padding: 1.5rem 1rem;
+            padding: 2rem 1.2rem;
             position: sticky;
             top: 0;
             height: 100vh;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            overflow-y: auto; /* เพิ่ม Scrollbar หากเมนูยาวเกินหน้าจอ */
+            overflow-y: auto;
         }
 
-        .brand { text-align: center; padding-bottom: 1rem; border-bottom: 2px solid var(--primary-light); }
-        .brand i { font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; }
-        .brand h2 { font-size: 1.1rem; color: var(--primary); }
+        /* ตกแต่ง Scrollbar ของ Sidebar */
+        aside::-webkit-scrollbar { width: 5px; }
+        aside::-webkit-scrollbar-thumb { background: #eee; border-radius: 10px; }
 
-        .nav-menu { list-style: none; margin-bottom: 1rem; }
+        .brand { text-align: center; padding-bottom: 1rem; border-bottom: 2px solid var(--primary-light); }
+        .brand i { font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .brand h2 { font-size: 1.2rem; color: var(--primary); }
+
+        .nav-menu { list-style: none; }
         .nav-label { 
             font-size: 0.75rem; 
             font-weight: 700; 
             color: var(--primary); 
             text-transform: uppercase; 
-            margin: 1rem 0 0.5rem 10px; 
+            margin: 1.5rem 0 0.5rem 5px; 
             letter-spacing: 1px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .nav-label::after { content: ""; flex: 1; height: 1px; background: var(--primary-light); }
 
-        .nav-item { margin-bottom: 2px; }
+        .nav-item { margin-bottom: 0.3rem; }
         .nav-link {
-            display: flex; align-items: center; gap: 10px; padding: 10px 12px;
-            text-decoration: none; color: #555; border-radius: 10px; transition: 0.3s; font-weight: 500; font-size: 0.85rem;
+            display: flex; align-items: center; gap: 12px; padding: 10px 15px;
+            text-decoration: none; color: var(--text-main); border-radius: 12px; transition: 0.3s; font-weight: 500;
+            font-size: 0.9rem;
         }
-        .nav-link:hover { background-color: var(--primary-light); color: var(--primary); }
+        .nav-link:hover, .nav-link.active { background-color: var(--primary-light); color: var(--primary); }
         .nav-link.active { background-color: var(--primary); color: var(--white); }
-        .nav-link i { width: 20px; text-align: center; font-size: 1rem; }
 
         /* Main Content */
         main { padding: 2rem; width: 100%; max-width: 1400px; margin: 0 auto; }
@@ -83,7 +87,7 @@
             margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow);
         }
 
-        /* Announcement Style */
+        /* Announcement Bar */
         .system-announcement {
             background: #fff9db; border: 1px solid #ffe066; color: #856404;
             padding: 15px 25px; border-radius: 16px; margin-bottom: 2rem;
@@ -157,30 +161,34 @@
             <h2>ระบบงานทะเบียน</h2>
             <p style="font-size: 0.7rem; color: #888;">Banharnjamsaiwittaya 1</p>
         </div>
-        
+
         <nav>
+            <p class="nav-label">Main Menu</p>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="#" class="nav-link active"><i class="fas fa-home"></i> หน้าแรก</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active"><i class="fas fa-th-large"></i> หน้าแรก</a></li>
+                <li class="nav-item"><a href="cender.html" class="nav-link"><i class="fas fa-calendar-alt"></i> ปฏิทินวิชาการ</a></li>
+                <li class="nav-item"><a href="person.html" class="nav-link"><i class="fas fa-users"></i> บุคลากร</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-phone"></i> ติดต่อสอบถาม</a></li>
             </ul>
 
-            <p class="nav-label"><i class="fas fa-chalkboard-teacher"></i> เมนูครู</p>
+            <p class="nav-label">เมนูครู</p>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-calendar-check"></i> กำหนดการศึกษา</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-book-reader"></i> ตรวจสอบการเปิดวิชาเรียน</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-check-circle"></i> ยืนยันการส่งเกรด</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-user-lock"></i> Reset User</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-book"></i> ตรวจสอบการเปิดวิชาเรียน</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-check-double"></i> ยืนยันการส่งเกรด</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-user-shield"></i> Reset User</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-file-download"></i> ดาวน์โหลดเอกสาร</a></li>
             </ul>
 
-            <p class="nav-label"><i class="fas fa-user-graduate"></i> เมนูนักเรียน</p>
+            <p class="nav-label">เมนูนักเรียน</p>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-poll-h"></i> ตรวจสอบผลการเรียน</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-exclamation-circle"></i> รายชื่อหมดสิทธิ์สอบ</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-calendar-alt"></i> กำหนดการศึกษา</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-graduation-cap"></i> ตรวจสอบรายชื่อจบ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-graduation-cap"></i> ตรวจสอบผลการเรียน</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-user-slash"></i> รายชื่อหมดสิทธิ์สอบ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-clock"></i> กำหนดการศึกษา</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-user-graduate"></i> ตรวจสอบรายชื่อจบ</a></li>
                 <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-user-edit"></i> ขอแก้ไขข้อมูลส่วนตัว</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-file-alt"></i> ขอหลักฐานการศึกษา</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-download"></i> ดาวน์โหลดเอกสาร</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-certificate"></i> ขอหลักฐานการศึกษา</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-file-pdf"></i> ดาวน์โหลดเอกสาร</a></li>
             </ul>
         </nav>
     </aside>
@@ -222,13 +230,36 @@
             <div style="position: relative; z-index: 2;">
                 <h2 style="font-weight: 600;">กำหนดการส่งเกรด 2568/2</h2>
                 <div style="margin-top: 15px; display: inline-block; background-color: #ffffff; padding: 5px 15px; border-radius: 8px;">
-                    <span style="color: #ff0000; font-weight: 700;">ไม่เกินเที่ยงคืน วันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</span>
+                    <span style="color: #ff0000; font-weight: 700; text-decoration: underline;">ไม่เกินเที่ยงคืน</span>
+                    <span style="color: #0056b3; font-weight: 700; text-decoration: underline;">วันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</span>
                 </div>
                 <div id="timer" class="timer-grid">
                     <div class="timer-box"><span id="days" class="t-num">00</span><span>วัน</span></div>
                     <div class="timer-box"><span id="hours" class="t-num">00</span><span>ชั่วโมง</span></div>
                     <div class="timer-box"><span id="minutes" class="t-num">00</span><span>นาที</span></div>
                     <div class="timer-box"><span id="seconds" class="t-num">00</span><span>วินาที</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-container">
+            <div class="stats-header"><i class="fas fa-chart-line"></i><h3>สถิติงานวิชาการ 2568</h3></div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon bg-grad-blue"><i class="fas fa-book-open"></i></div>
+                    <div class="stat-info"><span class="stat-value">203</span><div class="stat-label">วิชาที่เปิดสอน</div></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon bg-grad-green"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="stat-info"><span class="stat-value">112</span><div class="stat-label">บุคลากร</div></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon bg-grad-orange"><i class="fas fa-user-graduate"></i></div>
+                    <div class="stat-info"><span class="stat-value">2,262</span><div class="stat-label">นักเรียน</div></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon bg-grad-red"><i class="fas fa-school"></i></div>
+                    <div class="stat-info"><span class="stat-value">60</span><div class="stat-label">ห้องเรียน</div></div>
                 </div>
             </div>
         </section>
