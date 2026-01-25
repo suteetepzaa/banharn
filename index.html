@@ -9,14 +9,14 @@
     
     <style>
         :root {
-            --primary: #0056b3;
-            --primary-light: #e7f1ff;
-            --secondary: #6c757d;
-            --danger: #dc3545;
-            --bg-body: #f0f2f5;
+            --primary: #6c5ce7; /* ปรับเป็นสีม่วง */
+            --primary-light: #f1f0ff;
+            --secondary: #a29bfe;
+            --danger: #ff7675;
+            --bg-body: #f8f9fd;
             --white: #ffffff;
             --text-main: #2d3436;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow: 0 10px 30px rgba(108, 92, 231, 0.1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,7 +37,7 @@
         /* Sidebar */
         aside {
             background-color: var(--white);
-            border-right: 1px solid rgba(0,0,0,0.05);
+            border-right: 1px solid rgba(108, 92, 231, 0.1);
             padding: 2rem 1.5rem;
             position: sticky;
             top: 0;
@@ -69,10 +69,8 @@
             margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow);
         }
 
-        .top-bar-right { display: flex; align-items: center; gap: 20px; }
-
         .admin-login-btn {
-            background-color: var(--danger);
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
             color: white;
             padding: 10px 20px;
             border-radius: 12px;
@@ -83,128 +81,66 @@
             align-items: center;
             gap: 8px;
             transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
         }
-        .admin-login-btn:hover {
-            background-color: #bd2130;
-            transform: translateY(-2px);
-        }
+        .admin-login-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); }
 
-        /* --- Countdown Section with Graphics --- */
-        @keyframes mesh-move {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(15px, -15px); }
-            100% { transform: translate(0, 0); }
-        }
-
-        @keyframes orb-float {
-            0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.3); }
+        /* --- Countdown Section with Wavy Lines --- */
+        @keyframes wave-move {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1000px; }
         }
 
         .card-countdown {
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, #0056b3 0%, #00a8ff 100%);
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
             color: var(--white);
-            padding: 2.5rem;
+            padding: 3rem 2rem;
             border-radius: 24px;
             text-align: center;
             margin-bottom: 2.5rem;
-            box-shadow: 0 15px 35px rgba(0, 86, 179, 0.3);
+            box-shadow: 0 15px 35px rgba(108, 92, 231, 0.2);
             z-index: 1;
         }
 
-        /* วงกลมแสงฟุ้ง (Orbs) */
-        .card-countdown::before, .card-countdown::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: -1;
-            animation: orb-float 10s infinite ease-in-out;
-        }
-
-        .card-countdown::before {
-            width: 300px; height: 300px;
-            background: rgba(255, 255, 255, 0.15);
-            top: -100px; right: -50px;
-        }
-
-        .card-countdown::after {
-            width: 250px; height: 250px;
-            background: rgba(255, 255, 255, 0.1);
-            bottom: -80px; left: -40px;
-            animation-delay: -5s;
-        }
-
-        /* ลายเส้นตาราง (Grid Overlay) */
-        .bg-grid-overlay {
+        /* กราฟิกเส้นคลื่น (Wavy Lines) */
+        .wavy-lines {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
-            background-size: 25px 25px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300"><path d="M0 150 Q 250 50 500 150 T 1000 150" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/></svg>');
+            background-size: 1000px 100%;
             z-index: -1;
-            animation: mesh-move 20s infinite linear;
+            animation: wave-move 20s infinite linear;
+            opacity: 0.8;
         }
 
-        .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 500px; margin: 1.5rem auto; }
-        .timer-box { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 1rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); }
-        .t-num { font-size: 2rem; font-weight: 700; display: block; }
+        .timer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 550px; margin: 1.5rem auto; }
+        .timer-box { 
+            background: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(8px); 
+            padding: 1.2rem; 
+            border-radius: 18px; 
+            border: 1px solid rgba(255,255,255,0.3); 
+        }
+        .t-num { font-size: 2.2rem; font-weight: 700; display: block; }
 
-        /* Statistics KPI */
-        .stats-container { margin-bottom: 3rem; }
+        /* Statistics */
         .stats-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 10px; }
         .stats-header h3 { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
         .stat-card {
             background: var(--white); padding: 1.5rem; border-radius: 24px; 
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04); display: flex; 
+            box-shadow: var(--shadow); display: flex; 
             flex-direction: column; gap: 1rem; transition: 0.4s;
-            border: 1px solid rgba(255, 255, 255, 0.8);
         }
-        .stat-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0, 86, 179, 0.1); }
+        .stat-card:hover { transform: translateY(-10px); }
         .stat-icon { width: 55px; height: 55px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; }
-        .bg-grad-blue { background: linear-gradient(135deg, #007bff, #00d2ff); }
-        .bg-grad-green { background: linear-gradient(135deg, #28a745, #a8e063); }
-        .bg-grad-orange { background: linear-gradient(135deg, #f39c12, #f1c40f); }
-        .bg-grad-red { background: linear-gradient(135deg, #dc3545, #ff4b2b); }
-        .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--text-main); display: block; }
-        .stat-label { font-size: 0.9rem; color: var(--secondary); font-weight: 600; }
-
-        /* Quick Access Menu */
-        .quick-access-section { margin-bottom: 2.5rem; }
-        .cta-card {
-            background: var(--white); border-radius: 24px; padding: 1.5rem 2rem;
-            display: flex; align-items: center; justify-content: space-between;
-            box-shadow: var(--shadow); border: 2px solid transparent;
-            text-decoration: none; color: inherit; transition: 0.3s;
-        }
-        .cta-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .cta-content { display: flex; align-items: center; gap: 20px; }
-        .cta-icon { width: 60px; height: 60px; background: var(--primary-light); color: var(--primary); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
-        .cta-text h3 { font-size: 1.3rem; color: var(--primary); font-weight: 700; }
-        .cta-button { background: var(--primary); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-
-        /* News & Status */
-        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
-        .card { background: var(--white); padding: 1.5rem; border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 2rem; }
-        .card-title { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); }
-        .news-item-classic {
-            display: flex; align-items: center; gap: 12px; padding: 12px 10px;
-            text-decoration: none; color: var(--text-main); border-bottom: 1px solid #eee; transition: 0.2s;
-        }
-        .news-item-classic:hover { background-color: var(--primary-light); padding-left: 15px; color: var(--primary); }
-        .date-label { font-weight: 700; color: var(--primary); min-width: 90px; font-size: 0.9rem; }
-        .status-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
-        .badge-success { background: #d4edda; color: #155724; }
-        .badge-danger { background: #f8d7da; color: #721c24; }
+        .bg-grad-purple { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+        .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--text-main); }
 
         @media (max-width: 1100px) {
             .dashboard-container { grid-template-columns: 1fr; }
             aside { display: none; }
-            .content-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             header.top-bar { flex-direction: column; gap: 15px; text-align: center; }
         }
@@ -228,22 +164,25 @@
 
     <main>
         <header class="top-bar">
-            <div class="welcome-text"><h1>งานทะเบียนวัดผล ฝ่ายประมวลผล GPA</h1></div>
+            <div class="welcome-text"><h1 style="color: var(--primary); font-weight: 700;">งานทะเบียนวัดผล ฝ่ายประมวลผล GPA</h1></div>
             <div class="top-bar-right">
-                <div class="user-info" style="font-size: 0.9rem; color: var(--secondary);">
-                    <i class="far fa-clock"></i> <span id="current-time">กำลังโหลด...</span>
+                <div class="user-info" style="font-size: 0.9rem; color: var(--secondary); font-weight: 600;">
+                    <i class="far fa-clock"></i> <span id="current-time"></span>
                 </div>
                 <a href="admin-login.html" class="admin-login-btn">
-                    <i class="fas fa-user-shield"></i> เจ้าหน้าที่เข้าระบบจัดการ
+                    <i class="fas fa-user-shield"></i> เจ้าหน้าที่เข้าระบบ
                 </a>
             </div>
         </header>
 
         <section class="card-countdown">
-            <div class="bg-grid-overlay"></div>
+            <div class="wavy-lines"></div>
+            <div class="wavy-lines" style="top: 20px; animation-delay: -5s; opacity: 0.4;"></div>
+            
             <div style="position: relative; z-index: 2;">
-                <h2 style="font-weight: 600; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">กำหนดการส่งเกรด (ก่อนกลางภาค/สอบกลางภาค) 2568/2</h2>
-                <p style="opacity: 0.9;">ไม่เกินเที่ยงคืนวันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</p>
+                <h2 style="font-weight: 700; text-shadow: 0 4px 15px rgba(0,0,0,0.2); font-size: 1.6rem;">กำหนดการส่งเกรด (ก่อนกลางภาค/สอบกลางภาค) 2568/2</h2>
+                <p style="opacity: 0.9; margin-top: 10px; font-weight: 300;">ไม่เกินเที่ยงคืนวันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</p>
+                
                 <div id="timer" class="timer-grid">
                     <div class="timer-box"><span id="days" class="t-num">00</span><span>วัน</span></div>
                     <div class="timer-box"><span id="hours" class="t-num">00</span><span>ชั่วโมง</span></div>
@@ -254,61 +193,28 @@
         </section>
 
         <section class="stats-container">
-            <div class="stats-header"><i class="fas fa-chart-line"></i><h3>สถิติงานวิชาการ ภาคเรียนที่ 2 ปีการศึกษา 2568</h3></div>
+            <div class="stats-header"><i class="fas fa-chart-line"></i><h3>สถิติงานวิชาการ 2568</h3></div>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon bg-grad-blue"><i class="fas fa-book-open"></i></div>
+                    <div class="stat-icon bg-grad-purple"><i class="fas fa-book-open"></i></div>
                     <div class="stat-info"><span class="stat-value">203</span><div class="stat-label">วิชาที่เปิดสอน</div></div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon bg-grad-green"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="stat-icon bg-grad-purple"><i class="fas fa-chalkboard-teacher"></i></div>
                     <div class="stat-info"><span class="stat-value">112</span><div class="stat-label">บุคลากร</div></div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon bg-grad-orange"><i class="fas fa-user-graduate"></i></div>
+                    <div class="stat-icon bg-grad-purple"><i class="fas fa-user-graduate"></i></div>
                     <div class="stat-info"><span class="stat-value">2,262</span><div class="stat-label">นักเรียน</div></div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon bg-grad-red"><i class="fas fa-school"></i></div>
+                    <div class="stat-icon bg-grad-purple"><i class="fas fa-school"></i></div>
                     <div class="stat-info"><span class="stat-value">60</span><div class="stat-label">ห้องเรียน</div></div>
                 </div>
             </div>
         </section>
 
-        <section class="quick-access-section">
-            <a href="check-subject.html" class="cta-card">
-                <div class="cta-content">
-                    <div class="cta-icon"><i class="fas fa-folder-plus"></i></div>
-                    <div class="cta-text">
-                        <h3>ตรวจสอบผลการขอเปิดรายวิชา</h3>
-                        <p>ตรวจสอบสถานะรายวิชาใหม่ ภาคเรียนที่ 2/2568</p>
-                    </div>
-                </div>
-                <div class="cta-button">ตรวจสอบข้อมูล <i class="fas fa-arrow-right"></i></div>
-            </a>
-        </section>
-
-        <div class="content-grid">
-            <div class="left-col">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-bullhorn"></i> ข่าวประชาสัมพันธ์ล่าสุด</div>
-                    <div class="news-list-classic">
-                        <a href="#" class="news-item-classic"><span class="date-label">[30/ก.ย. 68]</span><span class="news-text">ประกาศห้องสอบปลายภาคเรียนที่ 1/2568</span></a>
-                        <a href="#" class="news-item-classic"><span class="date-label">[22/ก.ย. 68]</span><span class="news-text">แจ้งกำหนดการรับรองผลการเรียน และแก้ไข 0, ร, มส.</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="right-col">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-info-circle"></i> สถานะระบบ</div>
-                    <div class="status-row"><span>ปีการศึกษา</span><strong>2568/2</strong></div>
-                    <div class="status-row"><span>บันทึกเกรด</span><span class="badge badge-danger">ปิดระบบ</span></div>
-                    <div class="status-row"><span>ประกาศผล</span><span class="badge badge-success">เปิดปกติ</span></div>
-                </div>
-            </div>
-        </div>
-
-        <footer style="text-align: center; color: #888; font-size: 0.75rem; padding-bottom: 2rem; padding-top: 1rem;">
+        <footer style="text-align: center; color: #b2bec3; font-size: 0.75rem; padding: 2rem 0;">
             &copy; 2026 งานทะเบียนวัดผล โรงเรียนบรรหารแจ่มใสวิทยา 1 | พัฒนาโดย ฝ่าย ICT
         </footer>
     </main>
