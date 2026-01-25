@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ฟีเจอร์นี้ยังไม่เปิดใช้งาน | งานทะเบียนวัดผล</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0056b3;
+            --bg-body: #f0f2f5;
+            --white: #ffffff;
+            --text-main: #2d3436;
+            --secondary: #6c757d;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Kodchasan', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ตกแต่งพื้นหลังด้วยวงกลมจางๆ */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(0, 86, 179, 0.05);
+            border-radius: 50%;
+        }
+
+        .icon-box {
+            width: 100px;
+            height: 100px;
+            background: #fff9db;
+            color: #fab005;
+            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--secondary);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .badge {
+            background: #e7f1ff;
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
+        }
+
+        .btn-back:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 86, 179, 0.3);
+            background-color: #004494;
+        }
+
+        .footer-text {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="badge">Coming Soon / Beta Test</div>
+        <div class="icon-box">
+            <i class="fas fa-tools"></i>
+        </div>
+        <h1>ฟีเจอร์นี้ยังไม่เปิดใช้งาน</h1>
+        <p>ขออภัยในความไม่สะดวก ขณะนี้ฟีเจอร์ดังกล่าวอยู่ระหว่างการพัฒนาและทดสอบระบบ เพื่อให้ได้ข้อมูลที่แม่นยำที่สุดสำหรับคุณ</p>
+        
+        <a href="javascript:history.back()" class="btn-back">
+            <i class="fas fa-arrow-left"></i> ย้อนกลับหน้าหลัก
+        </a>
+
+        <div class="footer-text">
+            งานทะเบียนวัดผล โรงเรียนบรรหารแจ่มใสวิทยา 1
+        </div>
+    </div>
+
+</body>
+</html>
