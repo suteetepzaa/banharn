@@ -34,7 +34,7 @@
             min-height: 100vh;
         }
 
-        /* Sidebar - ปรับให้ Scroll ได้เมื่อเมนูเยอะ */
+        /* Sidebar */
         aside {
             background-color: var(--white);
             border-right: 1px solid rgba(0,0,0,0.05);
@@ -47,8 +47,6 @@
             gap: 1.5rem;
             overflow-y: auto;
         }
-
-        /* ตกแต่ง Scrollbar ของ Sidebar */
         aside::-webkit-scrollbar { width: 5px; }
         aside::-webkit-scrollbar-thumb { background: #eee; border-radius: 10px; }
 
@@ -79,6 +77,51 @@
         .nav-link:hover, .nav-link.active { background-color: var(--primary-light); color: var(--primary); }
         .nav-link.active { background-color: var(--primary); color: var(--white); }
 
+        /* --- Stylish Announcement with Patterns --- */
+        .system-announcement {
+            position: relative;
+            background: linear-gradient(135deg, #fff9db 0%, #fff3bf 100%);
+            border: 1px solid #ffe066;
+            color: #856404;
+            padding: 20px 25px;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 10px 25px rgba(255, 224, 102, 0.2);
+            overflow: hidden;
+        }
+        .system-announcement::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0.3;
+            background-image: radial-gradient(#fab005 0.7px, transparent 0.7px);
+            background-size: 12px 12px;
+            z-index: 0;
+        }
+        .system-announcement::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; height: 100%; width: 6px;
+            background: linear-gradient(to bottom, #fab005, #f59f00);
+            z-index: 2;
+        }
+        .announcement-icon-wrapper {
+            position: relative; z-index: 1;
+            background: #fab005; width: 45px; height: 45px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; color: white;
+            font-size: 1.3rem; box-shadow: 0 4px 12px rgba(250, 176, 5, 0.3); flex-shrink: 0;
+        }
+        .announcement-content { position: relative; z-index: 1; }
+        .announcement-content strong { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; color: #5c4300; }
+        .beta-badge {
+            background: #5c4300; color: #fff; font-size: 0.6rem; padding: 2px 8px;
+            border-radius: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800;
+        }
+        .announcement-content span { font-size: 0.85rem; opacity: 0.9; display: block; margin-top: 2px; }
+
         /* Main Content */
         main { padding: 2rem; width: 100%; max-width: 1400px; margin: 0 auto; }
 
@@ -86,16 +129,6 @@
             background: var(--white); padding: 1rem 2rem; border-radius: 20px;
             margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow);
         }
-
-        /* Announcement Bar */
-        .system-announcement {
-            background: #fff9db; border: 1px solid #ffe066; color: #856404;
-            padding: 15px 25px; border-radius: 16px; margin-bottom: 2rem;
-            display: flex; align-items: center; gap: 15px; box-shadow: 0 4px 15px rgba(255, 224, 102, 0.15);
-            position: relative; overflow: hidden;
-        }
-        .system-announcement::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 6px; background: #fab005; }
-        .system-announcement i { font-size: 1.4rem; color: #fab005; }
 
         .top-bar-right { display: flex; align-items: center; gap: 20px; }
         .admin-login-btn {
@@ -207,10 +240,15 @@
         </header>
 
         <div class="system-announcement">
-            <i class="fas fa-info-circle"></i>
+            <div class="announcement-icon-wrapper">
+                <i class="fas fa-vial"></i>
+            </div>
             <div class="announcement-content">
-                <strong>ขณะนี้ระบบอยู่ระหว่างการทดสอบ (System Testing)</strong>
-                <span>ขออภัยในความไม่สะดวก ข้อมูลบางส่วนอยู่ระหว่างการปรับปรุงเพื่อความสมบูรณ์</span>
+                <strong>
+                    ขณะนี้ระบบอยู่ระหว่างการทดสอบ 
+                    <span class="beta-badge">Under Testing</span>
+                </strong>
+                <span>เจ้าหน้าที่กำลังปรับปรุงระบบประมวลผล GPA เพื่อความเสถียรสูงสุด ข้อมูลอาจมีการเปลี่ยนแปลงชั่วคราว</span>
             </div>
         </div>
 
@@ -230,8 +268,7 @@
             <div style="position: relative; z-index: 2;">
                 <h2 style="font-weight: 600;">กำหนดการส่งเกรด 2568/2</h2>
                 <div style="margin-top: 15px; display: inline-block; background-color: #ffffff; padding: 5px 15px; border-radius: 8px;">
-                    <span style="color: #ff0000; font-weight: 700; text-decoration: underline;">ไม่เกินเที่ยงคืน</span>
-                    <span style="color: #0056b3; font-weight: 700; text-decoration: underline;">วันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</span>
+                    <span style="color: #ff0000; font-weight: 700;">ไม่เกินเที่ยงคืน วันศุกร์ที่ 13 กุมภาพันธ์ พ.ศ. 2569</span>
                 </div>
                 <div id="timer" class="timer-grid">
                     <div class="timer-box"><span id="days" class="t-num">00</span><span>วัน</span></div>
