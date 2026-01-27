@@ -8,105 +8,142 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Sarabun', sans-serif; }
+        body { font-family: 'Sarabun', sans-serif; background-color: #f0f2f5; }
+        .cert-border { border: 2px solid #1e3a8a; outline: 8px double #1e3a8a; outline-offset: -12px; }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen">
+<body>
 
-    <div class="max-w-3xl mx-auto py-10 px-4">
-        <div class="text-center mb-10">
-            <h1 class="text-3xl font-bold text-blue-900">🎓 ระบบตรวจสอบรายชื่อผู้สำเร็จการศึกษา</h1>
-            <p class="text-gray-600 mt-2">กรุณาอัปโหลดฐานข้อมูล และพิมพ์ชื่อหรือรหัสเพื่อค้นหา</p>
+    <div class="bg-slate-800 p-4 text-white text-sm">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <span>เจ้าหน้าที่: อัปโหลดไฟล์ Excel ฐานข้อมูลที่นี่</span>
+            <input type="file" id="uploadFile" accept=".xlsx, .xls" class="text-xs">
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <div class="bg-blue-900 w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-3xl">🎓</div>
+            <h1 class="text-3xl font-bold text-blue-900">ระบบตรวจสอบวุฒิการศึกษาและรายชื่อนักเรียน</h1>
+            <p class="text-gray-600 mt-2 text-lg">สถาบันการศึกษาตัวอย่าง (Example School)</p>
         </div>
 
-        <div class="bg-white p-6 rounded-t-xl shadow-sm border-b border-gray-100">
-            <label class="block text-sm font-bold text-gray-700 mb-2">📁 อัปโหลดฐานข้อมูลนักเรียน (Excel)</label>
-            <input type="file" id="uploadFile" accept=".xlsx, .xls" 
-                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-        </div>
-
-        <div class="bg-white p-6 rounded-b-xl shadow-md mb-8">
-            <div class="flex flex-col md:flex-row gap-4">
-                <input type="text" id="searchInput" placeholder="พิมพ์ชื่อ-นามสกุล หรือ เลขประจำตัว..." 
-                    class="flex-1 p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none text-lg">
-                <button onclick="searchData()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
-                    ค้นหาข้อมูล
+        <div class="bg-white p-8 rounded-2xl shadow-xl mb-10 border-t-4 border-blue-600 text-center">
+            <h2 class="text-xl font-bold mb-6 text-gray-800">กรุณากรอกข้อมูลเพื่อตรวจสอบ</h2>
+            <div class="max-w-md mx-auto space-y-4">
+                <input type="text" id="studentID" placeholder="รหัสประจำตัวนักเรียน" 
+                    class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 outline-none text-center text-xl tracking-widest">
+                <button onclick="checkDiploma()" 
+                    class="w-full bg-blue-700 text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-800 transition-all shadow-lg">
+                    🔍 ตรวจสอบข้อมูล
                 </button>
             </div>
         </div>
 
-        <div id="resultArea" class="hidden">
-            <h2 class="text-lg font-bold text-gray-700 mb-4">📍 ผลการตรวจสอบ:</h2>
-            <div id="resultCards" class="grid gap-4">
+        <div id="resultDisplay" class="hidden">
+            <div class="bg-white p-10 rounded-2xl shadow-2xl cert-border relative overflow-hidden">
+                <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+                    <span class="text-9xl font-bold -rotate-45">GRADUATED</span>
                 </div>
+
+                <div class="relative z-10">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800 uppercase">ผลการตรวจสอบวุฒิการศึกษา</h3>
+                        <div class="h-1 w-32 bg-blue-900 mx-auto mt-2"></div>
+                    </div>
+
+                    <div id="studentInfo" class="space-y-6">
+                        </div>
+
+                    <div class="mt-12 pt-8 border-t border-dashed border-gray-300 flex justify-between items-end">
+                        <div class="text-sm text-gray-500">
+                            วันที่ตรวจสอบ: <span id="currentDate"></span><br>
+                            รหัสตรวจสอบ: <span id="refCode"></span>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-green-600 font-bold text-xl mb-1 flex items-center">
+                                <span class="mr-2">✔️</span> ตรวจสอบแล้วผ่าน
+                            </div>
+                            <div class="text-xs text-gray-400 italic">ข้อมูลในระบบสารสนเทศของสถาบัน</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="window.print()" class="mt-6 mx-auto block text-blue-600 hover:underline">
+                🖨️ พิมพ์เอกสารฉบับนี้
+            </button>
         </div>
 
-        <div id="notFound" class="hidden text-center p-10 bg-white rounded-xl shadow-md">
-            <p class="text-red-500 text-xl font-bold">❌ ไม่พบข้อมูลรายชื่อนี้ในระบบ</p>
-            <p class="text-gray-500 mt-2">กรุณาตรวจสอบการสะกดชื่อ-นามสกุล หรือรหัสให้ถูกต้อง</p>
+        <div id="errorDisplay" class="hidden bg-red-50 border-l-4 border-red-500 p-6 rounded-lg text-center shadow-md">
+            <p class="text-red-700 font-bold text-lg">ไม่พบข้อมูลในระบบ</p>
+            <p class="text-red-600">กรุณาตรวจสอบรหัสประจำตัวอีกครั้ง หรือติดต่อฝ่ายทะเบียน</p>
         </div>
     </div>
 
     <script>
-        let studentData = [];
+        let db = [];
 
-        // อ่านไฟล์ Excel
-        document.getElementById('uploadFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
+        // 1. อ่านไฟล์ Excel (Admin เท่านั้น)
+        document.getElementById('uploadFile').addEventListener('change', (e) => {
             const reader = new FileReader();
-            reader.onload = function(e) {
-                const data = new Uint8Array(e.target.result);
+            reader.onload = (evt) => {
+                const data = new Uint8Array(evt.target.result);
                 const workbook = XLSX.read(data, {type: 'array'});
-                const sheet = workbook.Sheets[workbook.SheetNames[0]];
-                studentData = XLSX.utils.sheet_to_json(sheet);
-                alert("โหลดฐานข้อมูลสำเร็จ! พร้อมสำหรับการค้นหา");
+                db = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+                alert("เชื่อมต่อฐานข้อมูล " + db.length + " รายชื่อ เรียบร้อยแล้ว");
             };
-            reader.readAsArrayBuffer(file);
+            reader.readAsArrayBuffer(e.target.files[0]);
         });
 
-        function searchData() {
-            const query = document.getElementById('searchInput').value.trim().toLowerCase();
-            const resultArea = document.getElementById('resultArea');
-            const resultCards = document.getElementById('resultCards');
-            const notFound = document.getElementById('notFound');
+        // 2. ฟังก์ชันตรวจสอบ
+        function checkDiploma() {
+            const inputID = document.getElementById('studentID').value.trim();
+            const resultDiv = document.getElementById('resultDisplay');
+            const errorDiv = document.getElementById('errorDisplay');
+            const infoDiv = document.getElementById('studentInfo');
 
-            if (!query) return alert("กรุณากรอกข้อมูลที่ต้องการค้นหา");
-            if (studentData.length === 0) return alert("กรุณาอัปโหลดไฟล์ Excel ก่อนครับ");
+            // ล้างสถานะเดิม
+            resultDiv.classList.add('hidden');
+            errorDiv.classList.add('hidden');
 
-            // กรองข้อมูล
-            const filtered = studentData.filter(row => {
-                return Object.values(row).some(val => 
-                    String(val).toLowerCase().includes(query)
-                );
-            });
+            if (!inputID) return alert("กรุณากรอกรหัสประจำตัว");
 
-            // ล้างหน้าจอเก่า
-            resultCards.innerHTML = "";
-            
-            if (filtered.length > 0) {
-                resultArea.classList.remove('hidden');
-                notFound.classList.add('hidden');
+            // ค้นหา (สมมติว่า Column ใน Excel ชื่อ 'รหัสประจำตัว')
+            const student = db.find(s => String(s['รหัสประจำตัว']) === inputID);
 
-                filtered.forEach(student => {
-                    const card = document.createElement('div');
-                    card.className = "bg-white p-6 rounded-xl border-l-8 border-green-500 shadow-sm relative overflow-hidden";
-                    
-                    // สร้างเนื้อหาใน Card (ปรับตามชื่อ Column ใน Excel ของคุณ)
-                    let content = `<div class="grid grid-cols-2 gap-y-2">`;
-                    for (const [key, value] of Object.entries(student)) {
-                        content += `
-                            <div class="text-gray-500 text-sm">${key}:</div>
-                            <div class="font-bold text-gray-800">${value}</div>
-                        `;
-                    }
-                    content += `</div>`;
-                    
-                    card.innerHTML = content;
-                    resultCards.appendChild(card);
-                });
+            if (student) {
+                // แสดงผล
+                infoDiv.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+                        <div class="space-y-1">
+                            <p class="text-sm text-gray-500 uppercase font-bold">ชื่อ-นามสกุล</p>
+                            <p class="text-xl text-gray-900 border-b pb-1 font-bold">${student['ชื่อ-นามสกุล'] || '-'}</p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-sm text-gray-500 uppercase font-bold">เลขประจำตัวนักเรียน</p>
+                            <p class="text-xl text-gray-900 border-b pb-1">${student['รหัสประจำตัว'] || '-'}</p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-sm text-gray-500 uppercase font-bold">ระดับชั้นที่จบ</p>
+                            <p class="text-xl text-gray-900 border-b pb-1">${student['ระดับชั้น'] || '-'}</p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-sm text-gray-500 uppercase font-bold">ปีการศึกษาที่จบ</p>
+                            <p class="text-xl text-gray-900 border-b pb-1">${student['ปีการศึกษา'] || '-'}</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 p-4 bg-green-50 border border-green-200 rounded-lg text-center">
+                        <p class="text-green-800 font-bold text-xl uppercase tracking-widest">สถานะ: สำเร็จการศึกษา</p>
+                    </div>
+                `;
+                
+                document.getElementById('currentDate').innerText = new Date().toLocaleDateString('th-TH');
+                document.getElementById('refCode').innerText = 'CERT-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                
+                resultDiv.classList.remove('hidden');
             } else {
-                resultArea.classList.add('hidden');
-                notFound.classList.remove('hidden');
+                errorDiv.classList.remove('hidden');
             }
         }
     </script>
