@@ -1,95 +1,75 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบตรวจสอบการจบการศึกษา</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
-</head>
-<body>
+import { CheckCircle, AlertCircle, GraduationCap, BookOpen } from 'lucide-react';
 
-    <div class="container">
-        <header>
-            <div class="profile-section">
-                <div class="avatar">🎓</div>
-                <div class="user-info">
-                    <h1>ตรวจสอบการจบการศึกษา</h1>
-                    <p>นิสิตคณะศึกษาศาสตร์และพัฒนศาสตร์</p>
-                </div>
+export default function GraduationDashboard() {
+  return (
+    <div className="min-h-screen bg-slate-50 p-8 font-sans">
+      {/* Header */}
+      <header className="flex justify-between items-center mb-10">
+        <div>
+          <h1 className="text-3xl font-extrabold text-slate-800">Graduation Check</h1>
+          <p className="text-slate-500">ตรวจสอบสถานะการสำเร็จการศึกษาของท่าน</p>
+        </div>
+        <div className="flex items-center gap-4 bg-white p-2 rounded-2xl shadow-sm border border-slate-100">
+          <div className="text-right">
+            <p className="text-sm font-bold">สมชาย จดจำ</p>
+            <p className="text-xs text-slate-400">ID: 650012345</p>
+          </div>
+          <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold">S</div>
+        </div>
+      </header>
+
+      {/* Bento Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Main Status Card */}
+        <div className="md:col-span-2 bg-white/70 backdrop-blur-md border border-white p-6 rounded-3xl shadow-xl shadow-blue-500/5">
+          <div className="flex justify-between items-start mb-6">
+            <h3 className="text-lg font-bold text-slate-700">ภาพรวมหลักสูตร</h3>
+            <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-bold">88% Complete</span>
+          </div>
+          
+          {/* Progress Bar */}
+          <div className="w-full bg-slate-100 h-4 rounded-full overflow-hidden mb-8">
+            <div className="bg-gradient-to-r from-blue-500 to-indigo-500 h-full w-[88%] transition-all duration-1000"></div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-slate-50 p-4 rounded-2xl">
+              <p className="text-xs text-slate-400 uppercase tracking-wider">หน่วยกิตที่ได้</p>
+              <p className="text-2xl font-black text-slate-800">110 <span className="text-sm font-normal text-slate-400">/ 125</span></p>
             </div>
-        </header>
+            <div className="bg-slate-50 p-4 rounded-2xl">
+              <p className="text-xs text-slate-400 uppercase tracking-wider">เกรดเฉลี่ยสะสม</p>
+              <p className="text-2xl font-black text-slate-800">3.75</p>
+            </div>
+          </div>
+        </div>
 
-        <main>
-            <section class="dashboard">
-                <div class="card summary-card">
-                    <h3>สรุปภาพรวม</h3>
-                    <div class="progress-container">
-                        <div class="circular-progress">
-                            <span class="progress-value">85%</span>
-                        </div>
-                    </div>
-                    <p>หน่วยกิตที่เก็บได้: <strong>110/129</strong></p>
-                </div>
+        {/* Requirements Checklist */}
+        <div className="bg-slate-900 text-white p-6 rounded-3xl shadow-2xl">
+          <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
+            <CheckCircle className="text-green-400" size={20} /> สิ่งที่ต้องทำเพิ่ม
+          </h3>
+          <ul className="space-y-4">
+            <li className="flex items-center gap-3 text-sm opacity-90">
+              <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+              วิชาเลือกเสรี (อีก 3 หน่วยกิต)
+            </li>
+            <li className="flex items-center gap-3 text-sm opacity-90">
+              <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+              ทดสอบภาษาอังกฤษ (Exit Exam)
+            </li>
+            <li className="flex items-center gap-3 text-sm opacity-40 line-through">
+              <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
+              ชำระค่าธรรมเนียมเทอมสุดท้าย
+            </li>
+          </ul>
+          <button className="w-full mt-10 bg-blue-600 hover:bg-blue-500 py-3 rounded-2xl font-bold transition-all shadow-lg shadow-blue-900/40">
+            ดูรายละเอียดวิชา
+          </button>
+        </div>
 
-                <div class="card info-card">
-                    <h3>สถานะปัจจุบัน</h3>
-                    <div class="status-item">
-                        <span>เกรดเฉลี่ยสะสม (GPAX)</span>
-                        <span class="value">3.50</span>
-                    </div>
-                    <div class="status-item">
-                        <span>สถานภาพนิสิต</span>
-                        <span class="status-tag active">ปกติ</span>
-                    </div>
-                </div>
-            </section>
-
-            <section class="checklist">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>หมวดวิชาเอกบังคับ</h2>
-                        <span class="count">4 / 5 วิชา</span>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>รหัสวิชา</th>
-                                <th>ชื่อวิชา</th>
-                                <th>หน่วยกิต</th>
-                                <th>เกรด</th>
-                                <th>สถานะ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>02181351</td>
-                                <td>การประเมินการจัดการศึกษาทางเกษตรฯ</td>
-                                <td>3</td>
-                                <td>A</td>
-                                <td><span class="badge pass">ผ่านแล้ว</span></td>
-                            </tr>
-                            <tr class="studying">
-                                <td>02036221</td>
-                                <td>ชื่อวิชาตัวอย่างที่กำลังเรียน</td>
-                                <td>3</td>
-                                <td>-</td>
-                                <td><span class="badge warning">กำลังเรียน</span></td>
-                            </tr>
-                            <tr class="not-pass">
-                                <td>XXXXXXXX</td>
-                                <td>วิชาที่ยังไม่ได้ลงทะเบียน</td>
-                                <td>3</td>
-                                <td>-</td>
-                                <td><span class="badge danger">ยังไม่ได้เรียน</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
+      </div>
     </div>
-
-</body>
-</html>
+  );
+}
