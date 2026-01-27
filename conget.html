@@ -6,12 +6,27 @@
     <title>ระบบตรวจสอบสถานะการสำเร็จการศึกษา</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Kodchasan:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ใช้ฟอนต์ Sarabun สำหรับเนื้อหาทางการ */
-        body { font-family: 'Sarabun', 'Kanit', sans-serif; background-color: #f1f5f9; }
-        .official-card { background: white; border-top: 6px solid #1e3a8a; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        .header-font { font-family: 'Kanit', sans-serif; }
+        /* เปลี่ยนฟอนต์หลักเป็น Kodchasan */
+        body { 
+            font-family: 'Kodchasan', sans-serif; 
+            background-color: #f1f5f9; 
+        }
+        .official-card { 
+            background: white; 
+            border-top: 6px solid #1e3a8a; 
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); 
+        }
+        .header-font { 
+            font-family: 'Kodchasan', sans-serif; 
+            font-weight: 700;
+        }
+        /* ปรับแต่งตารางให้ดูสะอาดตา */
+        td {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
     </style>
 </head>
 <body class="min-h-screen py-10 px-4">
@@ -20,7 +35,7 @@
         <div class="text-center mb-8">
             <img src="unnamed.png" alt="ตราโรงเรียน" 
                  class="h-24 mx-auto mb-4 drop-shadow-sm" 
-                 onerror="'"> 
+                 onerror="this.src='https://cdn-icons-png.flaticon.com/512/2859/2859367.png'"> 
             
             <h1 class="header-font text-2xl font-bold text-slate-800 uppercase tracking-wide">ระบบตรวจสอบสถานะการสำเร็จการศึกษา</h1>
             <p class="text-slate-600 font-medium">ระดับชั้นมัธยมศึกษาปีที่ 3 และ 6 ปีการศึกษา 2568</p>
@@ -32,8 +47,8 @@
                 <label for="studentID" class="block text-sm font-bold text-slate-700 mb-2">เลขประจำตัวนักเรียน</label>
                 <div class="flex gap-2">
                     <input type="text" id="studentID" placeholder="กรอกเลขประจำตัว 5-10 หลัก" 
-                        class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition">
-                    <button onclick="searchStudent()" class="bg-[#1e3a8a] text-white px-6 py-2 rounded-md font-bold hover:bg-blue-800 transition shadow-md">
+                        class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition font-medium">
+                    <button onclick="searchStudent()" class="bg-[#1e3a8a] text-white px-6 py-2 rounded-md font-bold hover:bg-blue-800 transition shadow-md whitespace-nowrap">
                         ตรวจสอบ
                     </button>
                 </div>
@@ -50,32 +65,28 @@
                     <table class="w-full text-left border-collapse">
                         <tbody>
                             <tr class="border-b border-slate-100">
-                                <td class="py-4 font-bold text-slate-500 w-1/3">เลขประจำตัวนักเรียน</td>
-                                <td id="resID" class="py-4 text-slate-800 font-semibold">-</td>
+                                <td class="font-bold text-slate-500 w-1/3">เลขประจำตัวนักเรียน</td>
+                                <td id="resID" class="text-slate-800 font-semibold">-</td>
                             </tr>
                             <tr class="border-b border-slate-100">
-                                <td class="py-4 font-bold text-slate-500 text-sm">ชื่อ - นามสกุล</td>
-                                <td id="resName" class="py-4 text-lg text-slate-800 font-semibold">-</td>
+                                <td class="font-bold text-slate-500">ชื่อ - นามสกุล</td>
+                                <td id="resName" class="text-lg text-slate-800 font-semibold">-</td>
                             </tr>
                             <tr class="border-b border-slate-100">
-                                <td class="py-4 font-bold text-slate-500">ระดับชั้น / ห้อง</td>
-                                <td id="resRoom" class="py-4 text-slate-800 font-semibold">-</td>
+                                <td class="font-bold text-slate-500">ระดับชั้น / ห้อง</td>
+                                <td id="resRoom" class="text-slate-800 font-semibold">-</td>
                             </tr>
                             <tr class="border-b border-slate-100">
-                                <td class="py-4 font-bold text-slate-500">รอบที่จบ</td>
-                                <td id="resRoom" class="py-4 text-slate-800 font-semibold">-</td>
-                            </tr>
-                            <tr class="border-b border-slate-100">
-                                <td class="py-4 font-bold text-slate-500">สถานะการจบการศึกษา</td>
-                                <td class="py-4">
+                                <td class="font-bold text-slate-500">สถานะการจบการศึกษา</td>
+                                <td>
                                     <span id="resStatus" class="font-bold px-3 py-1 rounded text-sm uppercase tracking-wide">
                                         -
                                     </span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="py-4 font-bold text-slate-500">วันที่อนุมัติจบการศึกษา</td>
-                                <td id="resDate" class="py-4 text-blue-900 font-bold">-</td>
+                                <td class="font-bold text-slate-500">วันที่อนุมัติจบการศึกษา</td>
+                                <td id="resDate" class="text-blue-900 font-bold">-</td>
                             </tr>
                         </tbody>
                     </table>
@@ -89,14 +100,13 @@
                 </div>
             </div>
             
-            <button onclick="window.print()" class="mt-6 w-full py-2 border-2 border-slate-300 text-slate-500 rounded-lg hover:bg-white hover:text-slate-800 transition text-sm font-bold flex items-center justify-center gap-2">
+            <button onclick="window.print()" class="mt-6 w-full py-3 border-2 border-slate-300 text-slate-500 rounded-lg hover:bg-white hover:text-slate-800 transition text-sm font-bold flex items-center justify-center gap-2">
                 🖨️ พิมพ์หน้านี้เพื่อเป็นหลักฐาน
             </button>
         </div>
     </div>
 
     <script>
-        // *** ใส่ URL ของ Google Sheet CSV ที่ได้จากการ Publish to Web ***
         const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-pgaWBxt9HwAXvHCddIpVX0C-Ae2RvlP0TfiY8QnWrZJ7sR5G_ucK8OYtzUccMNRFsLAxjMv0zFzA/pub?output=csv';
 
         let studentsData = [];
