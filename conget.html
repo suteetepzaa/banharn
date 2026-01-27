@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Search Engine (Local)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-5 md:p-10">
+
+    <div class="max-w-5xl mx-auto bg-white p-8 rounded-xl shadow-md">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            🔍 ระบบค้นหาข้อมูล Excel
+        </h1>
+
+        <div class="mb-6 p-4 border-2 border-dashed border-blue-200 rounded-lg bg-blue-50">
+            <label class="block text-sm font-medium text-gray-700 mb-2">เลือกไฟล์ Excel (.xlsx / .xls)</label>
+            <input type="file" id="uploadFile" accept=".xlsx, .xls" 
+                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700">
+        </div>
+
+        <div class="mb-6">
+            <input type="text" id="searchInput" placeholder="พิมพ์เพื่อค้นหาข้อมูลทุกคอลัมน์..." 
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+
+        <div class="overflow-x-auto">
+            <div id="resultCount" class="text-sm text-gray-600 mb-2"></div>
+            <table class="min-w-full bg-white border border-gray-200" id="dataTable">
+                <thead class="bg-gray-100" id="tableHead"></thead>
+                <tbody class="divide-y divide-gray-200" id="tableBody">
+                    <tr>
+                        <td class="p-4 text-center text-gray-400" colspan="100%">กรุณาอัปโหลดไฟล์เพื่อเริ่มต้น</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let jsonData = [];
+
+        // ฟังก์ชันอ่านไฟล์ Excel
+        document.getElementById('uploadFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, {type: 'array'});
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+                
+                // แปลงข้อมูลเป็น JSON
+                jsonData = XLSX.utils.sheet_to_json(worksheet);
+                displayData(jsonData);
+            };
+            reader.readAsArrayBuffer(file);
+        });
+
+        // ฟังก์ชันแสดงผลข้อมูลลงตาราง
+        function displayData(data) {
+            const head = document.getElementById('tableHead');
+            const body = document.getElementById('tableBody');
+            const count = document.getElementById('resultCount');
+
+            head.innerHTML = "";
+            body.innerHTML = "";
+            count.innerText = `พบข้อมูลทั้งหมด ${data.length} รายการ`;
+
+            if (data.length === 0) {
+                body.innerHTML = '<tr><td class="p-4 text-center text-gray-400" colspan="100%">ไม่พบข้อมูลที่ค้นหา</td></tr>';
+                return;
+            }
+
+            // สร้าง Header
+            const headers = Object.keys(data[0]);
+            let headerRow = "<tr>";
+            headers.forEach(h => headerRow += `<th class="p-3 text-left text-xs font-bold text-gray-600 uppercase border-b">${h}</th>`);
+            headerRow += "</tr>";
+            head.innerHTML = headerRow;
+
+            // สร้าง Data Rows
+            data.forEach(row => {
+                let tr = "<tr class='hover:bg-gray-50 transition'>";
+                headers.forEach(h => {
+                    tr += `<td class="p-3 text-sm text-gray-700 border-b">${row[h] || ""}</td>`;
+                });
+                tr += "</tr>";
+                body.innerHTML += tr;
+            });
+        }
+
+        // ฟังก์ชันค้นหา (Filter)
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredData = jsonData.filter(row => {
+                return Object.values(row).some(val => 
+                    String(val).toLowerCase().includes(searchTerm)
+                );
+            });
+            displayData(filteredData);
+        });
+    </script>
+</body>
+</html>
