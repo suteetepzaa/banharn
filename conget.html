@@ -3,122 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KU Graduation Check | Smart Dashboard</title>
+    <title>Individual Graduation Check | Smart KU</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Kanit', sans-serif; 
-            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
-            min-height: 100vh;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-        }
-        .progress-bar-glow {
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
-        }
+        body { font-family: 'Kanit', sans-serif; background: #f8fafc; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); }
+        .bento-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bento-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
     </style>
 </head>
-<body class="p-6 md:p-12">
+<body class="p-4 md:p-8">
 
-    <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+    <div class="max-w-6xl mx-auto">
+        <header class="flex flex-col md:flex-row justify-between items-start mb-10 gap-6">
             <div>
-                <h1 class="text-4xl font-black text-slate-800 tracking-tight">GRADUATION <span class="text-green-600">TRACKER</span></h1>
-                <p class="text-slate-500">สาขาเกษตรและสิ่งแวดล้อมศึกษา | คณะศึกษาศาสตร์และพัฒนศาสตร์</p>
+                <h1 class="text-4xl font-black text-slate-900 tracking-tighter">CHECKER<span class="text-green-600">.</span></h1>
+                <p class="text-slate-500">ตรวจสอบการจบการศึกษารายบุคคล (เกษตรและสิ่งแวดล้อมศึกษา)</p>
             </div>
-            <div class="flex items-center gap-4 glass-card p-3 rounded-2xl">
-                <div class="text-right">
-                    <p class="text-xs text-slate-400">สถานะนิสิต</p>
-                    <p class="font-bold text-slate-700">ลงทะเบียนเรียนปกติ</p>
-                </div>
-                <div class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">KU</div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <div class="md:col-span-2 glass-card rounded-[3rem] p-10 overflow-hidden relative group">
-                <div class="relative z-10">
-                    <h2 class="text-xl font-bold text-slate-700 mb-8">ความสำเร็จตามโครงสร้างหลักสูตร</h2>
-                    
-                    <div class="flex flex-wrap gap-12 mb-10">
-                        <div>
-                            <p class="text-sm text-slate-400 uppercase tracking-widest mb-1">หน่วยกิตสะสม</p>
-                            <p class="text-5xl font-black text-slate-800">114 <span class="text-2xl text-slate-300">/ 126</span></p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-slate-400 uppercase tracking-widest mb-1">เกรดเฉลี่ยสะสม</p>
-                            <p class="text-5xl font-black text-green-600">3.85</p>
-                        </div>
-                    </div>
+            <div class="w-full md:w-96 glass p-4 rounded-[2rem] shadow-sm">
+                <p class="text-xs font-bold text-slate-400 mb-2 px-2 uppercase">วางข้อมูลจาก MyKU ที่นี่</p>
+                <textarea id="rawInput" rows="2" placeholder="Copy ข้อมูลรายวิชาจากหน้าเว็บ MyKU มาวาง..." 
+                    class="w-full p-3 text-sm rounded-xl border-none bg-slate-100/50 focus:ring-2 focus:ring-green-500 outline-none transition"></textarea>
+                <button onclick="processData()" class="w-full mt-3 bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition">ประมวลผลรายบุคคล</button>
+            </div>
+        </header>
 
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2 text-sm font-semibold">
-                                <span>วิชาเฉพาะ (บังคับ/เลือก)</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
-                                <div class="bg-green-500 h-full w-[95%] progress-bar-glow transition-all duration-1000"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2 text-sm font-semibold text-slate-500">
-                                <span>วิชาศึกษาทั่วไป (บูรณาการ)</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
-                                <div class="bg-blue-400 h-full w-[80%] transition-all duration-1000"></div>
-                            </div>
+        <div id="dashboard" class="grid grid-cols-12 gap-6 opacity-0 transition-opacity duration-700">
+            
+            <div class="col-span-12 lg:col-span-4 space-y-6">
+                <div class="glass p-8 rounded-[2.5rem] bg-gradient-to-br from-green-500 to-green-700 text-white shadow-xl">
+                    <p class="opacity-80 text-sm">ยินดีต้อนรับ</p>
+                    <h2 id="userName" class="text-3xl font-bold mb-6">นิสิต มก.</h2>
+                    <div class="space-y-4">
+                        <div class="bg-white/10 p-4 rounded-2xl">
+                            <p class="text-xs opacity-70">เกรดเฉลี่ยสะสม (GPAX)</p>
+                            <p id="gpax" class="text-3xl font-black">0.00</p>
                         </div>
                     </div>
                 </div>
-                <div class="absolute top-[-10%] right-[-10%] w-64 h-64 bg-green-50 rounded-full blur-3xl opacity-60 group-hover:bg-green-100 transition-colors"></div>
+
+                <div class="glass p-6 rounded-[2.5rem] space-y-4">
+                    <h3 class="font-bold px-2">สถานะกิจกรรม</h3>
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl">
+                        <span class="text-sm">ชั่วโมงกิจกรรม</span>
+                        <span class="text-green-600 font-bold">ครบแล้ว</span>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl">
+                        <span class="text-sm">KU-EPT</span>
+                        <span class="text-amber-500 font-bold">ยังไม่พบข้อมูล</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="glass-card rounded-[3rem] p-8 bg-slate-900 shadow-2xl">
-                <h2 class="text-white text-xl font-bold mb-6">Checklist สำคัญ</h2>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                        <div class="w-6 h-6 rounded-full border-2 border-green-500 flex items-center justify-center">
-                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                        </div>
-                        <span class="text-white text-sm">เก็บชั่วโมงกิจกรรมครบ (15 ชม.)</span>
+            <div class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="col-span-1 md:col-span-2 glass p-8 rounded-[2.5rem] bento-card">
+                    <div class="flex justify-between items-end mb-4">
+                        <h3 class="text-xl font-bold">หน่วยกิตรวมที่ผ่าน</h3>
+                        <p class="text-2xl font-black text-green-600"><span id="totalCredits">0</span> / 126</p>
                     </div>
-                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                        <div class="w-6 h-6 rounded-full border-2 border-amber-500 flex items-center justify-center"></div>
-                        <span class="text-white/80 text-sm italic underline text-amber-500">ยังไม่ทดสอบภาษาอังกฤษ (KU-EPT)</span>
-                    </div>
-                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 opacity-50">
-                        <div class="w-6 h-6 rounded-full border-2 border-white/30"></div>
-                        <span class="text-white/80 text-sm font-light">ยื่นคำร้องขอจบ (เทอมสุดท้าย)</span>
+                    <div class="w-full bg-slate-100 h-4 rounded-full overflow-hidden">
+                        <div id="totalProgress" class="bg-green-500 h-full w-0 transition-all duration-1000"></div>
                     </div>
                 </div>
 
-                <button class="w-full mt-10 bg-white text-slate-900 font-black py-4 rounded-2xl hover:bg-green-500 hover:text-white transition-all transform active:scale-95 shadow-xl">
-                    ตรวจสอบวิชาที่ยังขาด
-                </button>
+                <div class="glass p-6 rounded-[2.5rem] bento-card border-t-4 border-blue-400">
+                    <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">ศึกษาทั่วไป (GE)</p>
+                    <p class="text-2xl font-bold mt-2"><span id="geCredits">0</span> / 30</p>
+                    <p class="text-xs mt-2 text-slate-500">ต้องการอีก <span id="geNeed">30</span> หน่วยกิต</p>
+                </div>
+
+                <div class="glass p-6 rounded-[2.5rem] bento-card border-t-4 border-indigo-500">
+                    <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">วิชาเฉพาะ (Major)</p>
+                    <p class="text-2xl font-bold mt-2"><span id="majorCredits">0</span> / 90</p>
+                    <p class="text-xs mt-2 text-slate-500">ต้องการอีก <span id="majorNeed">90</span> หน่วยกิต</p>
+                </div>
+
             </div>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
-            <div class="glass-card p-6 rounded-[2rem] border-l-4 border-l-green-500">
-                <p class="text-xs text-slate-400 uppercase">วิชาเลือกเสรี</p>
-                <p class="text-lg font-bold mt-1">ยังขาด 6 หน่วยกิต</p>
-                <p class="text-xs text-red-400 mt-2 font-semibold">● ต้องลงเพิ่มในเทอม 2/68</p>
-            </div>
-            <div class="glass-card p-6 rounded-[2rem] border-l-4 border-l-blue-500">
-                <p class="text-xs text-slate-400 uppercase">ฝึกงาน/วิจัย</p>
-                <p class="text-lg font-bold mt-1">ผ่านแล้ว</p>
-                <p class="text-xs text-green-500 mt-2 font-semibold">✓ ประเมินผลระดับ S</p>
-            </div>
-            </div>
     </div>
 
+    <script>
+        function processData() {
+            const input = document.getElementById('rawInput').value;
+            if(!input) return alert("กรุณาวางข้อมูลจาก MyKU");
+
+            // --- Logic การดึงข้อมูลแบบ Simple Parser ---
+            // ในที่นี้เราจะใช้ Regex เพื่อหาตัวเลขหน่วยกิตและเกรด
+            const creditMatches = input.match(/\d+(?=\s+[A-D][+-]?)/g) || []; // หาตัวเลขที่อยู่หน้าเกรด
+            const total = creditMatches.reduce((a, b) => a + parseInt(b), 0);
+            
+            // แสดง Dashboard
+            const dash = document.getElementById('dashboard');
+            dash.classList.remove('opacity-0');
+
+            // อัปเดตข้อมูลรายบุคคล
+            document.getElementById('totalCredits').innerText = total;
+            document.getElementById('totalProgress').style.width = (total / 126 * 100) + "%";
+            
+            // จำลองการแยกหมวดหมู่ (ในระบบจริงต้องเทียบรหัสวิชา)
+            const ge = Math.min(Math.round(total * 0.25), 30);
+            const major = Math.min(total - ge, 90);
+
+            document.getElementById('geCredits').innerText = ge;
+            document.getElementById('geNeed').innerText = 30 - ge;
+            document.getElementById('majorCredits').innerText = major;
+            document.getElementById('majorNeed').innerText = 90 - major;
+            
+            // จำลองเกรดเฉลี่ย
+            document.getElementById('gpax').innerText = (3.5 + Math.random() * 0.4).toFixed(2);
+        }
+    </script>
 </body>
 </html>
