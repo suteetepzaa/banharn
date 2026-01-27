@@ -3,75 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบตรวจสอบการจบการศึกษา (Live Data)</title>
+    <title>ระบบตรวจสอบสถานะการสำเร็จการศึกษา</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Kanit', sans-serif; background: radial-gradient(circle at top right, #f8fafc, #f1f5f9); }
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.5); }
+        /* ใช้ฟอนต์ Sarabun สำหรับเนื้อหาทางการ */
+        body { font-family: 'Sarabun', 'Kanit', sans-serif; background-color: #f1f5f9; }
+        .official-card { background: white; border-top: 6px solid #1e3a8a; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .header-font { font-family: 'Kanit', sans-serif; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-6 text-slate-800">
+<body class="min-h-screen py-10 px-4">
 
-    <div class="max-w-md w-full">
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-black text-slate-900 mb-2">GRAD <span class="text-blue-600">CHECK</span></h1>
-            <p class="text-slate-500">ตรวจสอบสถานะการจบ ม.3 / ม.6</p>
+    <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-8">
+            <img src="ใส่_URL_รูปภาพตราโรงเรียนที่นี่" alt="ตราโรงเรียน" 
+                 class="h-24 mx-auto mb-4 drop-shadow-sm" 
+                 onerror="this.src='https://cdn-icons-png.flaticon.com/512/2859/2859367.png'"> 
+            
+            <h1 class="header-font text-2xl font-bold text-slate-800 uppercase tracking-wide">ระบบตรวจสอบสถานะการสำเร็จการศึกษา</h1>
+            <p class="text-slate-600 font-medium">ระดับชั้นมัธยมศึกษาปีที่ 3 และ 6 ปีการศึกษา 2568</p>
+            <div class="w-20 h-1 bg-blue-900 mx-auto mt-4 rounded-full"></div>
         </div>
 
-        <div class="glass p-8 rounded-[2.5rem] shadow-2xl shadow-blue-500/10 mb-6">
-            <div class="space-y-4">
-                <input type="text" id="studentID" placeholder="กรอกเลขประจำตัวนักเรียน" 
-                    class="w-full px-6 py-4 rounded-2xl bg-slate-100 border-2 border-transparent focus:border-blue-500 outline-none transition text-lg font-semibold">
-                <button onclick="searchStudent()" id="btnSearch" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-blue-700 transition active:scale-95 shadow-lg shadow-blue-600/30">
-                    ตรวจสอบข้อมูล
-                </button>
+        <div class="official-card p-8 rounded-xl mb-6">
+            <div class="max-w-sm mx-auto">
+                <label for="studentID" class="block text-sm font-bold text-slate-700 mb-2">เลขประจำตัวนักเรียน</label>
+                <div class="flex gap-2">
+                    <input type="text" id="studentID" placeholder="กรอกเลขประจำตัว 5-10 หลัก" 
+                        class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition">
+                    <button onclick="searchStudent()" class="bg-[#1e3a8a] text-white px-6 py-2 rounded-md font-bold hover:bg-blue-800 transition shadow-md">
+                        ตรวจสอบ
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div id="result" class="hidden animate-in fade-in slide-in-from-bottom-5 duration-500">
-            <div class="glass p-8 rounded-[2.5rem] shadow-xl border-t-4 border-blue-600">
-                <div class="space-y-6">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">สถานะปัจจุบัน</p>
-                            <h2 id="resStatus" class="text-2xl font-black mt-1"></h2>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">ห้อง</p>
-                            <p id="resRoom" class="text-lg font-bold text-slate-700"></p>
-                        </div>
-                    </div>
+        <div id="result" class="hidden animate-in fade-in duration-700">
+            <div class="official-card rounded-xl overflow-hidden bg-white shadow-2xl">
+                <div class="bg-slate-50 border-b border-slate-100 p-6 text-center">
+                    <h2 class="header-font text-lg font-bold text-slate-800">ผลการตรวจสอบรายบุคคล</h2>
+                </div>
+                
+                <div class="p-8">
+                    <table class="w-full text-left border-collapse">
+                        <tbody>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-4 font-bold text-slate-500 w-1/3">เลขประจำตัวนักเรียน</td>
+                                <td id="resID" class="py-4 text-slate-800 font-semibold">-</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-4 font-bold text-slate-500 text-sm">ชื่อ - นามสกุล</td>
+                                <td id="resName" class="py-4 text-lg text-slate-800 font-semibold">-</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-4 font-bold text-slate-500">ระดับชั้น / ห้อง</td>
+                                <td id="resRoom" class="py-4 text-slate-800 font-semibold">-</td>
+                            </tr>
+                            <tr class="border-b border-slate-100">
+                                <td class="py-4 font-bold text-slate-500">สถานะการจบการศึกษา</td>
+                                <td class="py-4">
+                                    <span id="resStatus" class="font-bold px-3 py-1 rounded text-sm uppercase tracking-wide">
+                                        -
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 font-bold text-slate-500">วันที่อนุมัติจบการศึกษา</td>
+                                <td id="resDate" class="py-4 text-blue-900 font-bold">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                    <div class="pt-4 border-t border-slate-100">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">ชื่อ - นามสกุล</p>
-                        <p id="resName" class="text-xl font-semibold text-slate-700"></p>
-                    </div>
-
-                    <div class="pt-4 border-t border-slate-100 bg-blue-50/50 p-4 rounded-2xl">
-                        <p class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">วันที่อนุมัติจบการศึกษา</p>
-                        <p id="resDate" class="text-xl font-black text-blue-700"></p>
+                    <div class="mt-10 flex justify-end">
+                        <div class="text-center opacity-40">
+                            <p class="text-xs">ออกโดยระบบบริหารจัดการสถานศึกษาอัตโนมัติ</p>
+                            <p class="text-[10px]">ตรวจสอบเมื่อ: <span id="checkTime"></span></p>
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <button onclick="window.print()" class="mt-6 w-full py-2 border-2 border-slate-300 text-slate-500 rounded-lg hover:bg-white hover:text-slate-800 transition text-sm font-bold flex items-center justify-center gap-2">
+                🖨️ พิมพ์หน้านี้เพื่อเป็นหลักฐาน
+            </button>
         </div>
     </div>
 
     <script>
-        // *** ใส่ URL ของ Google Sheet CSV ที่คุณคัดลอกมาที่นี่ ***
-        const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-pgaWBxt9HwAXvHCddIpVX0C-Ae2RvlP0TfiY8QnWrZJ7sR5G_ucK8OYtzUccMNRFsLAxjMv0zFzA/pub?output=csv';
+        // *** ใส่ URL ของ Google Sheet CSV ที่ได้จากการ Publish to Web ***
+        const SHEETS_URL = 'ใส่_URL_CSV_ที่นี่';
 
         let studentsData = [];
 
-        // โหลดข้อมูลจาก Sheets ทันทีที่เปิดหน้าเว็บ
         window.onload = () => {
             Papa.parse(SHEETS_URL, {
                 download: true,
                 header: true,
                 complete: (results) => {
                     studentsData = results.data;
-                    console.log("Data Loaded:", studentsData.length, "records");
                 }
             });
         };
@@ -80,25 +111,26 @@
             const inputId = document.getElementById('studentID').value.trim();
             const resultBox = document.getElementById('result');
             
-            if (!inputId) return alert("กรุณากรอกเลขประจำตัว");
-
             const student = studentsData.find(s => s.student_id === inputId);
 
             if (student) {
+                document.getElementById('resID').innerText = student.student_id;
                 document.getElementById('resName').innerText = student.name;
                 document.getElementById('resRoom').innerText = student.room;
                 document.getElementById('resStatus').innerText = student.status;
                 document.getElementById('resDate').innerText = student.approve_date;
-                
-                // จัดสไตล์ตามสถานะ
+                document.getElementById('checkTime').innerText = new Date().toLocaleString('th-TH');
+
                 const statusEl = document.getElementById('resStatus');
-                statusEl.className = student.status.includes("อนุมัติ") 
-                    ? "text-2xl font-black mt-1 text-green-600" 
-                    : "text-2xl font-black mt-1 text-amber-500";
+                if (student.status.includes("อนุมัติ")) {
+                    statusEl.className = "font-bold px-3 py-1 rounded text-sm bg-green-100 text-green-700";
+                } else {
+                    statusEl.className = "font-bold px-3 py-1 rounded text-sm bg-amber-100 text-amber-700";
+                }
 
                 resultBox.classList.remove('hidden');
             } else {
-                alert("ไม่พบข้อมูลนักเรียนรหัสนี้");
+                alert("ขออภัย ไม่พบเลขประจำตัวนักเรียนนี้ในฐานข้อมูลระบบ");
                 resultBox.classList.add('hidden');
             }
         }
