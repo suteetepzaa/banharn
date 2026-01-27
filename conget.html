@@ -2,118 +2,115 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Individual Graduation Check | Smart KU</title>
+    <title>ระบบตรวจสอบจบ ม.3 / ม.6 - Modern Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Kanit', sans-serif; background: #f8fafc; }
-        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); }
-        .bento-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .bento-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        body { font-family: 'Kanit', sans-serif; background: #f0f2f5; }
+        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 2rem; border: 1px solid rgba(255,255,255,0.5); shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .input-focus:focus { border-color: #3b82f6; ring: 2px; ring-color: #bfdbfe; }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body class="p-4 md:p-10">
 
-    <div class="max-w-6xl mx-auto">
-        <header class="flex flex-col md:flex-row justify-between items-start mb-10 gap-6">
+    <div class="max-w-5xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
             <div>
-                <h1 class="text-4xl font-black text-slate-900 tracking-tighter">CHECKER<span class="text-green-600">.</span></h1>
-                <p class="text-slate-500">ตรวจสอบการจบการศึกษารายบุคคล (เกษตรและสิ่งแวดล้อมศึกษา)</p>
+                <h1 class="text-4xl font-black text-blue-800 tracking-tighter">STUDENT<span class="text-blue-500">CHECK</span></h1>
+                <p class="text-slate-500 text-lg font-light">ระบบตรวจสอบสถานะการจบการศึกษารายบุคคล (ม.ต้น / ม.ปลาย)</p>
             </div>
-            
-            <div class="w-full md:w-96 glass p-4 rounded-[2rem] shadow-sm">
-                <p class="text-xs font-bold text-slate-400 mb-2 px-2 uppercase">วางข้อมูลจาก MyKU ที่นี่</p>
-                <textarea id="rawInput" rows="2" placeholder="Copy ข้อมูลรายวิชาจากหน้าเว็บ MyKU มาวาง..." 
-                    class="w-full p-3 text-sm rounded-xl border-none bg-slate-100/50 focus:ring-2 focus:ring-green-500 outline-none transition"></textarea>
-                <button onclick="processData()" class="w-full mt-3 bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition">ประมวลผลรายบุคคล</button>
-            </div>
-        </header>
+            <div class="bg-blue-600 text-white px-6 py-2 rounded-2xl font-bold shadow-lg shadow-blue-200">สพฐ. Standard</div>
+        </div>
 
-        <div id="dashboard" class="grid grid-cols-12 gap-6 opacity-0 transition-opacity duration-700">
-            
+        <div class="grid grid-cols-12 gap-8">
             <div class="col-span-12 lg:col-span-4 space-y-6">
-                <div class="glass p-8 rounded-[2.5rem] bg-gradient-to-br from-green-500 to-green-700 text-white shadow-xl">
-                    <p class="opacity-80 text-sm">ยินดีต้อนรับ</p>
-                    <h2 id="userName" class="text-3xl font-bold mb-6">นิสิต มก.</h2>
+                <div class="glass-card p-6 shadow-xl">
+                    <h3 class="font-bold text-xl mb-4 text-slate-700">ข้อมูลนักเรียน</h3>
                     <div class="space-y-4">
-                        <div class="bg-white/10 p-4 rounded-2xl">
-                            <p class="text-xs opacity-70">เกรดเฉลี่ยสะสม (GPAX)</p>
-                            <p id="gpax" class="text-3xl font-black">0.00</p>
-                        </div>
+                        <input type="text" id="stdName" placeholder="ชื่อ-นามสกุล" class="w-full p-3 bg-slate-100 rounded-xl outline-none input-focus border-2 border-transparent transition">
+                        <select id="level" class="w-full p-3 bg-slate-100 rounded-xl outline-none border-2 border-transparent transition cursor-pointer">
+                            <option value="m3">ระดับ ม.3 (มัธยมต้น)</option>
+                            <option value="m6">ระดับ ม.6 (มัธยมปลาย)</option>
+                        </select>
+                        <hr class="my-4">
+                        <p class="text-sm font-bold text-slate-400 uppercase tracking-widest">จำลองคะแนน/หน่วยกิต</p>
+                        <button onclick="calculateGrad()" class="w-full bg-blue-600 text-white font-bold py-4 rounded-2xl hover:bg-blue-700 transition-all active:scale-95 shadow-lg shadow-blue-200">
+                            ตรวจสอบผลรายบุคคล
+                        </button>
                     </div>
                 </div>
 
-                <div class="glass p-6 rounded-[2.5rem] space-y-4">
-                    <h3 class="font-bold px-2">สถานะกิจกรรม</h3>
-                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl">
-                        <span class="text-sm">ชั่วโมงกิจกรรม</span>
-                        <span class="text-green-600 font-bold">ครบแล้ว</span>
-                    </div>
-                    <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl">
-                        <span class="text-sm">KU-EPT</span>
-                        <span class="text-amber-500 font-bold">ยังไม่พบข้อมูล</span>
-                    </div>
+                <div class="glass-card p-6 bg-slate-900 text-white">
+                    <h3 class="font-bold mb-4">เกณฑ์ขั้นต่ำ (สพฐ.)</h3>
+                    <ul class="text-sm space-y-2 opacity-80 font-light">
+                        <li>• หน่วยกิตรวมไม่น้อยกว่า 77 (ม.ต้น) / 81 (ม.ปลาย)</li>
+                        <li>• กิจกรรมพัฒนาผู้เรียน (ผ่านทุกเทอม)</li>
+                        <li>• ผลการอ่าน คิดวิเคราะห์ เขียน (ระดับ 1 ขึ้นไป)</li>
+                        <li>• คุณลักษณะอันพึงประสงค์ (ระดับ 1 ขึ้นไป)</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <div class="col-span-1 md:col-span-2 glass p-8 rounded-[2.5rem] bento-card">
-                    <div class="flex justify-between items-end mb-4">
-                        <h3 class="text-xl font-bold">หน่วยกิตรวมที่ผ่าน</h3>
-                        <p class="text-2xl font-black text-green-600"><span id="totalCredits">0</span> / 126</p>
+            <div id="resultView" class="col-span-12 lg:col-span-8 space-y-6 hidden">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass-card p-6 bg-gradient-to-br from-blue-500 to-indigo-600 text-white">
+                        <p class="text-xs opacity-70">สถานะการเรียน</p>
+                        <h4 id="statusText" class="text-2xl font-black">กำลังประมวลผล...</h4>
                     </div>
-                    <div class="w-full bg-slate-100 h-4 rounded-full overflow-hidden">
-                        <div id="totalProgress" class="bg-green-500 h-full w-0 transition-all duration-1000"></div>
+                    <div class="glass-card p-6 bg-white border border-blue-100 text-center">
+                        <p class="text-xs text-slate-400 uppercase">หน่วยกิตสะสม</p>
+                        <p id="totalCredit" class="text-3xl font-black text-blue-600">0.0</p>
                     </div>
                 </div>
 
-                <div class="glass p-6 rounded-[2.5rem] bento-card border-t-4 border-blue-400">
-                    <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">ศึกษาทั่วไป (GE)</p>
-                    <p class="text-2xl font-bold mt-2"><span id="geCredits">0</span> / 30</p>
-                    <p class="text-xs mt-2 text-slate-500">ต้องการอีก <span id="geNeed">30</span> หน่วยกิต</p>
+                <div class="glass-card p-8 shadow-sm space-y-6">
+                    <h3 class="font-bold text-slate-700 border-b pb-4">คะแนนแยกตามกลุ่มสาระ</h3>
+                    <div id="groupStats" class="space-y-4">
+                        </div>
                 </div>
-
-                <div class="glass p-6 rounded-[2.5rem] bento-card border-t-4 border-indigo-500">
-                    <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">วิชาเฉพาะ (Major)</p>
-                    <p class="text-2xl font-bold mt-2"><span id="majorCredits">0</span> / 90</p>
-                    <p class="text-xs mt-2 text-slate-500">ต้องการอีก <span id="majorNeed">90</span> หน่วยกิต</p>
-                </div>
-
             </div>
         </div>
     </div>
 
     <script>
-        function processData() {
-            const input = document.getElementById('rawInput').value;
-            if(!input) return alert("กรุณาวางข้อมูลจาก MyKU");
+        const groups = [
+            { name: "คณิตศาสตร์", target: 12 },
+            { name: "วิทยาศาสตร์และเทคโนโลยี", target: 12 },
+            { name: "ภาษาไทย", target: 12 },
+            { name: "ภาษาต่างประเทศ", target: 12 },
+            { name: "สังคมศึกษาฯ", target: 12 },
+            { name: "สุขศึกษา/ศิลปะ/การงาน", target: 17 }
+        ];
 
-            // --- Logic การดึงข้อมูลแบบ Simple Parser ---
-            // ในที่นี้เราจะใช้ Regex เพื่อหาตัวเลขหน่วยกิตและเกรด
-            const creditMatches = input.match(/\d+(?=\s+[A-D][+-]?)/g) || []; // หาตัวเลขที่อยู่หน้าเกรด
-            const total = creditMatches.reduce((a, b) => a + parseInt(b), 0);
+        function calculateGrad() {
+            const name = document.getElementById('stdName').value || "นักเรียน";
+            document.getElementById('resultView').classList.remove('hidden');
             
-            // แสดง Dashboard
-            const dash = document.getElementById('dashboard');
-            dash.classList.remove('opacity-0');
+            let total = 0;
+            let html = "";
 
-            // อัปเดตข้อมูลรายบุคคล
-            document.getElementById('totalCredits').innerText = total;
-            document.getElementById('totalProgress').style.width = (total / 126 * 100) + "%";
-            
-            // จำลองการแยกหมวดหมู่ (ในระบบจริงต้องเทียบรหัสวิชา)
-            const ge = Math.min(Math.round(total * 0.25), 30);
-            const major = Math.min(total - ge, 90);
+            groups.forEach(g => {
+                // จำลองหน่วยกิตที่ได้จริง (ในระบบจริงจะดึงจาก Database รายคน)
+                const earned = (Math.random() * (g.target + 2)).toFixed(1);
+                total += parseFloat(earned);
+                const percent = Math.min((earned / g.target) * 100, 100);
 
-            document.getElementById('geCredits').innerText = ge;
-            document.getElementById('geNeed').innerText = 30 - ge;
-            document.getElementById('majorCredits').innerText = major;
-            document.getElementById('majorNeed').innerText = 90 - major;
-            
-            // จำลองเกรดเฉลี่ย
-            document.getElementById('gpax').innerText = (3.5 + Math.random() * 0.4).toFixed(2);
+                html += `
+                    <div>
+                        <div class="flex justify-between text-sm mb-1 font-bold">
+                            <span class="text-slate-600">${g.name}</span>
+                            <span class="${earned < g.target ? 'text-red-500' : 'text-blue-600'}">${earned} / ${g.target}</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="h-full ${earned < g.target ? 'bg-red-400' : 'bg-blue-500'} transition-all duration-1000" style="width: ${percent}%"></div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('totalCredit').innerText = total.toFixed(1);
+            document.getElementById('groupStats').innerHTML = html;
+            document.getElementById('statusText').innerText = total >= 77 ? "จบการศึกษาแล้ว" : "ยังไม่จบการศึกษา";
         }
     </script>
 </body>
