@@ -3,209 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade Submission Summary 2/2568</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>แบบสรุปยืนยันการส่งผลการเรียน 2/2568</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.95);
+            --primary: #1e3a8a;
             --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            --accent-color: #06b6d4;
+            --accent: #0ea5e9;
             --success: #10b981;
-            --danger: #ef4444;
-            --bg-soft: #f1f5f9;
-            --text-dark: #0f172a;
-            --text-light: #64748b;
-            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --pending: #f43f5e;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
         }
 
         body {
             font-family: 'Kanit', sans-serif;
-            background: linear-gradient(120deg, #f8fafc 0%, #e2e8f0 100%);
+            background-color: var(--bg);
             margin: 0;
             padding: 20px;
-            color: var(--text-dark);
-            min-height: 100vh;
+            color: var(--text-main);
+            line-height: 1.6;
         }
 
         .container { max-width: 1200px; margin: 0 auto; }
 
-        /* Header Styling Section */
-        .hero-section {
+        /* Header Modern Design */
+        .header-card {
             background: var(--primary-gradient);
             padding: 40px 20px;
             border-radius: 24px;
-            color: white;
             text-align: center;
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.2);
             margin-bottom: 30px;
-            box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
         }
 
-        .hero-section::after {
-            content: '';
-            position: absolute;
-            top: -50%; right: -10%;
-            width: 300px; height: 300px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
+        h2 { 
+            font-family: 'Prompt', sans-serif; 
+            margin: 0; 
+            font-size: 1.8rem; 
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
-        h2 { font-family: 'Prompt', sans-serif; font-size: 2rem; margin: 0; letter-spacing: 0.5px; }
-        .subtitle { opacity: 0.9; font-weight: 300; font-size: 1.1rem; margin: 10px 0 25px; }
-
-        /* Modern Countdown */
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
+        .subtitle { 
+            opacity: 0.9; 
+            margin: 10px 0 20px; 
+            font-weight: 300;
+            font-size: 1.1rem;
         }
 
-        .timer-card {
-            background: rgba(255, 255, 255, 0.2);
+        /* Countdown Style */
+        .countdown-wrapper { 
+            display: inline-flex; 
+            gap: 12px; 
+            background: rgba(255, 255, 255, 0.15); 
+            padding: 15px 25px; 
+            border-radius: 20px; 
             backdrop-filter: blur(10px);
-            padding: 10px;
-            border-radius: 16px;
-            min-width: 70px;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .timer-val { font-size: 1.8rem; font-weight: 600; display: block; }
-        .timer-label { font-size: 0.75rem; text-transform: uppercase; font-weight: 400; }
+        .time-box { display: flex; flex-direction: column; align-items: center; min-width: 60px; }
+        .time-value { font-size: 1.6rem; font-weight: 600; color: #fff; line-height: 1; }
+        .time-label { font-size: 0.75rem; color: rgba(255,255,255,0.8); text-transform: uppercase; margin-top: 4px; }
 
-        .deadline-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .deadline-text { 
+            display: block; 
+            margin-top: 20px; 
             background: #fff;
-            color: var(--danger);
-            padding: 8px 20px;
+            color: var(--pending);
+            padding: 6px 18px;
             border-radius: 50px;
+            display: inline-block;
             font-weight: 600;
             font-size: 0.9rem;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        /* Content Card */
-        .main-card {
-            background: var(--glass-bg);
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(255,255,255,0.5);
+        /* Content Area */
+        .content-card { 
+            background: var(--card-bg); 
+            padding: 30px; 
+            border-radius: 24px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border: 1px solid #edf2f7;
         }
 
-        .section-title {
+        .dept-group-header { 
+            background: var(--bg); 
+            padding: 15px 25px; 
+            border-radius: 15px; 
+            color: var(--primary); 
+            font-weight: 600; 
+            font-size: 1.3rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .level-sub-header { 
+            font-family: 'Prompt', sans-serif;
+            padding: 10px 0;
+            font-weight: 600; 
+            color: var(--text-main); 
+            font-size: 1.2rem; 
+            margin-top: 40px; 
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1.4rem;
-            color: var(--text-dark);
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--bg-soft);
+            gap: 10px;
+            border-bottom: 2px solid #f1f5f9;
         }
 
-        .level-tag {
-            background: var(--bg-soft);
-            color: var(--primary-gradient);
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: 600;
-            margin: 30px 0 15px;
-            display: inline-block;
-        }
-
-        /* Table Design */
-        .table-responsive { border-radius: 16px; overflow: hidden; background: white; }
+        /* Table Modernization */
+        .table-wrapper { overflow-x: auto; margin-bottom: 20px; border-radius: 12px; }
+        table { width: 100%; border-collapse: collapse; min-width: 950px; }
         
-        table { width: 100%; border-collapse: collapse; background: white; }
-        
-        th {
+        th { 
+            padding: 15px; 
+            text-align: left; 
+            color: var(--text-muted); 
+            font-weight: 500; 
+            font-size: 0.85rem; 
             background: #f8fafc;
-            padding: 16px;
-            text-align: left;
-            font-weight: 500;
-            color: var(--text-light);
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        td { padding: 16px; border-bottom: 1px solid #f1f5f9; }
+        td { padding: 14px 15px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+        tr:hover { background-color: #fcfdfe; }
 
-        tr:hover { background-color: #f8fafc; transition: 0.2s; }
+        .course-divider { border-top: 3px solid #f1f5f9 !important; }
 
-        /* Data Styling */
-        .code-pill {
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-weight: 600;
+        /* Badges & Indicators */
+        .status-pill { 
+            padding: 6px 14px; 
+            border-radius: 10px; 
+            font-size: 0.85rem; 
+            font-weight: 500; 
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .complete { background: #dcfce7; color: #166534; }
+        .pending { background: #fee2e2; color: #991b1b; }
+
+        .step-tag { font-family: monospace; font-weight: 600; opacity: 0.7; }
+
+        .course-code { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-weight: 600; 
+            color: var(--accent); 
+            background: #f0f9ff; 
+            padding: 4px 10px; 
+            border-radius: 8px; 
+            font-size: 0.9rem; 
         }
 
-        .subject-name { font-weight: 500; color: var(--text-dark); }
-        .room-badge { color: var(--accent-color); font-weight: 600; }
+        .course-name { color: var(--text-main); font-weight: 500; font-size: 1rem; }
+        .room-text { font-weight: 600; color: var(--primary); }
+        .teacher-name { color: #475569; font-size: 0.95rem; }
+        .date-text { color: var(--text-muted); font-size: 0.85rem; }
 
-        .status-wrapper { display: flex; align-items: center; gap: 10px; }
-        
-        .dot { width: 8px; height: 8px; border-radius: 50%; }
-        .dot.active { background: var(--success); box-shadow: 0 0 8px var(--success); }
-        .dot.wait { background: var(--danger); }
-
-        .status-text { font-size: 0.9rem; font-weight: 500; }
-        .status-text.done { color: var(--success); }
-        .status-text.pending { color: var(--text-light); }
-
-        .course-sep { border-top: 3px solid #f1f5f9 !important; }
-
-        @media (max-width: 768px) {
-            body { padding: 10px; }
-            .hero-section { border-radius: 16px; padding: 30px 15px; }
-            h2 { font-size: 1.4rem; }
-            .main-card { padding: 15px; border-radius: 16px; }
-        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header class="hero-section">
-        <h2><i class="fas fa-file-signature"></i> สรุปการยืนยันผลการเรียน</h2>
-        <p class="subtitle">ระบบบันทึกคะแนน ภาคเรียนที่ 2/2568</p>
+    <div class="header-card">
+        <h2><i class="fas fa-check-circle"></i> แบบสรุปยืนยันการส่งผลการเรียนเข้าระบบ</h2>
+        <p class="subtitle">ฝ่ายวิชาการ | ภาคเรียนที่ 2 ปีการศึกษา 2568</p>
         
-        <div class="countdown-container">
-            <div class="timer-card"><span class="timer-val" id="days">00</span><span class="timer-label">Days</span></div>
-            <div class="timer-card"><span class="timer-val" id="hours">00</span><span class="timer-label">Hrs</span></div>
-            <div class="timer-card"><span class="timer-val" id="mins">00</span><span class="timer-label">Min</span></div>
-            <div class="timer-card"><span class="timer-val" id="secs">00</span><span class="timer-label">Sec</span></div>
+        <div class="countdown-wrapper">
+            <div class="time-box"><div class="time-value" id="days">00</div><div class="time-label">วัน</div></div>
+            <div class="time-box"><div class="time-value" id="hours">00</div><div class="time-label">ชม.</div></div>
+            <div class="time-box"><div class="time-value" id="mins">00</div><div class="time-label">นาที</div></div>
+            <div class="time-box"><div class="time-value" id="secs">00</div><div class="time-label">วินาที</div></div>
         </div>
+        <br>
+        <span class="deadline-text"><i class="far fa-calendar-check"></i> กำหนดส่ง: 13 ก.พ. 2569 (23:59 น.)</span>
+    </div>
 
-        <div class="deadline-badge">
-            <i class="fas fa-clock"></i> ปิดระบบ: 13 ก.พ. 2569 | 23:59 น.
-        </div>
-    </header>
-
-    <main class="main-card">
+    <div class="content-card">
         <div id="contentArea"></div>
-    </main>
+    </div>
 </div>
 
 <script>
-    // Timer Logic (Same as original but updated target)
+    // Timer Logic
     function updateTimer() {
         const deadline = new Date("February 13, 2026 23:59:59").getTime();
-        const now = new Date().getTime();
-        const diff = deadline - now;
-        
+        const diff = deadline - new Date().getTime();
         if (diff < 0) return;
-
         document.getElementById("days").innerText = Math.floor(diff / 86400000).toString().padStart(2, '0');
         document.getElementById("hours").innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
         document.getElementById("mins").innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
@@ -213,73 +211,85 @@
     }
     setInterval(updateTimer, 1000);
 
-    // Data Generation (Simplified loop for demo)
+    // Data Source - ข้อมูลครบถ้วนตามต้นฉบับ
     function initDisplay() {
         let data = [];
-        // Mock Data ม.1 - ม.6
-        const levels = ["ม.1", "ม.2", "ม.3", "ม.4", "ม.5", "ม.6"];
-        levels.forEach(lvl => {
-            for(let i=1; i<=5; i++) {
-                data.push({
-                    code: lvl.startsWith("ม.1") ? "ท21102" : "ท31102",
-                    course: "ภาษาไทยพื้นฐาน",
-                    level: lvl,
-                    room: i,
-                    teacher: "ครูผู้สอนประจำวิชา",
-                    status: (lvl === "ม.1" && i === 1) ? 1 : 0,
-                    date: (lvl === "ม.1" && i === 1) ? "28 ม.ค. 69" : "-"
-                });
-            }
-        });
+        
+        // --- ม.1 ---
+        for(let i=1; i<=11; i++){
+            let t = [1,2,5,7,9,10].includes(i) ? "นางวิไลพักตร์ กลิ่นกาหลง" : "นายธีรภัทร แก้วสมนึก";
+            data.push({ code:"ท21102", course:"ภาษาไทย 2", level:"ม.1", room:i, teacher:t, status: i===1?1:0, date: i===1?"7 ม.ค. 69 (09:15)":"-" });
+        }
+        for(let i=2; i<=11; i++) data.push({ code:"ท20202", course:"สารสนเทศห้องสมุด 2", level:"ม.1", room:i, teacher:"นางสาวจินตนา บำรุงเพ็ชร", status:0, date:"-" });
+        
+        // --- ม.2 ---
+        for(let i=1; i<=10; i++){
+            let t = [1,2,4,6,8,10].includes(i) ? "นางสาวภัคปภัสร์ กาญจน์นันทรักษ์" : "นางสาวอุษา สายทอง";
+            data.push({ code:"ท22102", course:"ภาษาไทย 4", level:"ม.2", room:i, teacher:t, status:0, date:"-" });
+        }
+        
+        // --- ม.3 ---
+        for(let i=1; i<=4; i++) data.push({ code:"ท23102", course:"ภาษาไทย 6", level:"ม.3", room:i, teacher:"นางนาตยา พิทักษ์วงศ์", status:0, date:"-" });
+
+        // --- ม.4 ---
+        for(let i=1; i<=9; i++) data.push({ code:"ท31102", course:"ภาษาไทย 2", level:"ม.4", room:i, teacher:"นายวีระยุทธ โพธิ์สุวรรณ", status:0, date:"-" });
+        [6,7,9].forEach(i => data.push({ code:"ท30202", course:"การจัดการห้องสมุดและสารสนเทศ", level:"ม.4", room:i, teacher:"นางสาวจินตนา บำรุงเพ็ชร", status:0, date:"-" }));
+        for(let i=5; i<=9; i++) data.push({ code:"ท31202", course:"การเขียนเพื่ออาชีพ", level:"ม.4", room:i, teacher:"นางสาววาสนา ด่วนดี", status:0, date:"-" });
+
+        // --- ม.5 ---
+        for(let i=1; i<=9; i++) data.push({ code:"ท32102", course:"ภาษาไทย 4", level:"ม.5", room:i, teacher:"นายจิรวัฒน์ โสภาพันธุ์", status:0, date:"-" });
+        [6,7,9].forEach(i => data.push({ code:"ท30208", course:"การเขียนบันทึกและบันทึกย่อความ", level:"ม.5", room:i, teacher:"นางสาวจินตนา บำรุงเพ็ชร", status:0, date:"-" }));
+        for(let i=5; i<=8; i++) data.push({ code:"ท32202", course:"การอ่านและพิจารณาวรรณกรรม", level:"ม.5", room:i, teacher:"นางสาววาสนา ด่วนดี", status:0, date:"-" });
+
+        // --- ม.6 ---
+        for(let i=1; i<=9; i++) data.push({ code:"ท33102", course:"ภาษาไทย 6", level:"ม.6", room:i, teacher:"นายกรณ์พงศ์ พัฒนปกรณ์พงษ์", status:0, date:"-" });
+        [6,7,9].forEach(i => data.push({ code:"ท30224", course:"การพัฒนาทักษะภาษาไทย 2", level:"ม.6", room:i, teacher:"นายธีรภัทร แก้วสมนึก", status:0, date:"-" }));
+        for(let i=5; i<=9; i++) {
+            let t = [5,6].includes(i) ? "นางสาวอุษา สายทอง" : "นางสาววชิราภรณ์ ศรป้อม";
+            data.push({ code:"ท33202", course:"หลักภาษาไทย", level:"ม.6", room:i, teacher:t, status:0, date:"-" });
+        }
+
         renderTable(data);
     }
 
     function renderTable(data) {
         const contentArea = document.getElementById('contentArea');
-        const grouped = data.reduce((acc, curr) => {
-            if (!acc[curr.level]) acc[curr.level] = [];
-            acc[curr.level].push(curr);
-            return acc;
-        }, {});
+        const groupedLevel = {};
+        data.forEach(item => {
+            if (!groupedLevel[item.level]) groupedLevel[item.level] = [];
+            groupedLevel[item.level].push(item);
+        });
 
-        let html = `<div class="section-title"><i class="fas fa-layer-group"></i> ข้อมูลแยกตามระดับชั้น</div>`;
-
-        Object.keys(grouped).forEach(level => {
-            html += `<div class="level-tag">ระดับชั้น ${level}</div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>รหัสวิชา</th>
-                            <th>รายวิชา / ห้อง</th>
-                            <th>ครูผู้สอน</th>
-                            <th>สถานะการส่ง</th>
-                            <th>ยืนยันเมื่อ</th>
-                        </tr>
-                    </thead>
-                    <tbody>`;
+        let html = `<div class="dept-group-header"><i class="fas fa-book-open"></i> กลุ่มสาระการเรียนรู้ภาษาไทย</div>`;
+        
+        Object.keys(groupedLevel).sort().forEach(level => {
+            html += `<div class="level-sub-header"><i class="fas fa-graduation-cap"></i> ระดับชั้น ${level}</div>
+                     <div class="table-wrapper"><table><thead><tr>
+                        <th width="12%">รหัสวิชา</th><th width="28%">รายวิชา</th><th width="10%">ห้อง</th>
+                        <th width="22%">ครูผู้สอน</th><th width="18%">สถานะ</th><th width="10%">วันที่ยืนยัน</th>
+                     </tr></thead><tbody>`;
             
-            grouped[level].forEach(item => {
-                const statusIcon = item.status === 1 
-                    ? `<div class="status-wrapper"><div class="dot active"></div><span class="status-text done">ยืนยันแล้ว [7/7]</span></div>`
-                    : `<div class="status-wrapper"><div class="dot wait"></div><span class="status-text pending">รอการดำเนินการ</span></div>`;
+            let lastCode = "";
+            groupedLevel[level].forEach(item => {
+                const isNew = lastCode !== "" && lastCode !== item.code;
+                const statusHTML = item.status === 1 
+                    ? `<span class="status-pill complete"><i class="fas fa-check-double"></i> <span class="step-tag">[7/7]</span> ยืนยันแล้ว</span>` 
+                    : `<span class="status-pill pending"><i class="fas fa-clock"></i> <span class="step-tag">[1/7]</span> ยังไม่ส่ง</span>`;
 
-                html += `<tr>
-                    <td><span class="code-pill">${item.code}</span></td>
-                    <td>
-                        <div class="subject-name">${item.course}</div>
-                        <div class="room-badge">${level}/${item.room}</div>
-                    </td>
-                    <td style="font-size: 0.9rem; color: #475569;">${item.teacher}</td>
-                    <td>${statusIcon}</td>
-                    <td style="color: #94a3b8; font-size: 0.85rem;">${item.date}</td>
+                html += `<tr class="${isNew ? 'course-divider' : ''}">
+                    <td><span class="course-code">${item.code}</span></td>
+                    <td class="course-name">${item.course}</td>
+                    <td class="room-text">${level}/${item.room}</td>
+                    <td class="teacher-name">${item.teacher}</td>
+                    <td>${statusHTML}</td>
+                    <td class="date-text">${item.date}</td>
                 </tr>`;
+                lastCode = item.code;
             });
             html += `</tbody></table></div>`;
         });
         contentArea.innerHTML = html;
     }
-
     window.onload = initDisplay;
 </script>
 </body>
