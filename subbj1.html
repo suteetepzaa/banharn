@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบสรุปยืนยันการส่งผลการเรียน 2/2568</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #eff6ff;
+            --secondary: #3b82f6;
+            --success-bg: #e2f9eb;
+            --success-text: #2d6a4f;
+            --pending-bg: #fce8e8;
+            --pending-text: #9b2226;
+            --border-color: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 15px;
+            color: var(--text-main);
+            font-size: 15px;
+        }
+
+        .container { max-width: 1150px; margin: 0 auto; }
+
+        .header-card {
+            background: white;
+            padding: 25px 15px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        h2 { color: var(--primary); margin: 0; font-size: 1.8rem; font-weight: 600; }
+        .subtitle { color: var(--text-muted); margin-top: 5px; font-size: 1rem; margin-bottom: 15px; }
+
+        .countdown-wrapper { display: inline-flex; gap: 10px; background: var(--primary-light); padding: 12px 20px; border-radius: 15px; border: 1px solid #dbeafe; }
+        .time-box { display: flex; flex-direction: column; align-items: center; min-width: 55px; }
+        .time-value { background: white; width: 100%; padding: 5px 0; border-radius: 10px; font-size: 1.4rem; font-weight: 600; color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 3px; }
+        .time-label { font-size: 0.8rem; color: var(--secondary); font-weight: 600; }
+        .deadline-text { display: block; margin-top: 10px; color: #be123c; font-weight: 600; font-size: 0.95rem; }
+
+        .content-card { background: white; padding: 20px; border-radius: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
+        .dept-group-header { background: var(--primary); padding: 12px 20px; border-radius: 12px; color: white; font-weight: 600; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .level-sub-header { background: #f1f5f9; padding: 8px 15px; border-radius: 10px; font-weight: 600; color: var(--primary); font-size: 1.1rem; margin-top: 20px; margin-bottom: 12px; }
+
+        .table-wrapper { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; min-width: 900px; }
+        th { padding: 12px 10px; text-align: left; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; border-bottom: 2px solid var(--border-color); }
+        td { padding: 10px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+
+        .course-divider { border-top: 2px solid #e2e8f0 !important; }
+
+        .status-cell { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+        .step-num { color: #94a3b8; font-weight: 600; font-size: 1rem; min-width: 40px; }
+        .status-pill { padding: 5px 15px; border-radius: 40px; font-size: 0.95rem; font-weight: 600; display: inline-block; }
+        .complete { background: var(--success-bg); color: var(--success-text); }
+        .pending { background: var(--pending-bg); color: var(--pending-text); }
+
+        .course-code { font-family: monospace; font-weight: 600; color: var(--text-muted); background: #f8fafc; padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
+        .course-name { color: var(--primary); font-weight: 600; font-size: 1rem; }
+        .room-text { color: var(--secondary); font-weight: 600; }
+        .date-text { color: #64748b; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-card">
+        <h2><i class="fas fa-university"></i> แบบสรุปยืนยันการส่งผลการเรียนเข้าระบบ</h2>
+        <p class="subtitle">ภาคเรียนที่ 2 ปีการศึกษา 2568</p>
+        <div class="countdown-wrapper">
+            <div class="time-box"><div class="time-value" id="days">00</div><div class="time-label">วัน</div></div>
+            <div class="time-box"><div class="time-value" id="hours">00</div><div class="time-label">ชม.</div></div>
+            <div class="time-box"><div class="time-value" id="mins">00</div><div class="time-label">นาที</div></div>
+            <div class="time-box"><div class="time-value" id="secs">00</div><div class="time-label">วินาที</div></div>
+        </div>
+        <span class="deadline-text"><i class="far fa-calendar-alt"></i> ไม่เกินเที่ยงคืนวันอังคารที่ 13 ก.พ. 2569</span>
+    </div>
+    <div class="content-card"><div id="contentArea"></div></div>
+</div>
+
+<script>
+    function updateTimer() {
+        const deadline = new Date("February 13, 2026 23:59:59").getTime();
+        const diff = deadline - new Date().getTime();
+        if (diff < 0) return;
+        document.getElementById("days").innerText = Math.floor(diff / 86400000).toString().padStart(2, '0');
+        document.getElementById("hours").innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
+        document.getElementById("mins").innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+        document.getElementById("secs").innerText = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+    }
+    setInterval(updateTimer, 1000);
+
+    function initDisplay() {
+        let data = [];
+        
+        // --- ม.1 ---
+        for(let i=1; i<=11; i++){
+            let t = [1,2,5,7,9,10].includes(i) ? "นางวิไลพักตร์ กลิ่นกาหลง" : "นายธีรภัทร แก้วสมนึก";
+            data.push({ code:"ท21102", course:"ภาษาไทย 2", level:"ม.1", room:i, teacher:t, status: i===1?1:0, date: i===1?"7 ม.ค. 69 (09:15)":"-" });
+        }
+        for(let i=2; i<=11; i++) data.push({ code:"ท20202", course:"สารสนเทศห้องสมุด 2", level:"ม.1", room:i, teacher:"นางสาวจินตนา บำรุงเพ็ชร", status:0, date:"-" });
+        
+        // --- ม.2 ---
+        for(let i=1; i<=10; i++){
+            let t = [1,2,4,6,8,10].includes(i) ? "นางสาวภัคปภัสร์ กาญจน์นันทรักษ์" : "นางสาวอุษา สายทอง";
+            data.push({ code:"ท22102", course:"ภาษาไทย 4", level:"ม.2", room:i, teacher:t, status:0, date:"-" });
+        }
+        
+        // --- ม.3 ---
+        for(let i=1; i<=4; i++) data.push({ code:"ท23102", course:"ภาษาไทย 6", level:"ม.3", room:i, teacher:"นางนาตยา พิทักษ์วงศ์", status:0, date:"-" });
+
+        // --- ม.4 ---
+        for(let i=1; i<=9; i++) data.push({ code:"ท31102", course:"ภาษาไทย 2", level:"ม.4", room:i, teacher:"นายวีระยุทธ โพธิ์สุวรรณ", status:0, date:"-" });
+        [6,7,9].forEach(i => data.push({ code:"ท30202", course:"การจัดการห้องสมุดและสารสนเทศ", level:"ม.4", room:i, teacher:"นางสาวจินตนา บำรุงเพ็ชร", status:0, date:"-" }));
+        for(let i=5; i<=9; i++) data.push({ code:"ท31202", course:"การเขียนเพื่ออาชีพ", level:"ม.4", room:i, teacher:"นางสาววาสนา ด่วนดี", status:0, date:"-" });
+
+        // --- ม.5 ---
+        for(let i=1; i<=9; i++) data.push({ code:"ท32102", course:"ภาษาไทย 4", level:"ม.5", room:i, teacher:"นายจิรวัฒน์ โสภาพันธุ์", status:0, date:"-" });
+        [6,7,9].forEach(i => data.push({ code:"ท30208", course:"การเขียนบันทึกและบันทึกย่อความ", level:"ม.5", room:i, teacher:"นางสาวจินตนา บำรุงเพ็ชร", status:0, date:"-" }));
+        for(let i=5; i<=8; i++) data.push({ code:"ท32202", course:"การอ่านและพิจารณาวรรณกรรม", level:"ม.5", room:i, teacher:"นางสาววาสนา ด่วนดี", status:0, date:"-" });
+
+        // --- ม.6 ---
+        for(let i=1; i<=9; i++) data.push({ code:"ท33102", course:"ภาษาไทย 6", level:"ม.6", room:i, teacher:"นายกรณ์พงศ์ พัฒนปกรณ์พงษ์", status:0, date:"-" });
+        [6,7,9].forEach(i => data.push({ code:"ท30224", course:"การพัฒนาทักษะภาษาไทย 2", level:"ม.6", room:i, teacher:"นายธีรภัทร แก้วสมนึก", status:0, date:"-" }));
+        for(let i=5; i<=9; i++) {
+            let t = [5,6].includes(i) ? "นางสาวอุษา สายทอง" : "นางสาววชิราภรณ์ ศรป้อม";
+            data.push({ code:"ท33202", course:"หลักภาษาไทย", level:"ม.6", room:i, teacher:t, status:0, date:"-" });
+        }
+
+        renderTable(data);
+    }
+
+    function renderTable(data) {
+        const contentArea = document.getElementById('contentArea');
+        const groupedLevel = {};
+        data.forEach(item => {
+            if (!groupedLevel[item.level]) groupedLevel[item.level] = [];
+            groupedLevel[item.level].push(item);
+        });
+
+        let html = `<div class="dept-group-header"><i class="fas fa-book"></i> กลุ่มสาระการเรียนรู้ภาษาไทย</div>`;
+        Object.keys(groupedLevel).sort().forEach(level => {
+            html += `<div class="level-sub-header"><i class="fas fa-graduation-cap"></i> ระดับชั้น ${level}</div>
+                     <div class="table-wrapper"><table><thead><tr>
+                        <th width="10%">รหัสวิชา</th><th width="28%">รายวิชา</th><th width="8%">ห้อง</th>
+                        <th width="24%">ครูผู้สอน</th><th width="18%">สถานะ</th><th width="12%">วันที่ยืนยัน</th>
+                     </tr></thead><tbody>`;
+            let lastCode = "";
+            groupedLevel[level].forEach(item => {
+                const isNew = lastCode !== "" && lastCode !== item.code;
+                const statusHTML = item.status === 1 
+                    ? `<div class="status-cell"><span class="step-num">[7/7]</span><span class="status-pill complete">ยืนยันข้อมูลแล้ว</span></div>` 
+                    : `<div class="status-cell"><span class="step-num">[1/7]</span><span class="status-pill pending">ยังไม่ดำเนินการ</span></div>`;
+                html += `<tr class="${isNew ? 'course-divider' : ''}">
+                    <td><span class="course-code">${item.code}</span></td>
+                    <td class="course-name">${item.course}</td>
+                    <td class="room-text">${level}/${item.room}</td>
+                    <td>${item.teacher}</td>
+                    <td>${statusHTML}</td>
+                    <td class="date-text">${item.date}</td>
+                </tr>`;
+                lastCode = item.code;
+            });
+            html += `</tbody></table></div>`;
+        });
+        contentArea.innerHTML = html;
+    }
+    window.onload = initDisplay;
+</script>
+</body>
+</html>
