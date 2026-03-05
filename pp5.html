@@ -2,52 +2,135 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบส่งเอกสาร ปพ.5</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Anuphan', sans-serif; background-color: #f3f4f6; }
+        body { font-family: 'Anuphan', sans-serif; background-color: #f0f4f8; }
+        .file-item:hover .btn-remove { opacity: 1; }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
-    <div class="w-full max-w-md bg-white shadow-lg rounded-2xl p-6 border border-gray-100">
+    <div class="w-full max-w-md bg-white shadow-2xl rounded-3xl p-8 border border-gray-100">
         
-        <div class="text-center mb-6">
-            <h1 class="text-xl font-bold text-blue-600">ระบบส่งเอกสาร ปพ.5</h1>
-            <p class="text-xs text-gray-400">โรงเรียนของคุณ</p>
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold text-slate-800">ส่งเอกสาร ปพ.5</h1>
+            <p class="text-sm text-slate-400 mt-1 font-medium">โรงเรียนดิจิทัลสมัยใหม่</p>
         </div>
 
-        <form action="#" method="POST" enctype="multipart/form-data" class="space-y-5">
+        <form id="uploadForm" class="space-y-6">
             
             <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">รหัสครู</label>
-                <input type="text" placeholder="ระบุรหัสประจำตัว" required
-                    class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none transition">
+                <label class="block text-sm font-semibold text-slate-700 mb-2">รหัสประจำตัวครู</label>
+                <input type="text" id="teacherId" name="teacherId" placeholder="กรอกรหัสของคุณ" required
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all">
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">ไฟล์เอกสาร (สูงสุด 50 ไฟล์)</label>
-                <div class="relative border-2 border-dashed border-gray-200 rounded-lg p-4 hover:bg-blue-50 transition text-center cursor-pointer">
-                    <input type="file" multiple name="files[]" id="files" 
-                        class="absolute inset-0 opacity-0 cursor-pointer"
-                        onchange="document.getElementById('file-count').innerText = this.files.length + ' ไฟล์ที่เลือกไว้'">
-                    
-                    <svg class="w-8 h-8 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 4v16m8-8H4"></path>
-                    </svg>
-                    <p id="file-count" class="text-sm text-gray-500">กดเพื่อเลือกไฟล์</p>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">อัปโหลดไฟล์ (สูงสุด 50 ไฟล์)</label>
+                <div class="relative group border-2 border-dashed border-blue-200 rounded-2xl p-6 hover:bg-blue-50 transition-all text-center">
+                    <input type="file" id="fileInput" multiple accept=".pdf,.xlsx,.xls" class="absolute inset-0 opacity-0 cursor-pointer">
+                    <div class="space-y-2">
+                        <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mx-auto text-blue-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round"/></svg>
+                        </div>
+                        <p class="text-sm text-blue-600 font-medium">คลิกเพื่อเพิ่มไฟล์</p>
+                    </div>
                 </div>
             </div>
 
-            <button type="submit" 
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-md transition transform active:scale-95">
+            <div id="fileList" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                </div>
+
+            <button type="submit" id="submitBtn" 
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-200 transition-all transform active:scale-95 disabled:bg-slate-300 disabled:shadow-none">
                 ยืนยันการส่งเอกสาร
             </button>
 
         </form>
 
-        <p class="text-[10px] text-center text-gray-400 mt-4 uppercase tracking-tighter">Academic Document System v1.0</p>
+        <p id="statusMsg" class="text-center text-xs mt-4 font-medium"></p>
     </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileListContainer = document.getElementById('fileList');
+        const uploadForm = document.getElementById('uploadForm');
+        const statusMsg = document.getElementById('statusMsg');
+        
+        let selectedFiles = []; // เก็บไฟล์ทั้งหมดที่เลือก
+
+        // เมื่อมีการเลือกไฟล์
+        fileInput.addEventListener('change', (e) => {
+            const newFiles = Array.from(e.target.files);
+            
+            // ตรวจสอบไม่ให้เกิน 50 ไฟล์
+            if (selectedFiles.length + newFiles.length > 50) {
+                alert("จำกัดการส่งไม่เกิน 50 ไฟล์ครับ");
+                return;
+            }
+
+            selectedFiles = [...selectedFiles, ...newFiles];
+            renderFileList();
+            fileInput.value = ''; // Reset input เพื่อให้เลือกไฟล์เดิมซ้ำได้ถ้าลบไปแล้ว
+        });
+
+        // ฟังก์ชันวาดรายการไฟล์บนหน้าจอ
+        function renderFileList() {
+            fileListContainer.innerHTML = '';
+            
+            selectedFiles.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.className = "file-item flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100 animate-fadeIn";
+                item.innerHTML = `
+                    <div class="flex items-center gap-3 overflow-hidden">
+                        <div class="bg-blue-500 text-[10px] text-white px-1.5 py-0.5 rounded font-bold uppercase">${file.name.split('.').pop()}</div>
+                        <span class="text-xs text-slate-600 truncate font-medium">${file.name}</span>
+                    </div>
+                    <button type="button" onclick="removeFile(${index})" class="text-slate-400 hover:text-red-500 transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/></svg>
+                    </button>
+                `;
+                fileListContainer.appendChild(item);
+            });
+        }
+
+        // ลบไฟล์ออกจากรายการ
+        window.removeFile = (index) => {
+            selectedFiles.splice(index, 1);
+            renderFileList();
+        };
+
+        // เมื่อกดส่ง
+        uploadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (selectedFiles.length === 0) {
+                alert("กรุณาเลือกไฟล์อย่างน้อย 1 ไฟล์ครับ");
+                return;
+            }
+
+            // จำลองการส่งข้อมูล
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerText = "กำลังส่งข้อมูล...";
+            statusMsg.innerText = "⏳ ระบบกำลังประมวลผลไฟล์ของคุณ...";
+            statusMsg.className = "text-center text-xs mt-4 font-medium text-blue-500";
+
+            setTimeout(() => {
+                statusMsg.innerText = `✅ ส่งเรียบร้อย! ทั้งหมด ${selectedFiles.length} ไฟล์`;
+                statusMsg.className = "text-center text-xs mt-4 font-medium text-green-600";
+                btn.innerText = "ยืนยันการส่งเอกสาร";
+                btn.disabled = false;
+                
+                // ล้างข้อมูลหลังส่งเสร็จ (ถ้าต้องการ)
+                // selectedFiles = [];
+                // renderFileList();
+                // document.getElementById('teacherId').value = '';
+            }, 2000);
+        });
+    </script>
 
 </body>
 </html>
