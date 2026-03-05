@@ -3,101 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบส่งเอกสาร ปพ.5</title>
+    <title>ระบบส่ง ปพ.5 Online</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Anuphan', sans-serif; background-color: #f8fafc; }
-        .glass-card { background: rgba(255, 255, 255, 0.95); border: 1px solid #e2e8f0; }
-        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        body { font-family: 'Anuphan', sans-serif; background-color: #f1f5f9; }
+        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
-<body class="min-h-screen py-8 px-4 flex flex-col items-center">
+<body class="min-h-screen flex items-center justify-center p-4 md:p-8">
 
-    <div class="w-full max-w-lg text-center mb-6">
-        <h1 class="text-3xl font-extrabold text-slate-800">ระบบส่งเอกสาร <span class="text-blue-600">ปพ.5</span></h1>
-        <div class="flex items-center justify-center gap-2 mt-2 text-sm font-semibold">
-            <span class="text-slate-500">สถานะ:</span>
-            <span class="flex items-center gap-1.5 text-green-600 bg-green-50 px-3 py-0.5 rounded-full border border-green-100">
-                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> กำลังเปิดรับเอกสาร
-            </span>
-        </div>
-    </div>
-
-    <main class="w-full max-w-lg glass-card rounded-[2.5rem] shadow-xl overflow-hidden mb-6">
+    <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
-        <div class="bg-slate-800 p-4 text-white flex justify-between px-8 text-xs font-medium tracking-wide">
-            <div class="text-center">
-                <p class="opacity-70">เปิดระบบ</p>
-                <p class="text-blue-300">1 มี.ค. 2569</p>
-            </div>
-            <div class="h-8 w-[1px] bg-slate-600"></div>
-            <div class="text-center">
-                <p class="opacity-70">ปิดระบบ</p>
-                <p class="text-red-400">31 มี.ค. 2569</p>
-            </div>
-        </div>
-
-        <div class="p-8">
-            <div class="mb-8 bg-blue-50/50 border-l-4 border-blue-400 p-4 rounded-r-xl">
-                <h3 class="text-sm font-bold text-blue-800 mb-1 leading-relaxed">💡 คำแนะนำการใช้งาน:</h3>
-                <ul class="text-[13px] text-blue-700/80 space-y-1">
-                    <li>• กรอกรหัสประจำตัวครูให้ถูกต้องก่อนอัปโหลด</li>
-                    <li>• สามารถเลือกไฟล์ได้พร้อมกันสูงสุด 50 ไฟล์</li>
-                    <li>• รองรับเฉพาะไฟล์นามสกุล .xlsx, .xls และ .pdf</li>
+        <div class="lg:col-span-3 space-y-4 order-2 lg:order-1">
+            <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-200">
+                <h3 class="text-blue-600 font-bold mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/></svg>
+                    คำแนะนำการใช้งาน
+                </h3>
+                <ul class="text-sm text-slate-600 space-y-3 leading-relaxed">
+                    <li class="flex gap-2"><span>1.</span> <span>กรอกรหัสประจำตัวครูให้ถูกต้องเพื่อยืนยันตัวตน</span></li>
+                    <li class="flex gap-2"><span>2.</span> <span>เลือกไฟล์ ปพ.5 (สูงสุด 50 ไฟล์)</span></li>
+                    <li class="flex gap-2"><span>3.</span> <span>ตรวจสอบรายชื่อไฟล์ในแถบรายการ</span></li>
+                    <li class="flex gap-2"><span>4.</span> <span>กดปุ่ม "ยืนยันการส่ง" และรอจนขึ้นสีเขียว</span></li>
                 </ul>
             </div>
 
-            <form id="uploadForm" class="space-y-6">
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-2 ml-1 text-center">รหัสประจำตัวครู</label>
-                    <input type="text" id="teacherId" name="teacherId" placeholder="ระบุรหัส 10 หรือ 13 หลัก" required
-                        class="w-full text-center px-4 py-3 bg-white border-2 border-slate-100 rounded-2xl focus:border-blue-500 outline-none transition-all text-lg font-semibold shadow-sm">
+            <div class="bg-slate-800 p-6 rounded-[2rem] shadow-lg text-white">
+                <h3 class="font-bold mb-3 text-slate-300">ติดต่อผู้ดูแลระบบ</h3>
+                <div class="space-y-2 text-sm">
+                    <p class="flex justify-between font-light"><span class="opacity-60">ผู้พัฒนา:</span> <span>สมชาย กราฟิก</span></p>
+                    <p class="flex justify-between font-light"><span class="opacity-60">เบอร์โทร:</span> <span>081-234-5678</span></p>
+                    <p class="flex justify-between font-light"><span class="opacity-60">ห้องทำงาน:</span> <span>ฝ่ายวิชาการ อาคาร 1</span></p>
                 </div>
-
-                <div>
-                    <div class="relative border-2 border-dashed border-slate-200 rounded-2xl p-6 hover:border-blue-400 hover:bg-blue-50/30 transition-all cursor-pointer text-center group">
-                        <input type="file" id="fileInput" multiple accept=".pdf,.xlsx,.xls" class="absolute inset-0 opacity-0 cursor-pointer">
-                        <div class="bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center mx-auto text-white shadow-lg group-hover:scale-110 transition-transform mb-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="2.5" stroke-linecap="round"/></svg>
-                        </div>
-                        <p class="text-sm font-bold text-slate-700">เพิ่มไฟล์เอกสาร</p>
-                        <p class="text-[11px] text-slate-400">ลากไฟล์วางหรือคลิกที่นี่</p>
-                    </div>
-                </div>
-
-                <div id="fileList" class="custom-scrollbar space-y-2 max-h-40 overflow-y-auto">
-                    </div>
-
-                <button type="submit" id="submitBtn" 
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-200 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    ยืนยันการส่งข้อมูล
-                </button>
-            </form>
-            
-            <p id="statusMsg" class="text-center text-xs mt-4 font-bold"></p>
+            </div>
         </div>
-    </main>
 
-    <footer class="text-center">
-        <p class="text-slate-400 text-[11px] font-medium tracking-widest uppercase mb-1">Developed By</p>
-        <p class="text-slate-600 font-bold text-sm bg-white px-6 py-2 rounded-full shadow-sm inline-block border border-slate-100">
-            👨‍💻 ชื่อ-นามสกุล ของคุณ หรือ ทีมพัฒนาของคุณ
-        </p>
-    </footer>
+        <div class="lg:col-span-4 text-center py-10 lg:py-20 order-1 lg:order-2">
+            <h1 class="text-4xl lg:text-5xl font-black text-slate-800 leading-tight">
+                SMART <br> <span class="text-blue-600 tracking-widest">ปพ.5</span>
+            </h1>
+            <p class="text-slate-400 mt-4 font-medium uppercase tracking-[0.2em] text-sm">Online Submission</p>
+            
+            <div class="mt-8 inline-flex flex-col gap-3 bg-white/50 p-4 rounded-3xl border border-white">
+                <div class="flex items-center justify-center gap-4 text-xs font-bold">
+                    <div class="text-center">
+                        <p class="text-slate-400">เปิดระบบ</p>
+                        <p class="text-slate-700 font-bold">01/03/2026</p>
+                    </div>
+                    <div class="w-[1px] h-6 bg-slate-300"></div>
+                    <div class="text-center">
+                        <p class="text-slate-400">ปิดระบบ</p>
+                        <p class="text-red-500 font-bold">31/03/2026</p>
+                    </div>
+                </div>
+                <span class="flex items-center justify-center gap-1.5 text-[10px] text-green-600 font-bold uppercase tracking-tighter">
+                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></span> System Online
+                </span>
+            </div>
+        </div>
+
+        <div class="lg:col-span-5 order-3">
+            <div class="bg-white p-8 rounded-[3rem] shadow-xl shadow-slate-200/60 border border-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-6 opacity-5">
+                    <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                </div>
+
+                <form id="uploadForm" class="relative z-10 space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Identity Check</label>
+                        <input type="text" id="teacherId" placeholder="กรอกรหัสประจำตัวครู" required
+                            class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 focus:bg-white outline-none transition-all font-bold text-slate-700">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">File Upload (Max 50)</label>
+                        <div class="relative group border-2 border-dashed border-slate-200 rounded-[2rem] p-8 hover:border-blue-400 hover:bg-blue-50/50 transition-all text-center">
+                            <input type="file" id="fileInput" multiple accept=".pdf,.xlsx,.xls" class="absolute inset-0 opacity-0 cursor-pointer">
+                            <div class="bg-blue-500 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto text-white shadow-lg group-hover:rotate-90 transition-transform duration-500 mb-3">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="3" stroke-linecap="round"/></svg>
+                            </div>
+                            <p class="text-sm font-bold text-slate-700 italic">เพิ่มไฟล์ ปพ.5</p>
+                        </div>
+                    </div>
+
+                    <div id="fileList" class="custom-scrollbar space-y-2 max-h-44 overflow-y-auto min-h-[40px]">
+                        </div>
+
+                    <button type="submit" id="submitBtn" 
+                        class="w-full bg-slate-800 hover:bg-blue-600 text-white font-bold py-5 rounded-[2rem] shadow-xl transition-all transform active:scale-95 flex items-center justify-center gap-3">
+                        <span id="btnText">ยืนยันการส่งข้อมูล</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </form>
+                <p id="statusMsg" class="text-center text-[11px] mt-4 font-bold uppercase"></p>
+            </div>
+        </div>
+
+    </div>
 
     <script>
         const fileInput = document.getElementById('fileInput');
         const fileListContainer = document.getElementById('fileList');
         const uploadForm = document.getElementById('uploadForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const statusMsg = document.getElementById('statusMsg');
+
         let selectedFiles = [];
 
         fileInput.addEventListener('change', (e) => {
             const newFiles = Array.from(e.target.files);
             if (selectedFiles.length + newFiles.length > 50) {
-                alert("จำกัดไม่เกิน 50 ไฟล์ครับ");
+                alert("จำกัดจำนวนไฟล์สูงสุด 50 ไฟล์ครับ");
                 return;
             }
             selectedFiles = [...selectedFiles, ...newFiles];
@@ -107,15 +127,20 @@
 
         function renderFiles() {
             fileListContainer.innerHTML = '';
+            if (selectedFiles.length === 0) {
+                fileListContainer.innerHTML = '<p class="text-center text-[10px] text-slate-300 py-4">ยังไม่ได้เลือกไฟล์เอกสาร</p>';
+                return;
+            }
+
             selectedFiles.forEach((file, index) => {
                 const item = document.createElement('div');
-                item.className = "flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100 text-xs animate-slideIn";
+                item.className = "flex items-center justify-between p-3 bg-slate-50 rounded-2xl border border-slate-100 text-[11px] animate-fadeIn";
                 item.innerHTML = `
-                    <div class="flex items-center gap-2 truncate">
-                        <span class="bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold uppercase text-[9px]">${file.name.split('.').pop()}</span>
-                        <span class="truncate font-medium text-slate-600">${file.name}</span>
+                    <div class="flex items-center gap-2 truncate pr-2 font-semibold text-slate-600">
+                        <span class="bg-blue-600 text-white px-1.5 py-0.5 rounded-md text-[8px] font-black uppercase tracking-tighter">${file.name.split('.').pop()}</span>
+                        <span class="truncate">${file.name}</span>
                     </div>
-                    <button type="button" onclick="removeFile(${index})" class="text-slate-300 hover:text-red-500 ml-2">
+                    <button type="button" onclick="removeFile(${index})" class="text-slate-300 hover:text-red-500 transition-colors">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/></svg>
                     </button>
                 `;
@@ -130,21 +155,24 @@
 
         uploadForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            if (selectedFiles.length === 0) { alert("กรุณาเลือกไฟล์ก่อนครับ"); return; }
-            
-            const btn = document.getElementById('submitBtn');
-            const status = document.getElementById('statusMsg');
-            
-            btn.disabled = true;
-            btn.innerHTML = "正在ส่งข้อมูล..."; // กำลังส่ง
+            if (selectedFiles.length === 0) return alert("กรุณาเลือกไฟล์ก่อนครับ");
+
+            submitBtn.disabled = true;
+            btnText.innerText = "กำลังอัปโหลด...";
             
             setTimeout(() => {
-                status.innerText = "✅ ส่งข้อมูลสำเร็จแล้ว!";
-                status.className = "text-center text-xs mt-4 font-bold text-green-600";
-                btn.innerHTML = "ยืนยันการส่งข้อมูล";
-                btn.disabled = false;
+                statusMsg.innerText = "✓ ส่งข้อมูลสำเร็จแล้ว " + selectedFiles.length + " ไฟล์";
+                statusMsg.className = "text-center text-[11px] mt-4 font-bold text-green-500 uppercase tracking-widest";
+                btnText.innerText = "ยืนยันการส่งข้อมูล";
+                submitBtn.disabled = false;
+                
+                selectedFiles = [];
+                renderFiles();
+                document.getElementById('teacherId').value = '';
             }, 2000);
         });
+
+        renderFiles();
     </script>
 </body>
 </html>
