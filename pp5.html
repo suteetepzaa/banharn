@@ -2,92 +2,51 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบส่งเอกสาร ปพ.5</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Anuphan', sans-serif; 
-            background: #f8fafc;
-            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-        .file-list-container::-webkit-scrollbar { width: 6px; }
-        .file-list-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        body { font-family: 'Anuphan', sans-serif; background-color: #f3f4f6; }
     </style>
 </head>
-<body class="min-h-screen py-10 px-4">
+<body class="flex items-center justify-center min-h-screen p-4">
 
-    <div class="max-w-4xl mx-auto text-center mb-10">
-        <h1 class="text-4xl font-extrabold text-slate-800 mb-2">
-            <span class="text-blue-600">Smart</span> ปพ.5 Online
-        </h1>
-        <p class="text-slate-500 uppercase tracking-widest text-sm font-bold">ระบบบริหารจัดการเอกสารผลการเรียนดิจิทัล</p>
-    </div>
+    <div class="w-full max-w-md bg-white shadow-lg rounded-2xl p-6 border border-gray-100">
+        
+        <div class="text-center mb-6">
+            <h1 class="text-xl font-bold text-blue-600">ระบบส่งเอกสาร ปพ.5</h1>
+            <p class="text-xs text-gray-400">โรงเรียนของคุณ</p>
+        </div>
 
-    <div class="max-w-3xl mx-auto">
-        <div class="bg-white rounded-[2rem] shadow-2xl shadow-blue-100 overflow-hidden border border-white">
+        <form action="#" method="POST" enctype="multipart/form-data" class="space-y-5">
             
-            <div class="bg-blue-600 p-4 text-white flex justify-around text-sm font-medium">
-                <div class="flex items-center gap-2"><span class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span> ระบุตัวตน</div>
-                <div class="flex items-center gap-2"><span class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span> อัปโหลดไฟล์</div>
-                <div class="flex items-center gap-2"><span class="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span> ยืนยันการส่ง</div>
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">รหัสครู</label>
+                <input type="text" placeholder="ระบุรหัสประจำตัว" required
+                    class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none transition">
             </div>
 
-            <form action="/upload" method="POST" class="p-8 md:p-12 space-y-8">
-                
-                <div class="relative">
-                    <label class="text-sm font-bold text-slate-700 mb-2 block ml-1">รหัสประจำตัวครู / เลขบัตรประชาชน</label>
-                    <input type="text" placeholder="ระบุรหัส 13 หลัก หรือ รหัสข้าราชการ" 
-                           class="w-full bg-slate-50 border-2 border-slate-100 focus:border-blue-500 focus:bg-white p-4 rounded-2xl transition-all duration-300 outline-none text-lg tracking-wider" required>
-                    <div class="absolute right-4 top-[42px] text-slate-400">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                    </div>
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">ไฟล์เอกสาร (สูงสุด 50 ไฟล์)</label>
+                <div class="relative border-2 border-dashed border-gray-200 rounded-lg p-4 hover:bg-blue-50 transition text-center cursor-pointer">
+                    <input type="file" multiple name="files[]" id="files" 
+                        class="absolute inset-0 opacity-0 cursor-pointer"
+                        onchange="document.getElementById('file-count').innerText = this.files.length + ' ไฟล์ที่เลือกไว้'">
+                    
+                    <svg class="w-8 h-8 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    <p id="file-count" class="text-sm text-gray-500">กดเพื่อเลือกไฟล์</p>
                 </div>
+            </div>
 
-                <div>
-                    <label class="text-sm font-bold text-slate-700 mb-2 block ml-1">อัปโหลดไฟล์ ปพ.5 (สูงสุด 50 ไฟล์)</label>
-                    <div class="relative group border-2 border-dashed border-slate-200 rounded-3xl p-8 hover:border-blue-400 hover:bg-blue-50/30 transition-all cursor-pointer text-center">
-                        <input type="file" multiple max="50" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="fileInput">
-                        
-                        <div class="space-y-4">
-                            <div class="bg-blue-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto text-blue-600 group-hover:scale-110 transition-transform">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                            </div>
-                            <div>
-                                <p class="text-lg font-semibold text-slate-700">คลิกเพื่อเลือกไฟล์ หรือ ลากวางที่นี่</p>
-                                <p class="text-sm text-slate-400">อนุญาตเฉพาะไฟล์ .xlsx, .pdf เท่านั้น</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <button type="submit" 
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-md transition transform active:scale-95">
+                ยืนยันการส่งเอกสาร
+            </button>
 
-                <div class="file-list-container max-h-[250px] overflow-y-auto space-y-2 pr-2">
-                    <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
-                        <div class="flex items-center gap-3">
-                            <div class="bg-green-500 text-white p-2 rounded-lg text-[10px] font-bold">EXCEL</div>
-                            <span class="text-sm font-medium text-slate-600">ปพ5_คณิตศาสตร์_ม1.xlsx</span>
-                        </div>
-                        <button type="button" class="text-red-400 hover:text-red-600">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                        </button>
-                    </div>
-                    <p class="text-center text-xs text-slate-400 py-4 italic">รายการไฟล์จะปรากฏที่นี่หลังจากเลือก</p>
-                </div>
+        </form>
 
-                <div class="pt-4">
-                    <button type="submit" class="w-full bg-slate-800 hover:bg-blue-600 text-white font-bold py-5 rounded-2xl shadow-xl shadow-slate-200 transition-all duration-300 transform active:scale-[0.98] flex items-center justify-center gap-3 text-lg">
-                        <span>ส่งเอกสารเข้าระบบ</span>
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
-                    </button>
-                    <p class="text-center text-xs text-slate-400 mt-4 italic">เมื่อกดส่งแล้ว จะไม่สามารถลบไฟล์ย้อนหลังได้ กรุณาตรวจสอบให้ถูกต้อง</p>
-                </div>
-
-            </form>
-        </div>
-        
-        <p class="text-center text-slate-400 text-xs mt-8">© 2026 Academic Department Management System</p>
+        <p class="text-[10px] text-center text-gray-400 mt-4 uppercase tracking-tighter">Academic Document System v1.0</p>
     </div>
 
 </body>
