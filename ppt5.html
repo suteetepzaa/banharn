@@ -3,120 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบส่งเอกสาร ปพ.5</title>
+    <title>ระบบส่งเอกสาร ปพ.5 - งานทะเบียนและวัดผล</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { 
             font-family: 'Prompt', sans-serif; 
-            background-color: #e2e8f0; 
+            background-color: #f1f5f9; 
+            color: #1e293b;
         }
-        /* ยกเลิกขอบมนทั้งหมดตามโจทย์เดิม */
+        /* ยกเลิกขอบมนทั้งหมดเพื่อความสุภาพเป็นทางการ */
         * { border-radius: 0 !important; }
         
-        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #64748b; }
-        
-        /* ตกแต่งปุ่มและกล่องให้ดูเป็นทรงเหลี่ยมที่คมชัด */
-        .neo-shadow { shadow-[8px_8px_0px_0px_rgba(30,41,59,1)]; }
+        .gov-shadow { shadow-[0px_4px_20px_rgba(0,0,0,0.08)]; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e3a8a; }
     </style>
 </head>
-<body class="min-h-screen p-4 md:p-10 flex flex-col items-center">
+<body class="min-h-screen flex flex-col items-center py-10 px-4">
 
-    <header class="text-center mb-10 w-full">
-        <h1 class="text-4xl md:text-5xl font-black text-slate-900 border-b-8 border-slate-900 inline-block pb-2 uppercase italic tracking-tighter">
-            ระบบส่งเอกสาร ปพ.5
+    <header class="text-center mb-12 w-full max-w-5xl border-b-2 border-slate-300 pb-6">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-[#1e3a8a] tracking-tight mb-2">
+            ระบบบริหารจัดการเอกสารผลการเรียน (ปพ.5) ออนไลน์
         </h1>
-        <div class="mt-6 flex flex-col items-center gap-2">
-            <div class="bg-slate-900 text-white px-8 py-2 text-sm font-bold tracking-[0.3em]">
-                ปีการศึกษา 2569
-            </div>
-            
-            <div class="mt-4 bg-white border-4 border-red-600 p-5 shadow-[6px_6px_0px_0px_rgba(220,38,38,1)]">
-                <p class="text-red-600 text-[10px] font-black uppercase mb-1 tracking-widest">ระยะเวลาที่เหลือก่อนปิดระบบอัตโนมัติ</p>
-                <div id="countdown" class="text-2xl md:text-4xl font-black text-slate-800 tabular-nums tracking-tighter">
-                    กำลังคำนวณเวลา...
+        <p class="text-lg font-semibold text-slate-500 uppercase tracking-widest">
+            งานทะเบียนและวัดผล ปีการศึกษา 2569
+        </p>
+
+        <div class="mt-8 inline-block bg-[#1e3a8a] text-white p-4 border-l-8 border-red-500 shadow-md">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="text-left border-r border-white/20 pr-6">
+                    <p class="text-[10px] font-bold opacity-70 uppercase mb-1">สถานะการรับเอกสาร</p>
+                    <div id="countdown" class="text-2xl font-bold tabular-nums">00 วัน 00 ชม. 00 น. 00 วิ.</div>
                 </div>
-                <div class="flex justify-between text-[11px] font-bold text-slate-500 mt-2 border-t border-slate-100 pt-2">
-                    <span>เปิด: 3 มี.ค. 69</span>
-                    <span class="text-red-600 font-black">ปิด: 11 มี.ค. 69 (15:00 น.)</span>
+                <div class="text-left text-xs space-y-1">
+                    <p>● <span class="opacity-70">เปิดระบบ:</span> 3 มีนาคม 2569 (08:30 น.)</p>
+                    <p>● <span class="text-red-300 font-bold">ปิดระบบ: 11 มีนาคม 2569 (15:00 น.)</span></p>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-0 border-[6px] border-slate-900 bg-white shadow-[16px_16px_0px_0px_rgba(30,41,59,1)]">
+    <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        <section class="lg:col-span-5 bg-slate-50 p-8 md:p-12 border-b-[6px] lg:border-b-0 lg:border-r-[6px] border-slate-900">
-            <div class="mb-12">
-                <h2 class="text-3xl font-black text-red-600 mb-8 flex items-center gap-3">
-                    <span class="bg-red-600 text-white px-2 py-1 italic">!</span>
-                    คำเตือนสำคัญ
+        <section class="lg:col-span-4 space-y-6">
+            <div class="bg-white border-t-4 border-red-600 p-8 shadow-sm">
+                <h2 class="text-xl font-bold text-red-600 mb-6 flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"/></svg>
+                    ประกาศและคำเตือน
                 </h2>
-                <div class="space-y-8 text-slate-800">
-                    <div class="border-l-8 border-red-600 pl-5">
-                        <p class="text-base font-black uppercase">1. ตรวจสอบรหัสครู</p>
-                        <p class="text-sm text-slate-600 mt-1 font-medium leading-relaxed">หากระบุรหัสผิด ระบบจะไม่บันทึกไฟล์เข้าสู่ฐานข้อมูลในชื่อของคุณ</p>
+                <div class="space-y-5 text-sm leading-relaxed">
+                    <div class="group">
+                        <p class="font-bold text-slate-800 italic underline mb-1">๑. การตรวจสอบข้อมูล:</p>
+                        <p class="text-slate-600">กรุณาตรวจสอบรหัสประจำตัวครูให้ถูกต้องก่อนการส่ง หากข้อมูลผิดพลาดจะไม่สามารถแก้ไขได้ผ่านระบบนี้</p>
                     </div>
-                    <div class="border-l-8 border-red-600 pl-5">
-                        <p class="text-base font-black uppercase">2. ข้อจำกัดจำนวนไฟล์</p>
-                        <p class="text-sm text-slate-600 mt-1 font-medium leading-relaxed">อัปโหลดได้สูงสุด 50 ไฟล์ต่อครั้ง หากมีวิชามากกว่านี้ให้แยกส่งเป็นรอบ</p>
+                    <div class="group">
+                        <p class="font-bold text-slate-800 italic underline mb-1">๒. รูปแบบไฟล์เอกสาร:</p>
+                        <p class="text-slate-600 font-bold text-red-700 underline underline-offset-4 font-black text-red-600 uppercase tracking-tighter italic">ระบบรองรับเฉพาะไฟล์ .PDF และ .XLSX (Excel) เท่านั้น</p>
                     </div>
-                    <div class="border-l-8 border-red-600 pl-5">
-                        <p class="text-base font-black uppercase text-red-600">3. นามสกุลไฟล์</p>
-                        <p class="text-sm font-bold text-slate-800 mt-1">ต้องเป็นไฟล์ .PDF หรือ .XLSX (Excel) เท่านั้น</p>
-                    </div>
-                    <div class="border-l-8 border-red-600 pl-5">
-                        <p class="text-base font-black uppercase">4. การปิดระบบ</p>
-                        <p class="text-sm text-slate-600 mt-1 font-medium leading-relaxed">ระบบจะล็อกอัตโนมัติในวันที่ 11 มี.ค. เวลา 15:00 น. โดยไม่มีข้อยกเว้น</p>
+                    <div class="group">
+                        <p class="font-bold text-slate-800 italic underline mb-1">๓. ปริมาณการนำเข้า:</p>
+                        <p class="text-slate-600">จำกัดการนำเข้าข้อมูลสูงสุดไม่เกิน ๕๐ ไฟล์ต่อหนึ่งรอบการส่ง</p>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-slate-900 p-8 text-white">
-                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-4">ช่องทางติดต่อเจ้าหน้าที่</p>
-                <p class="font-black text-2xl tracking-tight">นายสมชาย ใจดี</p>
-                <p class="text-sm text-slate-400 mt-1 font-medium">ฝ่ายบริหารวิชาการและงานทะเบียน</p>
-                <div class="mt-6 pt-6 border-t border-slate-700 flex flex-col gap-1">
-                    <p class="text-[10px] text-slate-500 uppercase font-bold">ผู้พัฒนาระบบ</p>
-                    <p class="text-sm font-black text-blue-400 underline underline-offset-4">[ชื่อ-นามสกุล ของคุณ]</p>
+            <div class="bg-[#1e293b] p-8 text-white">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">เจ้าหน้าที่ผู้รับผิดชอบระบบ</p>
+                <div class="space-y-1">
+                    <p class="text-lg font-bold">นายสมชาย ใจดี</p>
+                    <p class="text-xs text-slate-400">ตำแหน่ง เจ้าพนักงานธุรการชำนาญงาน</p>
+                    <p class="text-xs text-slate-400 leading-6">งานทะเบียนและวัดผล กลุ่มบริหารวิชาการ</p>
+                </div>
+                <div class="mt-6 pt-6 border-t border-slate-700">
+                    <p class="text-[9px] text-slate-500 font-bold uppercase mb-2">ผู้พัฒนาและดูแลระบบ</p>
+                    <p class="text-sm font-bold text-blue-400 italic">[ชื่อ-นามสกุล ของคุณ]</p>
                 </div>
             </div>
         </section>
 
-        <section class="lg:col-span-7 p-8 md:p-14 bg-white">
-            <form id="uploadForm" class="space-y-10">
-                <div>
-                    <label class="block text-xs font-black text-slate-400 uppercase tracking-[0.4em] mb-4">Identity Verification</label>
-                    <input type="text" id="teacherId" placeholder="กรอกรหัสประจำตัวครู (ตัวเลขเท่านั้น)" required
-                        class="w-full px-6 py-5 bg-slate-100 border-4 border-slate-900 outline-none focus:bg-white text-2xl font-black text-slate-800 placeholder:text-slate-300 transition-colors">
+        <section class="lg:col-span-8 bg-white border border-slate-200 p-8 md:p-12 shadow-sm">
+            <form id="uploadForm" class="space-y-8">
+                <div class="border-b border-slate-100 pb-6">
+                    <label class="block text-sm font-bold text-slate-700 mb-3">รหัสประจำตัวข้าราชการ / รหัสประจำตัวครู</label>
+                    <input type="text" id="teacherId" placeholder="ระบุรหัส ๑๐ หรือ ๑๓ หลัก" required
+                        class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-[#1e3a8a] focus:bg-white outline-none font-bold text-lg text-[#1e3a8a] placeholder:font-normal placeholder:text-slate-400">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-black text-slate-400 uppercase tracking-[0.4em] mb-4">Upload Section (Limit 50)</label>
-                    <div class="relative border-4 border-dashed border-slate-300 p-12 hover:border-slate-900 hover:bg-slate-50 transition-all text-center cursor-pointer group">
+                    <label class="block text-sm font-bold text-slate-700 mb-3">รายการเอกสาร ปพ.๕ ที่ต้องการส่ง (สูงสุด ๕๐ ไฟล์)</label>
+                    <div class="relative border-2 border-dashed border-slate-300 p-12 hover:border-[#1e3a8a] hover:bg-slate-50 transition-all text-center cursor-pointer group">
                         <input type="file" id="fileInput" multiple accept=".pdf,.xlsx,.xls" class="absolute inset-0 opacity-0 cursor-pointer">
-                        <div class="bg-slate-900 w-16 h-16 flex items-center justify-center mx-auto text-white mb-6 group-hover:scale-110 transition-transform">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="4" stroke-linecap="round"/></svg>
-                        </div>
-                        <p class="text-xl font-black text-slate-900 uppercase italic tracking-tighter">เพิ่มไฟล์เอกสาร ปพ.5</p>
-                        <p class="text-xs text-slate-400 mt-2 font-bold uppercase tracking-widest">Click or Drag & Drop</p>
+                        <svg class="w-12 h-12 mx-auto text-slate-300 group-hover:text-[#1e3a8a] mb-4 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <p class="text-lg font-bold text-slate-700">เลือกไฟล์จากอุปกรณ์ หรือ ลากวางที่นี่</p>
+                        <p class="text-xs text-slate-400 mt-2 font-medium">จำกัดขนาดไฟล์ไม่เกิน ๒๐ MB ต่อไฟล์</p>
                     </div>
                 </div>
 
-                <div id="fileList" class="custom-scrollbar space-y-3 max-h-64 overflow-y-auto min-h-[80px] border-y-4 border-slate-50 py-4">
+                <div id="fileList" class="custom-scrollbar space-y-2 max-h-60 overflow-y-auto min-h-[40px] border border-slate-100 p-2 bg-slate-50/50">
                     </div>
 
                 <div class="pt-4">
                     <button type="submit" id="submitBtn" 
-                        class="w-full bg-slate-900 hover:bg-blue-600 text-white font-black py-7 shadow-[10px_10px_0px_0px_rgba(30,41,59,0.2)] hover:shadow-none transition-all transform active:translate-x-1 active:translate-y-1 text-2xl tracking-widest uppercase italic">
-                        <span id="btnText">กดยืนยันการส่งข้อมูล</span>
+                        class="w-full bg-[#1e3a8a] hover:bg-[#162d6b] text-white font-bold py-5 shadow-lg flex items-center justify-center gap-3 text-xl transition-all active:translate-y-1">
+                        <span id="btnText">ยืนยันการนำเข้าข้อมูลสู่ระบบ</span>
                     </button>
-                    <p id="statusMsg" class="text-center text-xs mt-6 font-black uppercase tracking-widest"></p>
+                    <p id="statusMsg" class="text-center text-sm mt-4 font-bold"></p>
                 </div>
             </form>
         </section>
+
     </main>
+
+    <footer class="mt-12 text-slate-400 text-[10px] font-bold uppercase tracking-widest text-center">
+        ระบบสารสนเทศทะเบียนนักเรียน ๑.๐ © ๒๕๖๙ สงวนลิขสิทธิ์
+    </footer>
 
     <script>
         // ระบบนับถอยหลังถึง 11 มี.ค. 2569 เวลา 15:00 น.
@@ -124,33 +125,30 @@
             const targetDate = new Date("March 11, 2026 15:00:00").getTime();
             const now = new Date().getTime();
             const distance = targetDate - now;
-
             const countdownEl = document.getElementById("countdown");
             const btn = document.getElementById("submitBtn");
 
             if (distance < 0) {
-                countdownEl.innerHTML = "สิ้นสุดระยะเวลาส่งเอกสาร";
-                countdownEl.classList.replace("text-slate-800", "text-red-600");
+                countdownEl.innerHTML = "สิ้นสุดระยะเวลารับเอกสาร";
+                countdownEl.classList.add("text-red-400");
                 btn.disabled = true;
-                btn.classList.replace("bg-slate-900", "bg-slate-300");
-                btn.style.boxShadow = "none";
-                document.getElementById("btnText").innerText = "ปิดระบบแล้ว";
+                btn.classList.replace("bg-[#1e3a8a]", "bg-slate-300");
+                document.getElementById("btnText").innerText = "ระบบปิดรับเอกสารแล้ว";
                 return;
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // แสดงผลแบบภาษาไทยตามโจทย์
-            countdownEl.innerHTML = 
-                `${days} วัน ${hours} ชม. ${minutes} น. ${seconds} วิ.`;
+            // ใช้เลขไทยหรือเลขอารบิกตามความต้องการ (ในที่นี้ใช้เลขอารบิกเพื่อให้อ่านง่ายสากล)
+            countdownEl.innerHTML = `${d} วัน ${h} ชม. ${m} น. ${s} วิ.`;
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // ระบบจัดการไฟล์ (รองรับ 50 ไฟล์)
+        // ระบบจัดการไฟล์
         const fileInput = document.getElementById('fileInput');
         const fileListContainer = document.getElementById('fileList');
         const uploadForm = document.getElementById('uploadForm');
@@ -159,7 +157,7 @@
         fileInput.addEventListener('change', (e) => {
             const newFiles = Array.from(e.target.files);
             if (selectedFiles.length + newFiles.length > 50) {
-                alert("คำเตือน: ส่งได้สูงสุดครั้งละ 50 ไฟล์เท่านั้น");
+                alert("จำกัดจำนวนไฟล์ไม่เกิน ๕๐ ไฟล์ต่อรอบการส่ง");
                 return;
             }
             selectedFiles = [...selectedFiles, ...newFiles];
@@ -170,19 +168,19 @@
         function renderFiles() {
             fileListContainer.innerHTML = '';
             if (selectedFiles.length === 0) {
-                fileListContainer.innerHTML = '<p class="text-center text-xs text-slate-300 py-10 font-black italic uppercase tracking-widest">-- ยังไม่มีไฟล์ที่ถูกเลือก --</p>';
+                fileListContainer.innerHTML = '<p class="text-center text-xs text-slate-300 py-6 italic">ไม่มีไฟล์ที่เลือก</p>';
                 return;
             }
 
             selectedFiles.forEach((file, index) => {
                 const item = document.createElement('div');
-                item.className = "flex items-center justify-between p-4 bg-slate-50 border-4 border-slate-900 text-xs font-black animate-fadeIn";
+                item.className = "flex items-center justify-between p-3 bg-white border border-slate-200 text-xs font-bold shadow-sm";
                 item.innerHTML = `
-                    <div class="flex items-center gap-4 truncate pr-4">
-                        <span class="bg-slate-900 text-white px-3 py-1 text-[10px] uppercase font-black italic tracking-tighter">${file.name.split('.').pop()}</span>
-                        <span class="truncate text-slate-800 uppercase tracking-tighter">${file.name}</span>
+                    <div class="flex items-center gap-3 truncate pr-4">
+                        <span class="bg-[#1e3a8a] text-white px-2 py-0.5 text-[9px] uppercase font-bold">${file.name.split('.').pop()}</span>
+                        <span class="truncate text-slate-700">${file.name}</span>
                     </div>
-                    <button type="button" onclick="removeFile(${index})" class="text-red-600 hover:bg-red-600 hover:text-white px-3 py-1 border-2 border-red-600 transition-colors font-black">ลบออก</button>
+                    <button type="button" onclick="removeFile(${index})" class="text-red-600 hover:text-red-800 font-bold px-2 border-l border-slate-100">ลบออก</button>
                 `;
                 fileListContainer.appendChild(item);
             });
@@ -193,29 +191,27 @@
             renderFiles();
         };
 
-        // ฟังก์ชันจำลองการส่งข้อมูล
         uploadForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            if (selectedFiles.length === 0) return alert("กรุณาเลือกไฟล์ก่อนกดส่ง");
+            if (selectedFiles.length === 0) return alert("กรุณาเลือกไฟล์ก่อนนำเข้าข้อมูล");
 
             const btn = document.getElementById('submitBtn');
             const btnText = document.getElementById('btnText');
             const statusMsg = document.getElementById('statusMsg');
 
             btn.disabled = true;
-            btnText.innerText = "กำลังประมวลผลข้อมูล...";
+            btnText.innerText = "กำลังนำเข้าข้อมูลสู่ระบบ...";
             
             setTimeout(() => {
-                statusMsg.innerText = "✓ ส่งข้อมูลสำเร็จแล้วจำนวน " + selectedFiles.length + " ไฟล์";
-                statusMsg.className = "text-center text-sm mt-6 font-black text-green-600 border-2 border-green-600 py-2 inline-block px-4";
-                btnText.innerText = "กดยืนยันการส่งข้อมูล";
+                statusMsg.innerText = "นำเข้าข้อมูลสำเร็จจำนวน " + selectedFiles.length + " รายการ";
+                statusMsg.className = "text-center text-sm mt-4 font-bold text-green-700 bg-green-50 border border-green-200 py-3";
+                btnText.innerText = "ยืนยันการนำเข้าข้อมูลสู่ระบบ";
                 btn.disabled = false;
                 
-                // ล้างค่าหลังจากส่งสำเร็จ
                 selectedFiles = [];
                 renderFiles();
                 document.getElementById('teacherId').value = '';
-            }, 2500);
+            }, 2000);
         });
 
         renderFiles();
