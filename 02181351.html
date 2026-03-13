@@ -3,109 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ตรวจสอบคะแนน - 02181331</title>
+    <title>ตรวจสอบคะแนนและเกรด - 02181331</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Sarabun', sans-serif; }
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.95);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-green-50 to-emerald-100 min-h-screen">
+<body class="bg-gradient-to-br from-emerald-50 to-teal-100 min-h-screen">
 
-    <div class="max-w-md mx-auto px-4 py-12">
-        <div class="text-center mb-10">
-            <div class="bg-green-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span class="text-3xl">🌱</span>
+    <div class="max-w-md mx-auto px-4 py-10">
+        <div class="text-center mb-8">
+            <div class="inline-block p-3 bg-white rounded-2xl shadow-sm mb-4">
+                <span class="text-4xl">🌾</span>
             </div>
-            <h1 class="text-2xl font-bold text-gray-800">ระบบตรวจสอบคะแนนเก็บ</h1>
-            <p class="text-gray-600 mt-1">วิชาการสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา</p>
-            <p class="text-sm font-semibold text-green-700 mt-1">รหัสวิชา 02181331</p>
+            <h1 class="text-2xl font-bold text-gray-800">ประกาศผลคะแนนและเกรด</h1>
+            <p class="text-gray-600">การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา</p>
+            <span class="inline-block mt-2 px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full">วิชา 02181331</span>
         </div>
 
-        <div class="glass-morphism rounded-2xl shadow-xl p-8 mb-6 border border-green-200">
-            <div class="mb-6">
-                <label for="studentID" class="block text-sm font-medium text-gray-700 mb-2">กรุณากรอกรหัสนิสิตของคุณ</label>
-                <input type="text" id="studentID" placeholder="เช่น 6512345678" 
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none text-center text-lg tracking-widest transition">
+        <div class="glass-card rounded-3xl shadow-xl p-8 mb-6 border border-emerald-100">
+            <div class="mb-5">
+                <label class="block text-sm font-semibold text-gray-500 mb-2 ml-1">รหัสนิสิตของคุณ</label>
+                <input type="text" id="studentID" placeholder="กรอกรหัส 10 หลัก" 
+                    class="w-full px-5 py-4 border-2 border-emerald-50 rounded-2xl focus:ring-4 focus:ring-emerald-200 focus:border-emerald-500 outline-none text-center text-xl font-bold tracking-widest transition-all">
             </div>
-            <button onclick="checkScore()" 
-                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-all transform active:scale-95 shadow-md">
-                🔍 ตรวจสอบคะแนน
+            <button onclick="checkResult()" 
+                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-2xl transition-all transform active:scale-95 shadow-lg shadow-emerald-200">
+                🔍 ตรวจสอบข้อมูล
             </button>
         </div>
 
-        <div id="resultArea" class="hidden animate-fade-in">
-            <div class="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-green-500">
-                <h3 class="text-lg font-bold text-gray-800 border-b pb-3 mb-4 text-center">ผลการเรียนของท่าน</h3>
+        <div id="resultArea" class="hidden">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-white">
+                <div class="bg-emerald-600 px-6 py-4 text-white text-center">
+                    <p class="text-xs uppercase tracking-wider opacity-80">รหัสนิสิต</p>
+                    <p id="resID" class="text-xl font-bold">-</p>
+                </div>
                 
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
-                        <span class="text-gray-600">รหัสนิสิต:</span>
-                        <span id="resID" class="font-bold text-gray-800"></span>
-                    </div>
-                    
+                <div class="p-6 space-y-6">
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-green-50 p-4 rounded-xl text-center">
-                            <p class="text-xs text-green-600 font-bold mb-1">การเข้าชั้นเรียน</p>
-                            <p class="text-2xl font-bold text-green-800"><span id="resAttendance">0</span>/10</p>
+                        <div class="text-center p-3 bg-gray-50 rounded-2xl border border-gray-100">
+                            <p class="text-xs text-gray-500 font-bold mb-1">เข้าเรียน (10)</p>
+                            <p id="resAttendance" class="text-xl font-bold text-gray-800">0</p>
                         </div>
-                        <div class="bg-blue-50 p-4 rounded-xl text-center">
-                            <p class="text-xs text-blue-600 font-bold mb-1">งานมอบหมาย</p>
-                            <p class="text-2xl font-bold text-blue-800"><span id="resAssignment">0</span>/30</p>
+                        <div class="text-center p-3 bg-gray-50 rounded-2xl border border-gray-100">
+                            <p class="text-xs text-gray-500 font-bold mb-1">งาน (30)</p>
+                            <p id="resAssignment" class="text-xl font-bold text-gray-800">0</p>
                         </div>
                     </div>
 
-                    <div class="bg-emerald-600 text-white p-5 rounded-xl text-center shadow-inner">
-                        <p class="text-sm opacity-90 mb-1">คะแนนรวมทั้งหมด</p>
-                        <p class="text-4xl font-bold"><span id="resTotal">0</span> <span class="text-xl">/ 40</span></p>
+                    <div class="flex flex-col items-center justify-center p-6 bg-emerald-50 rounded-3xl border border-emerald-100">
+                        <p class="text-sm font-bold text-emerald-700 mb-1">คะแนนรวมทั้งหมด (40)</p>
+                        <p id="resTotal" class="text-5xl font-black text-emerald-800 mb-3">0</p>
+                        <div class="w-full border-t border-emerald-200 my-2"></div>
+                        <p class="text-sm text-emerald-600 mt-2">เกรดที่คาดว่าจะได้รับ:</p>
+                        <p id="resGrade" class="text-6xl font-black text-emerald-600">?</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="errorArea" class="hidden mt-4 p-4 bg-red-100 text-red-700 rounded-xl text-center border border-red-200">
-            ⚠️ ไม่พบข้อมูลรหัสนิสิตนี้ในระบบ
+        <div id="errorArea" class="hidden mt-4 p-4 bg-red-50 border border-red-100 text-red-600 rounded-2xl text-center font-medium">
+            ❌ ไม่พบข้อมูลรหัสนิสิตนี้ กรุณาตรวจสอบอีกครั้ง
         </div>
 
         <p class="text-center text-gray-400 text-xs mt-10">
-            © 2026 ภาควิชาการสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา
+            ระบบจัดทำขึ้นเพื่อแจ้งคะแนนเบื้องต้นเท่านั้น<br>
+            ติดต่อสอบถามเพิ่มเติมได้ที่ห้องพักอาจารย์
         </p>
     </div>
 
     <script>
-        // ข้อมูลสมมติ (ในอนาคตสามารถดึงจาก Google Sheets หรือ Database ได้)
+        // ฐานข้อมูลนิสิต (เพิ่มเกณฑ์คะแนนเต็ม 100 เพื่อการตัดเกรดที่แม่นยำ หรือปรับเกณฑ์ตามคะแนนเก็บ)
+        // หมายเหตุ: ในที่นี้ผมคำนวณเกรดจากคะแนนดิบ 40 คะแนนเป็นตัวอย่าง (คูณ 2.5 ให้เป็นฐาน 100)
         const scoreData = {
-            "6510000001": { attendance: 10, assignment: 28, total: 38 },
-            "6510000002": { attendance: 9, assignment: 25, total: 34 },
-            "6510000003": { attendance: 10, assignment: 30, total: 40 }
+            "6720600494": { attendance: 10, assignment: 29, total: 39 },
+            "6510000001": { attendance: 9, assignment: 20, total: 29 },
+            "6510000002": { attendance: 10, assignment: 15, total: 25 }
         };
 
-        function checkScore() {
+        function calculateGrade(score) {
+            // ปรับคะแนนจากฐาน 40 เป็นฐาน 100 เพื่อตัดเกรดง่ายๆ
+            const fullScore = (score / 40) * 100;
+            
+            if (fullScore >= 80) return "A";
+            if (fullScore >= 75) return "B+";
+            if (fullScore >= 70) return "B";
+            if (fullScore >= 65) return "C+";
+            if (fullScore >= 60) return "C";
+            if (fullScore >= 55) return "D+";
+            if (fullScore >= 50) return "D";
+            return "F";
+        }
+
+        function checkResult() {
             const inputID = document.getElementById('studentID').value.trim();
             const resultArea = document.getElementById('resultArea');
             const errorArea = document.getElementById('errorArea');
 
             if (scoreData[inputID]) {
-                // แสดงผล
+                const data = scoreData[inputID];
                 document.getElementById('resID').innerText = inputID;
-                document.getElementById('resAttendance').innerText = scoreData[inputID].attendance;
-                document.getElementById('resAssignment').innerText = scoreData[inputID].assignment;
-                document.getElementById('resTotal').innerText = scoreData[inputID].total;
+                document.getElementById('resAttendance').innerText = data.attendance;
+                document.getElementById('resAssignment').innerText = data.assignment;
+                document.getElementById('resTotal').innerText = data.total;
+                document.getElementById('resGrade').innerText = calculateGrade(data.total);
                 
                 resultArea.classList.remove('hidden');
                 errorArea.classList.add('hidden');
             } else {
-                // แจ้งเตือนไม่พบข้อมูล
                 resultArea.classList.add('hidden');
                 errorArea.classList.remove('hidden');
             }
         }
     </script>
-
 </body>
 </html>
