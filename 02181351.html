@@ -3,84 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบเช็คคะแนน 02181331</title>
+    <title>ระบบตรวจสอบคะแนน 02181331</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Sarabun', sans-serif; }
-        .grade-shine {
-            text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-        }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen text-slate-900">
+<body class="bg-gray-100 min-h-screen py-10">
 
-    <div class="max-w-md mx-auto px-4 py-8">
-        <div class="text-center mb-6">
-            <h1 class="text-2xl font-bold text-emerald-800">02181331</h1>
-            <p class="text-slate-500 text-sm">การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา</p>
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="bg-white rounded-t-3xl p-8 border-b-4 border-green-600 shadow-sm text-center md:text-left">
+            <h1 class="text-2xl font-bold text-gray-800">📊 ผลคะแนนรายบุคคล</h1>
+            <p class="text-gray-500">วิชา 02181331 การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา</p>
         </div>
 
-        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 mb-6">
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Student ID</label>
-            <input type="text" id="studentID" placeholder="กรอกรหัสนิสิต" 
-                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-emerald-500 outline-none text-center text-lg font-semibold transition-all">
+        <div class="bg-white p-6 shadow-sm flex flex-col md:flex-row items-end gap-4">
+            <div class="flex-grow w-full">
+                <label class="block text-sm font-bold text-gray-600 mb-2">ระบุรหัสนิสิตเพื่อค้นหา</label>
+                <input type="text" id="studentID" placeholder="เช่น 6720600494" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none transition-all">
+            </div>
             <button onclick="checkScore()" 
-                class="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-2xl transition-all shadow-md active:scale-95">
-                ตรวจสอบคะแนน
+                class="w-full md:w-40 bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-lg transition-all shadow-md">
+                ค้นหาข้อมูล
             </button>
         </div>
 
-        <div id="resultArea" class="hidden animate-in fade-in duration-500">
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-emerald-100">
-                <div class="bg-emerald-600 p-4 text-center text-white">
-                    <span class="text-xs opacity-80 uppercase">Student ID:</span>
-                    <span id="resID" class="ml-2 font-bold text-lg"></span>
-                </div>
-
-                <div class="p-6">
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl">
-                            <span class="text-slate-600">📍 คะแนนเข้าเรียน</span>
-                            <span class="font-bold"><span id="resAtt">0</span> / 10</span>
-                        </div>
-                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl">
-                            <span class="text-slate-600">📝 คะแนนเก็บ (งาน)</span>
-                            <span class="font-bold"><span id="resWork">0</span> / 40</span>
-                        </div>
-                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl border-l-4 border-amber-400">
-                            <span class="text-slate-600 font-semibold">✍️ คะแนนสอบ</span>
-                            <span class="font-bold text-amber-600"><span id="resExam">0</span> / 50</span>
-                        </div>
-                    </div>
-
-                    <div class="text-center bg-emerald-50 rounded-2xl p-6 border border-emerald-100">
-                        <p class="text-xs text-emerald-600 font-bold uppercase mb-1">คะแนนรวมทั้งหมด</p>
-                        <div class="text-4xl font-black text-emerald-800 mb-4">
-                            <span id="resTotal">0</span> <span class="text-xl text-emerald-600">/ 100</span>
-                        </div>
-                        <div class="h-px bg-emerald-200 w-full mb-4"></div>
-                        <p class="text-xs text-slate-500 mb-1">เกรดที่ได้รับ</p>
-                        <p id="resGrade" class="text-6xl font-black text-emerald-600 grade-shine">?</p>
-                    </div>
-                </div>
+        <div id="resultArea" class="hidden mt-6 overflow-hidden">
+            <div class="bg-white rounded-xl shadow-lg overflow-x-auto">
+                <table class="w-full text-center border-collapse">
+                    <thead>
+                        <tr class="bg-gray-800 text-white">
+                            <th class="px-4 py-4 font-medium border-r border-gray-700">รหัสนิสิต</th>
+                            <th class="px-4 py-4 font-medium border-r border-gray-700">เข้าเรียน (10)</th>
+                            <th class="px-4 py-4 font-medium border-r border-gray-700">คะแนนเก็บ (40)</th>
+                            <th class="px-4 py-4 font-medium border-r border-gray-700">คะแนนสอบ (50)</th>
+                            <th class="px-4 py-4 font-medium border-r border-gray-700">รวม (100)</th>
+                            <th class="px-4 py-4 font-bold bg-green-700">เกรด</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-lg">
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td id="resID" class="px-4 py-6 border-b font-semibold text-gray-700">-</td>
+                            <td id="resAtt" class="px-4 py-6 border-b text-blue-600">-</td>
+                            <td id="resWork" class="px-4 py-6 border-b text-blue-600">-</td>
+                            <td id="resExam" class="px-4 py-6 border-b text-orange-600">-</td>
+                            <td id="resTotal" class="px-4 py-6 border-b font-bold text-gray-800">-</td>
+                            <td id="resGrade" class="px-4 py-6 border-b font-black text-2xl text-green-700">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4 text-right px-2">
+                <button onclick="window.print()" class="text-sm text-gray-500 hover:text-green-600 underline">
+                    🖨️ พิมพ์ใบแจ้งคะแนน
+                </button>
             </div>
         </div>
 
-        <div id="errorArea" class="hidden mt-4 p-4 bg-red-50 text-red-500 rounded-2xl text-center border border-red-100 text-sm font-semibold">
-            ไม่พบรหัสนิสิตนี้ในระบบข้อมูล
+        <div id="errorArea" class="hidden mt-6 p-4 bg-red-100 text-red-700 rounded-lg text-center border border-red-200">
+            ❌ ไม่พบข้อมูลรหัสนิสิตนี้ในระบบ กรุณาตรวจสอบเลขรหัสอีกครั้ง
         </div>
     </div>
 
     <script>
-        // ข้อมูลคะแนน (ปรับปรุงใหม่ตามคำขอ)
+        // ข้อมูลคะแนน (Database)
         const scoreData = {
-            "6720600494": { att: 10, work: 38, exam: 45 }, // คะแนนเต็ม 100 (10+38+45 = 93)
-            "6510000001": { att: 9, work: 30, exam: 35 },
-            "6510000002": { att: 8, work: 25, exam: 20 }
+            "6720600494": { att: 10, work: 35, exam: 42 },
+            "6510000001": { att: 9, work: 32, exam: 30 }
         };
 
-        function calculateGrade(score) {
+        function getGrade(score) {
             if (score >= 80) return "A";
             if (score >= 75) return "B+";
             if (score >= 70) return "B";
@@ -92,20 +86,20 @@
         }
 
         function checkScore() {
-            const id = document.getElementById('studentID').value.trim();
+            const input = document.getElementById('studentID').value.trim();
             const resultArea = document.getElementById('resultArea');
             const errorArea = document.getElementById('errorArea');
 
-            if (scoreData[id]) {
-                const data = scoreData[id];
+            if (scoreData[input]) {
+                const data = scoreData[input];
                 const total = data.att + data.work + data.exam;
 
-                document.getElementById('resID').innerText = id;
+                document.getElementById('resID').innerText = input;
                 document.getElementById('resAtt').innerText = data.att;
                 document.getElementById('resWork').innerText = data.work;
                 document.getElementById('resExam').innerText = data.exam;
                 document.getElementById('resTotal').innerText = total;
-                document.getElementById('resGrade').innerText = calculateGrade(total);
+                document.getElementById('resGrade').innerText = getGrade(total);
 
                 resultArea.classList.remove('hidden');
                 errorArea.classList.add('hidden');
