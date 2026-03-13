@@ -10,90 +10,131 @@
         body { font-family: 'Sarabun', sans-serif; background-color: #ffffff; color: #1e293b; }
         @media print { .no-print { display: none; } }
         .official-table th, .official-table td { border: 1px solid #cbd5e1; }
+        .pulse-animation { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
     </style>
 </head>
 <body class="min-h-screen">
 
+    <div class="bg-amber-400 text-amber-950 py-2 px-4 text-center text-sm font-bold shadow-md no-print">
+        📢 ประกาศ: ขณะนี้เกรดรายวิชาอยู่ระหว่างการประมวลผล ข้อมูลอาจมีการเปลี่ยนแปลงตามความเหมาะสม
+    </div>
+
     <header class="border-b-2 border-slate-300 py-8 px-6 bg-slate-50">
-        <div class="max-w-5xl mx-auto text-center">
-            <h1 class="text-2xl font-bold text-slate-900">รายงานผลคะแนนและสิทธิ์การลงทะเบียนเรียน</h1>
-            <h2 class="text-lg font-semibold text-slate-700">รายวิชา 02181331 การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา</h2>
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="text-left">
+                <h1 class="text-2xl font-bold text-slate-900 uppercase tracking-tight">ใบรายงานผลคะแนนรายวิชา</h1>
+                <h2 class="text-lg font-semibold text-slate-700">02181331 การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา</h2>
+            </div>
+            <div class="text-left md:text-right border-l-2 md:border-l-0 md:border-r-2 border-slate-300 pl-4 md:pl-0 md:pr-4">
+                <p class="text-sm font-bold text-slate-600">ผู้จัดการรายวิชา: <span class="text-slate-900">ผศ.ดร. สมชาย รักเกษตร</span></p>
+                <p class="text-sm text-slate-500 mt-1">วันเวลาปัจจุบัน: <span id="currentTimestamp" class="font-medium text-slate-800"></span></p>
+            </div>
         </div>
     </header>
 
     <main class="max-w-5xl mx-auto px-6 py-10">
         
-        <div class="no-print mb-10 bg-white p-6 rounded-lg border-2 border-slate-100 shadow-sm text-center">
-            <label class="font-bold text-slate-700 mr-4">รหัสนิสิต :</label>
+        <div class="no-print mb-10 bg-white p-6 rounded-lg border-2 border-slate-100 shadow-sm flex items-center justify-center gap-4">
+            <label class="font-bold text-slate-700">ระบุรหัสนิสิต :</label>
             <input type="text" id="studentID" placeholder="6720600494" 
-                class="px-4 py-2 border border-slate-300 rounded focus:ring-2 focus:ring-slate-800 outline-none font-mono">
+                class="px-4 py-2 border border-slate-300 rounded focus:ring-2 focus:ring-slate-800 outline-none font-mono text-center">
             <button onclick="checkScore()" 
-                class="ml-2 bg-slate-800 hover:bg-black text-white px-8 py-2 rounded font-bold transition">
-                ตรวจสอบข้อมูล
+                class="bg-slate-800 hover:bg-black text-white px-8 py-2 rounded font-bold transition shadow-lg">
+                ตรวจสอบผล
             </button>
         </div>
 
-        <div id="resultArea" class="hidden animate-in fade-in">
+        <div id="resultArea" class="hidden animate-in fade-in duration-500">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 p-6 bg-slate-50 border border-slate-200 rounded-xl">
-                <p><span class="font-bold">ชื่อ-นามสกุล:</span> <span id="resName"></span></p>
-                <p><span class="font-bold">รหัสนิสิต:</span> <span id="resID" class="font-mono"></span></p>
-                <p><span class="font-bold">กลุ่มเรียน:</span> <span id="resGroup"></span></p>
-                <p><span class="font-bold">ลำดับที่:</span> <span id="resNo"></span></p>
-                <p class="md:col-span-2 text-sm text-slate-500 italic">
-                    <span class="font-bold">วันที่ลงทะเบียนเรียน:</span> <span id="resRegDate"></span>
-                </p>
+            <div class="mb-8 p-6 bg-white border border-slate-200 rounded-xl shadow-sm">
+                <h3 class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">ข้อมูลประวัตินิสิต</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3">
+                    <p><span class="font-bold text-slate-600">ชื่อ-นามสกุล:</span> <span id="resName" class="ml-2 text-slate-900"></span></p>
+                    <p><span class="font-bold text-slate-600">รหัสนิสิต:</span> <span id="resID" class="ml-2 font-mono text-slate-900"></span></p>
+                    <p><span class="font-bold text-slate-600">กลุ่มเรียน:</span> <span id="resGroup" class="ml-2"></span></p>
+                    <p><span class="font-bold text-slate-600">ลำดับที่:</span> <span id="resNo" class="ml-2"></span></p>
+                    <p class="md:col-span-2 text-sm text-slate-400 mt-2 italic">
+                        <span class="font-bold">วันที่ลงทะเบียนเรียน:</span> <span id="resRegDate"></span>
+                    </p>
+                </div>
             </div>
 
             <div class="overflow-x-auto mb-8">
                 <table class="w-full border-collapse official-table">
                     <thead>
-                        <tr class="bg-slate-800 text-white text-sm">
-                            <th class="px-4 py-4 text-left">รายละเอียดการประเมิน</th>
-                            <th class="px-4 py-4 text-center">คะแนนเก็บ (70%)</th>
-                            <th class="px-4 py-4 text-center">กลางภาค (15%)</th>
-                            <th class="px-4 py-4 text-center">ปลายภาค (15%)</th>
-                            <th class="px-4 py-4 text-center bg-slate-700">รวม (100)</th>
-                            <th class="px-4 py-4 text-center bg-green-900">เกรด</th>
+                        <tr class="bg-slate-100 text-slate-700 text-sm">
+                            <th class="px-4 py-4 text-left border border-slate-300">ประเภทการประเมิน</th>
+                            <th class="px-4 py-4 text-center border border-slate-300">คะแนนเก็บ (70%)</th>
+                            <th class="px-4 py-4 text-center border border-slate-300">กลางภาค (15%)</th>
+                            <th class="px-4 py-4 text-center border border-slate-300">ปลายภาค (15%)</th>
+                            <th class="px-4 py-4 text-center border border-slate-300 bg-slate-200">รวม (100)</th>
+                            <th class="px-4 py-4 text-center border border-slate-300 bg-slate-800 text-white font-black">เกรด</th>
+                            <th class="px-4 py-4 text-center border border-slate-300 bg-slate-100 font-bold">สถานะเกรด</th>
                         </tr>
                     </thead>
                     <tbody class="text-lg">
-                        <tr>
-                            <td class="px-4 py-8 font-semibold bg-slate-50">คะแนนสะสมรายบุคคล</td>
-                            <td class="px-4 py-8 text-center" id="resWork">-</td>
-                            <td class="px-4 py-8 text-center" id="resMid">-</td>
-                            <td class="px-4 py-8 text-center" id="resFinal">-</td>
-                            <td class="px-4 py-8 text-center font-bold" id="resTotal">-</td>
-                            <td class="px-4 py-8 text-center font-black text-3xl" id="resGrade">-</td>
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-4 py-8 font-semibold border border-slate-300 bg-slate-50 text-sm">ผลประเมินรายบุคคล</td>
+                            <td class="px-4 py-8 text-center border border-slate-300" id="resWork">0</td>
+                            <td class="px-4 py-8 text-center border border-slate-300" id="resMid">0</td>
+                            <td class="px-4 py-8 text-center border border-slate-300" id="resFinal">0</td>
+                            <td class="px-4 py-8 text-center border border-slate-300 font-bold bg-slate-50" id="resTotal">0</td>
+                            <td class="px-4 py-8 text-center border border-slate-300 font-black text-4xl" id="resGrade">-</td>
+                            <td class="px-4 py-8 text-center border border-slate-300 text-sm">
+                                <span id="resStatus" class="px-3 py-1 rounded-full font-bold pulse-animation tracking-tight">
+                                    รอกลางประมวลผล
+                                </span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div id="enrollmentStatus" class="p-6 rounded-xl border-2 text-center text-lg font-bold transition-all">
+            <div id="enrollmentStatus" class="p-8 rounded-xl border-2 text-center text-xl font-bold transition-all mb-8 shadow-sm">
                 </div>
 
-            <div class="mt-8 flex justify-end no-print">
-                <button onclick="window.print()" class="text-slate-400 hover:text-slate-800 text-sm underline">
-                    พิมพ์เอกสารรายงานผล
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 no-print border-t border-slate-100 pt-6">
+                <p class="text-xs text-slate-400 italic">เอกสารฉบับนี้พิมพ์โดยระบบสารสนเทศอัตโนมัติ ข้อมูลมีความเป็นทางการระดับประกาศเบื้องต้น</p>
+                <button onclick="window.print()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2 px-6 rounded border border-slate-300 transition flex items-center gap-2">
+                    <span>🖨️ พิมพ์เอกสารรายงาน</span>
                 </button>
             </div>
         </div>
 
-        <div id="errorArea" class="hidden mt-6 p-4 bg-red-50 text-red-600 border border-red-200 rounded text-center font-bold">
-            ⚠ ไม่พบข้อมูลรหัสนิสิตในระบบ
+        <div id="errorArea" class="hidden mt-6 p-6 bg-red-50 text-red-600 border border-red-200 rounded text-center font-bold">
+            ⚠ ไม่พบข้อมูลรหัสนิสิตในระบบ (โปรดตรวจสอบรหัส 10 หลักอีกครั้ง)
         </div>
 
     </main>
 
+    <footer class="mt-20 border-t border-slate-200 py-10 text-center text-slate-400 text-[10px] uppercase tracking-[0.3em]">
+        Registration & Grade Services | Kasetsart University
+    </footer>
+
     <script>
+        // แสดงเวลาปัจจุบัน
+        function updateTime() {
+            const now = new Date();
+            const options = { 
+                day: '2-digit', month: '2-digit', year: 'numeric',
+                hour: '2-digit', minute: '2-digit', second: '2-digit',
+                hour12: false
+            };
+            document.getElementById('currentTimestamp').innerText = now.toLocaleString('th-TH', options);
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // ฐานข้อมูล (เพิ่มสถานะเกรดในฐานข้อมูลได้)
         const studentDatabase = {
             "6720600494": {
                 name: "นายเมธี ใจสุขดี",
                 group: "A1",
                 no: "31",
                 regDate: "21/11/2568 10:10:40",
-                work: 65, mid: 14, final: 13 // รวม 92 (A)
+                work: 21.15, mid: 14.77, final: 13.91,
+                gradeStatus: "In Progress" // สถานะ: ระหว่างการประมวลผล
             }
         };
 
@@ -113,31 +154,38 @@
             const resArea = document.getElementById('resultArea');
             const errArea = document.getElementById('errorArea');
             const statusBox = document.getElementById('enrollmentStatus');
+            const gradeStatusTag = document.getElementById('resStatus');
 
             if (studentDatabase[idInput]) {
                 const data = studentDatabase[idInput];
                 const total = data.work + data.mid + data.final;
                 const grade = getGrade(total);
 
-                // แสดงข้อมูลพื้นฐาน
+                // ข้อมูลนิสิต
                 document.getElementById('resName').innerText = data.name;
                 document.getElementById('resID').innerText = idInput;
                 document.getElementById('resGroup').innerText = data.group;
                 document.getElementById('resNo').innerText = data.no;
                 document.getElementById('resRegDate').innerText = data.regDate;
+                
+                // ข้อมูลคะแนน
                 document.getElementById('resWork').innerText = data.work.toFixed(1);
                 document.getElementById('resMid').innerText = data.mid.toFixed(1);
                 document.getElementById('resFinal').innerText = data.final.toFixed(1);
                 document.getElementById('resTotal').innerText = total.toFixed(1);
                 document.getElementById('resGrade').innerText = grade;
 
-                // ตรวจสอบเงื่อนไขการลงทะเบียนวิชาถัดไป
+                // อัปเดตสถานะเกรด (Tag สีเหลือง)
+                gradeStatusTag.innerText = "อยู่ระหว่างการประมวลผล";
+                gradeStatusTag.className = "px-3 py-1 rounded-full font-bold pulse-animation bg-amber-100 text-amber-700 border border-amber-200";
+
+                // ข้อความเงื่อนไขการลงทะเบียน
                 if (grade === "F") {
-                    statusBox.innerHTML = "❌ ไม่สามารถลงทะเบียนเรียนวิชา 02181332 สื่อสร้างสรรค์ทางเกษตรและสิ่งแวดล้อมได้";
-                    statusBox.className = "p-6 rounded-xl border-2 border-red-200 bg-red-50 text-red-700 text-center text-lg font-bold";
+                    statusBox.innerHTML = "ไม่สามารถลงทะเบียนเรียนวิชา 02181332 สื่อสร้างสรรค์ทางเกษตรและสิ่งแวดล้อมได้";
+                    statusBox.className = "p-8 rounded-xl border-2 border-red-200 bg-red-50 text-red-700 text-center text-lg font-bold";
                 } else {
-                    statusBox.innerHTML = "✅ สามารถลงทะเบียนเรียนวิชา 02181332 สื่อสร้างสรรค์ทางเกษตรและสิ่งแวดล้อมได้";
-                    statusBox.className = "p-6 rounded-xl border-2 border-green-200 bg-green-50 text-green-700 text-center text-lg font-bold";
+                    statusBox.innerHTML = "สามารถลงทะเบียนเรียนวิชา 02181332 สื่อสร้างสรรค์ทางเกษตรและสิ่งแวดล้อมได้";
+                    statusBox.className = "p-8 rounded-xl border-2 border-green-200 bg-green-50 text-green-700 text-center text-lg font-bold";
                 }
 
                 resArea.classList.remove('hidden');
