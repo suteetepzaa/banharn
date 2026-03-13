@@ -3,99 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประกาศคะแนนเก็บ - 02181331</title>
+    <title>ตรวจสอบคะแนน - 02181331</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Sarabun', sans-serif; }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gradient-to-br from-green-50 to-emerald-100 min-h-screen">
 
-    <header class="bg-green-700 text-white py-8 px-4 shadow-lg">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-2xl md:text-3xl font-bold mb-2">📊 ประกาศคะแนนเก็บ</h1>
-            <p class="text-green-100 text-lg">รหัสวิชา 02181331 การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา</p>
-            <p class="text-sm mt-2 opacity-80 text-green-200">ประจำภาคเรียนที่ 1/2569</p>
-        </div>
-    </header>
-
-    <main class="max-w-5xl mx-auto p-4 md:p-8">
-        
-        <div class="bg-white rounded-xl shadow-md p-6 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="w-full md:w-1/2">
-                <label for="search" class="block text-sm font-medium text-gray-700 mb-1">ค้นหารหัสนิสิต</label>
-                <input type="text" id="searchInput" onkeyup="searchStudent()" placeholder="กรอกรหัสนิสิต 10 หลัก..." 
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition">
+    <div class="max-w-md mx-auto px-4 py-12">
+        <div class="text-center mb-10">
+            <div class="bg-green-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span class="text-3xl">🌱</span>
             </div>
-            <div class="text-right flex gap-4">
-                <div class="text-center bg-green-50 px-4 py-2 rounded-lg border border-green-100">
-                    <p class="text-xs text-green-600 font-bold uppercase">คะแนนเต็ม</p>
-                    <p class="text-xl font-bold text-green-800">40</p>
+            <h1 class="text-2xl font-bold text-gray-800">ระบบตรวจสอบคะแนนเก็บ</h1>
+            <p class="text-gray-600 mt-1">วิชาการสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา</p>
+            <p class="text-sm font-semibold text-green-700 mt-1">รหัสวิชา 02181331</p>
+        </div>
+
+        <div class="glass-morphism rounded-2xl shadow-xl p-8 mb-6 border border-green-200">
+            <div class="mb-6">
+                <label for="studentID" class="block text-sm font-medium text-gray-700 mb-2">กรุณากรอกรหัสนิสิตของคุณ</label>
+                <input type="text" id="studentID" placeholder="เช่น 6512345678" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none text-center text-lg tracking-widest transition">
+            </div>
+            <button onclick="checkScore()" 
+                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition-all transform active:scale-95 shadow-md">
+                🔍 ตรวจสอบคะแนน
+            </button>
+        </div>
+
+        <div id="resultArea" class="hidden animate-fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-green-500">
+                <h3 class="text-lg font-bold text-gray-800 border-b pb-3 mb-4 text-center">ผลการเรียนของท่าน</h3>
+                
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
+                        <span class="text-gray-600">รหัสนิสิต:</span>
+                        <span id="resID" class="font-bold text-gray-800"></span>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-green-50 p-4 rounded-xl text-center">
+                            <p class="text-xs text-green-600 font-bold mb-1">การเข้าชั้นเรียน</p>
+                            <p class="text-2xl font-bold text-green-800"><span id="resAttendance">0</span>/10</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-xl text-center">
+                            <p class="text-xs text-blue-600 font-bold mb-1">งานมอบหมาย</p>
+                            <p class="text-2xl font-bold text-blue-800"><span id="resAssignment">0</span>/30</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-emerald-600 text-white p-5 rounded-xl text-center shadow-inner">
+                        <p class="text-sm opacity-90 mb-1">คะแนนรวมทั้งหมด</p>
+                        <p class="text-4xl font-bold"><span id="resTotal">0</span> <span class="text-xl">/ 40</span></p>
+                    </div>
                 </div>
-                <div class="text-center bg-blue-50 px-4 py-2 rounded-lg border border-blue-100">
-                    <p class="text-xs text-blue-600 font-bold uppercase">ค่าเฉลี่ย</p>
-                    <p class="text-xl font-bold text-blue-800">32.5</p>
-                </div>
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-md overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse" id="scoreTable">
-                    <thead>
-                        <tr class="bg-gray-100 border-b">
-                            <th class="px-6 py-4 font-semibold text-gray-600">ลำดับ</th>
-                            <th class="px-6 py-4 font-semibold text-gray-600 text-center">รหัสนิสิต</th>
-                            <th class="px-6 py-4 font-semibold text-gray-600 text-center">เข้าชั้นเรียน (10)</th>
-                            <th class="px-6 py-4 font-semibold text-gray-600 text-center">งานมอบหมาย (30)</th>
-                            <th class="px-6 py-4 font-semibold text-gray-600 text-center text-green-700">รวม (40)</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        <tr class="hover:bg-green-50 transition">
-                            <td class="px-6 py-4">1</td>
-                            <td class="px-6 py-4 text-center font-mono">65XXXXXXX1</td>
-                            <td class="px-6 py-4 text-center">10</td>
-                            <td class="px-6 py-4 text-center">28</td>
-                            <td class="px-6 py-4 text-center font-bold text-green-600">38</td>
-                        </tr>
-                        <tr class="hover:bg-green-50 transition">
-                            <td class="px-6 py-4">2</td>
-                            <td class="px-6 py-4 text-center font-mono">65XXXXXXX2</td>
-                            <td class="px-6 py-4 text-center">9</td>
-                            <td class="px-6 py-4 text-center">25</td>
-                            <td class="px-6 py-4 text-center font-bold text-green-600">34</td>
-                        </tr>
-                        </tbody>
-                </table>
-            </div>
+        <div id="errorArea" class="hidden mt-4 p-4 bg-red-100 text-red-700 rounded-xl text-center border border-red-200">
+            ⚠️ ไม่พบข้อมูลรหัสนิสิตนี้ในระบบ
         </div>
 
-        <p class="mt-6 text-center text-gray-500 text-sm">
-            * หากมีข้อสงสัยเกี่ยวกับคะแนน กรุณาติดต่ออาจารย์ผู้สอนภายในวันที่ 20 มีนาคม 2569
+        <p class="text-center text-gray-400 text-xs mt-10">
+            © 2026 ภาควิชาการสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา
         </p>
-    </main>
+    </div>
 
     <script>
-        function searchStudent() {
-            let input = document.getElementById('searchInput');
-            let filter = input.value.toUpperCase();
-            let table = document.getElementById('scoreTable');
-            let tr = table.getElementsByTagName('tr');
+        // ข้อมูลสมมติ (ในอนาคตสามารถดึงจาก Google Sheets หรือ Database ได้)
+        const scoreData = {
+            "6510000001": { attendance: 10, assignment: 28, total: 38 },
+            "6510000002": { attendance: 9, assignment: 25, total: 34 },
+            "6510000003": { attendance: 10, assignment: 30, total: 40 }
+        };
 
-            for (let i = 1; i < tr.length; i++) {
-                let td = tr[i].getElementsByTagName('td')[1];
-                if (td) {
-                    let txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
+        function checkScore() {
+            const inputID = document.getElementById('studentID').value.trim();
+            const resultArea = document.getElementById('resultArea');
+            const errorArea = document.getElementById('errorArea');
+
+            if (scoreData[inputID]) {
+                // แสดงผล
+                document.getElementById('resID').innerText = inputID;
+                document.getElementById('resAttendance').innerText = scoreData[inputID].attendance;
+                document.getElementById('resAssignment').innerText = scoreData[inputID].assignment;
+                document.getElementById('resTotal').innerText = scoreData[inputID].total;
+                
+                resultArea.classList.remove('hidden');
+                errorArea.classList.add('hidden');
+            } else {
+                // แจ้งเตือนไม่พบข้อมูล
+                resultArea.classList.add('hidden');
+                errorArea.classList.remove('hidden');
             }
         }
     </script>
+
 </body>
 </html>
