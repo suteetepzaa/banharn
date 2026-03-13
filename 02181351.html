@@ -19,11 +19,12 @@
     <header class="border-b-2 border-slate-300 py-8 px-6 bg-slate-50">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div class="text-left">
-                <h1 class="text-2xl font-bold text-slate-900 uppercase tracking-tight">ใบรายงานผลคะแนนรายวิชา</h1>
+                <h1 class="text-2xl font-bold text-slate-900 uppercase tracking-tight">ระบบรายงานคะแนน</h1>
                 <h2 class="text-lg font-semibold text-slate-700">02181331 การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา</h2>
+                <h3 class="text-lg font-semibold text-slate-700">ภาคปลาย ปีการศึกษา 2568</h3>
             </div>
             <div class="text-left md:text-right border-l-2 md:border-l-0 md:border-r-2 border-slate-300 pl-4 md:pl-0 md:pr-4">
-                <p class="text-sm font-bold text-slate-600">ผู้จัดการรายวิชา: <span class="text-slate-900">ผศ.ดร. สมชาย รักเกษตร</span></p>
+                <p class="text-sm font-bold text-slate-600">ผู้จัดการรายวิชา: <span class="text-slate-900">ผศ.ดร.อารีรัตน์ ภาคพิธเจริญ</span></p>
                 <p class="text-sm text-slate-500 mt-1 italic">วันเวลาปัจจุบัน: <span id="currentTimestamp" class="font-medium text-slate-800"></span></p>
             </div>
         </div>
@@ -177,7 +178,7 @@
                 document.getElementById('resGrade').innerText = grade;
 
                 // อัปเดตสถานะเกรดใต้ข้อมูลนิสิต
-                gradeStatusTag.innerText = "🚩 อยู่ระหว่างการประมวลผลและตรวจสอบขั้นสุดท้าย";
+                gradeStatusTag.innerText = "🚩 ไม่เป็นทางการ";
                 gradeStatusTag.className = "px-4 py-1.5 rounded-full font-bold pulse-animation bg-amber-50 text-amber-700 border border-amber-200 text-xs";
 
                 // ข้อความเงื่อนไขการลงทะเบียน
